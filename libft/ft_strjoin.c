@@ -1,26 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memset.c                                        :+:      :+:    :+:   */
+/*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rloraine <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/04/06 20:56:55 by rloraine          #+#    #+#             */
-/*   Updated: 2019/04/07 20:21:03 by rloraine         ###   ########.fr       */
+/*   Created: 2019/04/07 22:04:16 by rloraine          #+#    #+#             */
+/*   Updated: 2019/04/07 22:11:01 by rloraine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <string.h>
+#include "libft.h"
 
-void	*ft_memset(void *b, int c, size_t len)
+char	*ft_strjoin(char const *s1, char const *s2)
 {
-	size_t i;
+	char	*str;
+	int		i;
+	int		j;
 
 	i = 0;
-	while (i < len)
+	j = 0;
+	str = ft_strnew(ft_strlen(s1) + ft_strlen(s2));
+	while (s1[i])
 	{
-		((unsigned char*)b)[i] = (unsigned char)c;
+		str[i] = s1[i];
 		i++;
 	}
-	return ((void*)b);
+	while (s2[j])
+	{
+		str[i] = s2[j];
+		i++;
+		j++;
+	}
+	str[i] = '\0';
+	return (str);
 }

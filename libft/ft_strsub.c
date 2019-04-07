@@ -1,26 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memset.c                                        :+:      :+:    :+:   */
+/*   ft_strsub.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rloraine <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/04/06 20:56:55 by rloraine          #+#    #+#             */
-/*   Updated: 2019/04/07 20:21:03 by rloraine         ###   ########.fr       */
+/*   Created: 2019/04/07 21:43:11 by rloraine          #+#    #+#             */
+/*   Updated: 2019/04/07 22:03:25 by rloraine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft.h"
 #include <string.h>
 
-void	*ft_memset(void *b, int c, size_t len)
+char	*ft_strsub(char const *s, unsigned int start, size_t len)
 {
-	size_t i;
+	char	*str;
+	size_t	i;
 
+	str = ft_strnew(len);
+	if (str == NULL)
+		return (NULL);
 	i = 0;
+	s = s + start;
 	while (i < len)
 	{
-		((unsigned char*)b)[i] = (unsigned char)c;
+		str[i] = s[i];
 		i++;
 	}
-	return ((void*)b);
+	return (str);
 }
