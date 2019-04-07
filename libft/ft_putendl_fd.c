@@ -1,29 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memccpy.c                                       :+:      :+:    :+:   */
+/*   ft_putendl_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rloraine <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/04/06 21:11:43 by rloraine          #+#    #+#             */
-/*   Updated: 2019/04/07 19:13:05 by rloraine         ###   ########.fr       */
+/*   Created: 2019/04/07 19:07:21 by rloraine          #+#    #+#             */
+/*   Updated: 2019/04/07 19:08:20 by rloraine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <string.h>
 #include "libft.h"
 
-void	*ft_memccpy(void *restrict d, const void *restrict s, int c, size_t n)
+void	ft_putendl_fd(char const *s, int fd)
 {
-	size_t i;
-
-	i = 0;
-	while (i < n)
-	{
-		((unsigned char*)d)[i] = ((unsigned char*)s)[i];
-		if (((unsigned char*)d)[i] == (unsigned char)c)
-			return ((void*)(d + i + 1));
-		i++;
-	}
-	return (NULL);
+	ft_putstr_fd(s, fd);
+	ft_putchar_fd('\n', fd);
 }

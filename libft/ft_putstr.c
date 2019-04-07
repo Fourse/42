@@ -1,29 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memccpy.c                                       :+:      :+:    :+:   */
+/*   ft_putstr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rloraine <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/04/06 21:11:43 by rloraine          #+#    #+#             */
-/*   Updated: 2019/04/07 19:13:05 by rloraine         ###   ########.fr       */
+/*   Created: 2019/04/07 18:09:14 by rloraine          #+#    #+#             */
+/*   Updated: 2019/04/07 18:11:47 by rloraine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <string.h>
-#include "libft.h"
+#include <unistd.h>
 
-void	*ft_memccpy(void *restrict d, const void *restrict s, int c, size_t n)
+void	ft_putstr(char const *s)
 {
-	size_t i;
+	int i;
 
 	i = 0;
-	while (i < n)
+	while (s[i])
 	{
-		((unsigned char*)d)[i] = ((unsigned char*)s)[i];
-		if (((unsigned char*)d)[i] == (unsigned char)c)
-			return ((void*)(d + i + 1));
+		write(1, &s[i], 1);
 		i++;
 	}
-	return (NULL);
 }

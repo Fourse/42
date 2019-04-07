@@ -6,9 +6,11 @@
 /*   By: rloraine <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/05 15:36:10 by rloraine          #+#    #+#             */
-/*   Updated: 2019/04/05 15:38:59 by rloraine         ###   ########.fr       */
+/*   Updated: 2019/04/07 19:14:55 by rloraine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "libft.h"
 
 char	*ft_strcat(char *restrict s1, const char *restrict s2)
 {

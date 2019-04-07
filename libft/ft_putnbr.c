@@ -1,29 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memccpy.c                                       :+:      :+:    :+:   */
+/*   ft_putnbr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rloraine <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/04/06 21:11:43 by rloraine          #+#    #+#             */
-/*   Updated: 2019/04/07 19:13:05 by rloraine         ###   ########.fr       */
+/*   Created: 2019/04/07 18:17:01 by rloraine          #+#    #+#             */
+/*   Updated: 2019/04/07 18:53:45 by rloraine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <string.h>
+#include <inttypes.h>
 #include "libft.h"
 
-void	*ft_memccpy(void *restrict d, const void *restrict s, int c, size_t n)
+void	ft_putnbr(intmax_t n)
 {
-	size_t i;
-
-	i = 0;
-	while (i < n)
-	{
-		((unsigned char*)d)[i] = ((unsigned char*)s)[i];
-		if (((unsigned char*)d)[i] == (unsigned char)c)
-			return ((void*)(d + i + 1));
-		i++;
-	}
-	return (NULL);
+	ft_putnbr_fd(n, 1);
 }
