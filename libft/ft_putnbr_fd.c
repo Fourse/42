@@ -6,7 +6,7 @@
 /*   By: rloraine <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/07 18:44:38 by rloraine          #+#    #+#             */
-/*   Updated: 2019/04/07 19:02:33 by rloraine         ###   ########.fr       */
+/*   Updated: 2019/04/08 16:41:50 by rloraine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 void	ft_putnbr_fd(intmax_t n, int fd)
 {
-	uintmax_t nb;
+	intmax_t nb;
 
 	nb = n;
 	if (n < 0)
