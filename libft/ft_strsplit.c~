@@ -1,30 +1,46 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strnew.c                                        :+:      :+:    :+:   */
+/*   ft_strsplit.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rloraine <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/04/07 20:37:14 by rloraine          #+#    #+#             */
-/*   Updated: 2019/04/09 17:10:20 by rloraine         ###   ########.fr       */
+/*   Created: 2019/04/09 16:34:44 by rloraine          #+#    #+#             */
+/*   Updated: 2019/04/09 18:28:35 by rloraine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include <stdlib.h>
 
-char	*ft_strnew(size_t size)
+char	**ft_strsplit(char const *s, char c)
 {
-	char	*str;
-	size_t	i;
+	int i;
+	int j;
+	int n;
+	int k;
+	char **split;
 
-	i = 0;
-	str = malloc(size + 1);
-	while (i < size)
+	n = 0;
+	j = 0;
+	k = 0;
+	split = NULL;
+	while (s[n])
 	{
-		str[i] = '\0';
-		i++;
+		i = 0;
+		if (s[n] == c)
+		{
+			*split[j] = *ft_strnew(n - k);
+			while (s[n] != c)
+			{
+				split[j][i++] = s[n++];
+				k++;
+			}
+			k++;
+			split[j][i] = '\0';
+		}
+		while (s[n] != c)
+			n++;
 	}
-	str[i] = '\0';
-	return (str);
+	return (split);
 }
