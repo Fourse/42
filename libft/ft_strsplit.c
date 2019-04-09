@@ -1,33 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strsub.c                                        :+:      :+:    :+:   */
+/*   ft_strsplit.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rloraine <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/04/07 21:43:11 by rloraine          #+#    #+#             */
-/*   Updated: 2019/04/09 16:26:21 by rloraine         ###   ########.fr       */
+/*   Created: 2019/04/09 16:34:44 by rloraine          #+#    #+#             */
+/*   Updated: 2019/04/09 16:43:49 by rloraine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-#include <string.h>
-
-char	*ft_strsub(char const *s, unsigned int start, size_t len)
+char	**ft_strsplit(char const *s, char c)
 {
-	char	*str;
-	size_t	i;
-
-	str = ft_strnew(len);
-	if (str == NULL)
-		return (NULL);
-	i = 0;
-	s = s + start;
-	while (i < len)
-	{
-		str[i] = s[i];
-		i++;
-	}
-	str[i] = '\0';
-	return (str);
+	
 }

@@ -1,33 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strsub.c                                        :+:      :+:    :+:   */
+/*   ft_count.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rloraine <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/04/07 21:43:11 by rloraine          #+#    #+#             */
-/*   Updated: 2019/04/09 16:26:21 by rloraine         ###   ########.fr       */
+/*   Created: 2019/04/09 15:24:53 by rloraine          #+#    #+#             */
+/*   Updated: 2019/04/09 15:24:58 by rloraine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-#include <string.h>
-
-char	*ft_strsub(char const *s, unsigned int start, size_t len)
+int ft_count(int n)
 {
-	char	*str;
-	size_t	i;
+    int i;
 
-	str = ft_strnew(len);
-	if (str == NULL)
-		return (NULL);
-	i = 0;
-	s = s + start;
-	while (i < len)
-	{
-		str[i] = s[i];
-		i++;
-	}
-	str[i] = '\0';
-	return (str);
+    i = 0;
+    if (n == 0)
+        i++;
+    else if (n < 0)
+        i++;
+    else
+    {
+        while (n > 0)
+        {
+            i++;
+            n /= 10;
+        }
+    }
+    return (i);
 }

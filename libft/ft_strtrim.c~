@@ -1,33 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strsub.c                                        :+:      :+:    :+:   */
+/*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rloraine <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/04/07 21:43:11 by rloraine          #+#    #+#             */
-/*   Updated: 2019/04/09 16:26:21 by rloraine         ###   ########.fr       */
+/*   Created: 2019/04/07 22:12:35 by rloraine          #+#    #+#             */
+/*   Updated: 2019/04/09 16:22:04 by rloraine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <string.h>
 
-char	*ft_strsub(char const *s, unsigned int start, size_t len)
+char	*ft_strtrim(char const *s)
 {
-	char	*str;
-	size_t	i;
+	char const *end;
 
-	str = ft_strnew(len);
-	if (str == NULL)
-		return (NULL);
-	i = 0;
-	s = s + start;
-	while (i < len)
-	{
-		str[i] = s[i];
-		i++;
-	}
-	str[i] = '\0';
-	return (str);
+	while (*s == ' ' || *s == '\t' || *s == '\n')
+		s++;
+	end = s + ft_strlen(s) - 1;
+	while (*end == ' ' || *end == '\t' || *end == '\n')
+		end--;
+	return (ft_strsub(s, 0, end - s + 1));
 }
