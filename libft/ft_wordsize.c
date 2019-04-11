@@ -1,23 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memdel.c                                        :+:      :+:    :+:   */
+/*   ft_wordsize.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rloraine <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/04/07 20:21:40 by rloraine          #+#    #+#             */
-/*   Updated: 2019/04/11 20:15:38 by rloraine         ###   ########.fr       */
+/*   Created: 2019/04/11 20:31:44 by rloraine          #+#    #+#             */
+/*   Updated: 2019/04/11 20:32:52 by rloraine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdlib.h>
 
-void	ft_memdel(void **ap)
+int	ft_wordsize(const char *s, char c, int i)
 {
-	if (ap != NULL)
-	{
-		free(*ap);
-		*ap = NULL;
-	}
+	int j;
+
+	while (s[i] == c && s[i])
+		i++;
+	j = i;
+	while (s[j] != c && s[j])
+		j++;
+	return (j - i);
 }

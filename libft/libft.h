@@ -6,7 +6,7 @@
 /*   By: rloraine <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/04 18:38:56 by rloraine          #+#    #+#             */
-/*   Updated: 2019/04/09 15:25:20 by rloraine         ###   ########.fr       */
+/*   Updated: 2019/04/11 20:35:29 by rloraine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,5 +88,7 @@ void				ft_lstiter(t_list *lst, void (*f)(t_list *elem));
 t_list				*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem));
 void				ft_strrev(char *s);
 int					ft_count(int n);
+int					ft_wordsize(const char *s, char c, int i);
+int					ft_isword(const char *s, char c);
 
 #endif

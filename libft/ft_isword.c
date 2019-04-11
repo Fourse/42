@@ -1,23 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memdel.c                                        :+:      :+:    :+:   */
+/*   ft_isword.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rloraine <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/04/07 20:21:40 by rloraine          #+#    #+#             */
-/*   Updated: 2019/04/11 20:15:38 by rloraine         ###   ########.fr       */
+/*   Created: 2019/04/11 20:33:40 by rloraine          #+#    #+#             */
+/*   Updated: 2019/04/11 20:35:03 by rloraine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdlib.h>
 
-void	ft_memdel(void **ap)
+int	ft_isword(const char *s, char c)
 {
-	if (ap != NULL)
+	int i;
+	int n;
+
+	i = 0;
+	n = 0;
+	while (s[i] == c)
+		i++;
+	while (s[i])
 	{
-		free(*ap);
-		*ap = NULL;
+		if (s[i] != c)
+		{
+			n++;
+			while (s[i] != c && s[i])
+				i++;
+		}
+		i++;
 	}
+	return (n);
 }

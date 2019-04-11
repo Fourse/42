@@ -6,46 +6,12 @@
 /*   By: rloraine <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/09 16:34:44 by rloraine          #+#    #+#             */
-/*   Updated: 2019/04/11 18:18:02 by rloraine         ###   ########.fr       */
+/*   Updated: 2019/04/11 20:58:39 by rloraine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include <stdlib.h>
-
-int		ft_wordsize(const char *s, char c, int i)
-{
-	int j;
-
-	while (s[i] == c && s[i])
-		i++;
-	j = i;
-	while (s[j] != c && s[j])
-		j++;
-	return (j - i);
-}
-
-int		ft_isword(const char *s, char c)
-{
-	int i;
-	int n;
-
-	i = 0;
-	n = 0;
-	while (s[i] == c)
-		i++;
-	while (s[i])
-	{
-		if (s[i] != c)
-		{
-			n++;
-			while (s[i] != c && s[i])
-				i++;
-		}
-		i++;
-	}
-	return (n);
-}
 
 char	**ft_strsplit(char const *s, char c)
 {
