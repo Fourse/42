@@ -1,21 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_striter.c                                       :+:      :+:    :+:   */
+/*   ft_striteri.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rloraine <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/04/07 20:49:46 by rloraine          #+#    #+#             */
-/*   Updated: 2019/04/12 17:24:15 by rloraine         ###   ########.fr       */
+/*   Created: 2019/04/07 20:53:32 by rloraine          #+#    #+#             */
+/*   Updated: 2019/04/12 17:25:43 by rloraine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_striter(char *s, void (*f)(char *))
+void	ft_striteri(char *s, void (*f)(unsigned int, char *))
 {
-	if (s == NULL || f == NULL)
+	int i;
+
+	i = 0;
+	if (s[i] == NULL || f == NULL)
 		return ;
-	while (*s && s != NULL)
-		f(s++);
+	while (*s && s[i] != NULL)
+		f(i, s[i++]);
 }
