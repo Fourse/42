@@ -6,7 +6,7 @@
 /*   By: rloraine <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/04 18:38:56 by rloraine          #+#    #+#             */
-/*   Updated: 2019/04/12 16:44:55 by rloraine         ###   ########.fr       */
+/*   Updated: 2019/04/12 21:20:14 by rloraine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,5 +92,6 @@ void				ft_strrev(char *s);
 int					ft_count(int n);
 int					ft_wsize(const char *s, char c, int i);
 int					ft_isword(const char *s, char c);
+void				ft_swap(int *a, int *b);
 
 #endif
