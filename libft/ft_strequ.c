@@ -6,7 +6,7 @@
 /*   By: rloraine <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/07 21:27:43 by rloraine          #+#    #+#             */
-/*   Updated: 2019/04/07 21:39:44 by rloraine         ###   ########.fr       */
+/*   Updated: 2019/04/12 14:51:06 by rloraine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,7 @@
 
 int	ft_strequ(char const *s1, char const *s2)
 {
-	return (ft_strcmp(s1, s2) == 0);
+	if (s1 && s2)
+		return (ft_strcmp(s1, s2) == 0);
+	return (0);
 }

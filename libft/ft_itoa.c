@@ -6,7 +6,7 @@
 /*   By: rloraine <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/08 17:27:43 by rloraine          #+#    #+#             */
-/*   Updated: 2019/04/09 15:25:48 by rloraine         ###   ########.fr       */
+/*   Updated: 2019/04/12 15:24:52 by rloraine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@ char	*ft_itoa(int n)
 	int				s;
 
 	nb = n;
-	str = ft_strnew(ft_count(n));
+	if (!(str = ft_strnew(ft_count(n))))
+		return (NULL);
 	if ((s = n) < 0)
 		nb = -n;
 	i = 0;

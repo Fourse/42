@@ -6,26 +6,28 @@
 /*   By: rloraine <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/09 15:24:53 by rloraine          #+#    #+#             */
-/*   Updated: 2019/04/09 15:26:47 by rloraine         ###   ########.fr       */
+/*   Updated: 2019/04/12 16:30:20 by rloraine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 int	ft_count(int n)
 {
-	int i;
+	int				i;
+	unsigned int	k;
 
 	i = 0;
 	if (n == 0)
 		i++;
 	else if (n < 0)
-		i++;
-	else
 	{
-		while (n > 0)
-		{
-			i++;
-			n /= 10;
-		}
+		i++;
+		n = n * -1;
+	}
+	k = n;
+	while (k > 0)
+	{
+		k /= 10;
+		i++;
 	}
 	return (i);
 }

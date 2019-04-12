@@ -6,7 +6,7 @@
 /*   By: rloraine <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/07 19:05:40 by rloraine          #+#    #+#             */
-/*   Updated: 2019/04/07 19:06:52 by rloraine         ###   ########.fr       */
+/*   Updated: 2019/04/12 16:14:19 by rloraine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,6 @@
 
 void	ft_putendl(char const *s)
 {
-	ft_putstr_fd(s, 1);
-	ft_putchar_fd('\n', 1);
+	if (s)
+		ft_putendl_fd(s, 1);
 }

@@ -1,31 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_count.c                                         :+:      :+:    :+:   */
+/*   ft_wsize.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rloraine <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/04/09 15:24:53 by rloraine          #+#    #+#             */
-/*   Updated: 2019/04/09 15:26:47 by rloraine         ###   ########.fr       */
+/*   Created: 2019/04/12 14:59:13 by rloraine          #+#    #+#             */
+/*   Updated: 2019/04/12 14:59:16 by rloraine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_count(int n)
-{
-	int i;
+#include "libft.h"
 
-	i = 0;
-	if (n == 0)
+int	ft_wsize(const char *s, char c, int i)
+{
+	int j;
+
+	while (s[i] == c && s[i])
 		i++;
-	else if (n < 0)
-		i++;
-	else
-	{
-		while (n > 0)
-		{
-			i++;
-			n /= 10;
-		}
-	}
-	return (i);
+	j = i;
+	while (s[j] != c && s[j])
+		j++;
+	return (j - i);
 }

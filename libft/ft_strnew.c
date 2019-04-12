@@ -6,7 +6,7 @@
 /*   By: rloraine <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/07 20:37:14 by rloraine          #+#    #+#             */
-/*   Updated: 2019/04/09 17:10:20 by rloraine         ###   ########.fr       */
+/*   Updated: 2019/04/12 14:15:12 by rloraine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,8 @@ char	*ft_strnew(size_t size)
 	size_t	i;
 
 	i = 0;
-	str = malloc(size + 1);
+	if (!(str = malloc(size + 1)))
+		return (NULL);
 	while (i < size)
 	{
 		str[i] = '\0';
