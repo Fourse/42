@@ -6,16 +6,15 @@
 /*   By: rloraine <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/07 18:44:38 by rloraine          #+#    #+#             */
-/*   Updated: 2019/04/08 16:41:50 by rloraine         ###   ########.fr       */
+/*   Updated: 2019/04/12 21:45:39 by rloraine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <inttypes.h>
 #include "libft.h"
 
-void	ft_putnbr_fd(intmax_t n, int fd)
+void	ft_putnbr_fd(long int n, int fd)
 {
-	intmax_t nb;
+	long int nb;
 
 	nb = n;
 	if (n < 0)
