@@ -1,42 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memmove.c                                       :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rloraine <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/04/06 21:20:42 by rloraine          #+#    #+#             */
-/*   Updated: 2019/04/16 16:36:49 by rloraine         ###   ########.fr       */
+/*   Created: 2019/04/19 15:56:11 by rloraine          #+#    #+#             */
+/*   Updated: 2019/04/19 19:05:42 by rloraine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <string.h>
-#include "libft.h"
+#include "get_next_line.h"
 
-void	*ft_memmove(void *dst, const void *src, size_t len)
+int	main(int argc, char **argv)
 {
-	char *s;
-	char *d;
+	int		fd;
+	char	*line;
 
-	s = (char*)src;
-	d = (char*)dst;
-	if (s < d)
-	{
-		s += len - 1;
-		d += len - 1;
-		while (len > 0)
-		{
-			*d-- = *s--;
-			len--;
-		}
-	}
+	if (argc == 1)
+		fd = 0;
+	else if (argc == 2)
+		fd = open(argv[1], O_RDONLY);
 	else
+		return (2);
+	while (get_next_line(fd, &line) == 1)
 	{
-		while (len > 0)
-		{
-			*d++ = *s++;
-			len--;
-		}
+		ft_putendl(line);
+		free(line);
 	}
-	return ((void*)dst);
+	if (argc == 2)
+		close(fd);
 }
