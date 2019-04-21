@@ -6,12 +6,11 @@
 /*   By: rloraine <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/12 18:49:25 by rloraine          #+#    #+#             */
-/*   Updated: 2019/04/12 19:04:16 by rloraine         ###   ########.fr       */
+/*   Updated: 2019/04/21 16:58:42 by rloraine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdlib.h>
 
 t_list	*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem))
 {

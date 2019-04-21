@@ -6,11 +6,10 @@
 /*   By: rloraine <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/06 21:20:42 by rloraine          #+#    #+#             */
-/*   Updated: 2019/04/16 16:36:49 by rloraine         ###   ########.fr       */
+/*   Updated: 2019/04/21 16:59:46 by rloraine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <string.h>
 #include "libft.h"
 
 void	*ft_memmove(void *dst, const void *src, size_t len)

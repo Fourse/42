@@ -6,11 +6,10 @@
 /*   By: rloraine <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/07 18:14:36 by rloraine          #+#    #+#             */
-/*   Updated: 2019/04/12 16:15:09 by rloraine         ###   ########.fr       */
+/*   Updated: 2019/04/21 17:01:18 by rloraine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
 #include "libft.h"
 
 void	ft_putstr_fd(char const *s, int fd)

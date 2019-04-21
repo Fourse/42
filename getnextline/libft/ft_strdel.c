@@ -6,12 +6,11 @@
 /*   By: rloraine <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/07 20:46:01 by rloraine          #+#    #+#             */
-/*   Updated: 2019/04/12 14:28:26 by rloraine         ###   ########.fr       */
+/*   Updated: 2019/04/21 17:01:53 by rloraine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdlib.h>
 
 void	ft_strdel(char **as)
 {

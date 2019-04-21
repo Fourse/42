@@ -6,11 +6,10 @@
 /*   By: rloraine <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/05 12:20:10 by rloraine          #+#    #+#             */
-/*   Updated: 2019/04/12 14:12:34 by rloraine         ###   ########.fr       */
+/*   Updated: 2019/04/21 17:00:09 by rloraine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
 #include "libft.h"
 
 void	ft_putchar(char c)

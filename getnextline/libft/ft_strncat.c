@@ -6,11 +6,10 @@
 /*   By: rloraine <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/05 15:39:27 by rloraine          #+#    #+#             */
-/*   Updated: 2019/04/12 15:23:47 by rloraine         ###   ########.fr       */
+/*   Updated: 2019/04/21 17:03:07 by rloraine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <string.h>
 #include "libft.h"
 
 char	*ft_strncat(char *restrict s1, const char *restrict s2, size_t n)
