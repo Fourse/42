@@ -1,34 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_memcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rloraine <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/04/19 15:56:11 by rloraine          #+#    #+#             */
-/*   Updated: 2019/04/22 15:37:31 by rloraine         ###   ########.fr       */
+/*   Created: 2019/04/07 14:08:44 by rloraine          #+#    #+#             */
+/*   Updated: 2019/04/21 16:59:25 by rloraine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
-#include "./libft/libft.h"
+#include "libft.h"
 
-int	main(int argc, char **argv)
+int	ft_memcmp(const void *s1, const void *s2, size_t n)
 {
-	int		fd;
-	char	*line;
+	unsigned char *str;
+	unsigned char *src;
 
-	if (argc == 1)
-		fd = 0;
-	else if (argc == 2)
-		fd = open(argv[1], O_RDONLY);
-	else
-		return (2);
-	while (get_next_line(fd, &line) == 1)
+	str = (unsigned char*)s1;
+	src = (unsigned char*)s2;
+	while (n > 0 && *str == *src)
 	{
-		ft_putendl(line);
-		free(line);
+		str++;
+		src++;
+		n--;
 	}
-	if (argc == 2)
-		close(fd);
+	if (n == 0)
+		return (0);
+	else
+		return (*str - *src);
 }

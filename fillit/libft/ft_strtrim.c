@@ -1,34 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rloraine <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/04/19 15:56:11 by rloraine          #+#    #+#             */
-/*   Updated: 2019/04/22 15:37:31 by rloraine         ###   ########.fr       */
+/*   Created: 2019/04/07 22:12:35 by rloraine          #+#    #+#             */
+/*   Updated: 2019/04/09 16:23:26 by rloraine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
-#include "./libft/libft.h"
+#include "libft.h"
 
-int	main(int argc, char **argv)
+char	*ft_strtrim(char const *s)
 {
-	int		fd;
-	char	*line;
+	char const *end;
 
-	if (argc == 1)
-		fd = 0;
-	else if (argc == 2)
-		fd = open(argv[1], O_RDONLY);
-	else
-		return (2);
-	while (get_next_line(fd, &line) == 1)
-	{
-		ft_putendl(line);
-		free(line);
-	}
-	if (argc == 2)
-		close(fd);
+	if (s == NULL)
+		return (NULL);
+	while (*s == ' ' || *s == '\t' || *s == '\n')
+		s++;
+	if (*s == '\0')
+		return (ft_strnew(0));
+	end = s + ft_strlen(s) - 1;
+	while (*end == ' ' || *end == '\t' || *end == '\n')
+		end--;
+	return (ft_strsub(s, 0, end - s + 1));
 }

@@ -1,34 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strlcat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rloraine <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/04/19 15:56:11 by rloraine          #+#    #+#             */
-/*   Updated: 2019/04/22 15:37:31 by rloraine         ###   ########.fr       */
+/*   Created: 2019/04/05 16:00:46 by rloraine          #+#    #+#             */
+/*   Updated: 2019/04/21 17:02:31 by rloraine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
-#include "./libft/libft.h"
+#include "libft.h"
 
-int	main(int argc, char **argv)
+size_t	ft_strlcat(char *restrict dst, const char *restrict src, size_t size)
 {
-	int		fd;
-	char	*line;
+	size_t i;
+	size_t j;
 
-	if (argc == 1)
-		fd = 0;
-	else if (argc == 2)
-		fd = open(argv[1], O_RDONLY);
-	else
-		return (2);
-	while (get_next_line(fd, &line) == 1)
+	j = 0;
+	i = 0;
+	while (dst[i] && i < size)
+		i++;
+	while (src[j] && (i + j + 1 < size))
 	{
-		ft_putendl(line);
-		free(line);
+		dst[i + j] = src[j];
+		j++;
 	}
-	if (argc == 2)
-		close(fd);
+	if (i < size)
+		dst[i + j] = '\0';
+	return (i + ft_strlen(src));
 }

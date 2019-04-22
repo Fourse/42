@@ -1,34 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strrev.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rloraine <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/04/19 15:56:11 by rloraine          #+#    #+#             */
-/*   Updated: 2019/04/22 15:37:31 by rloraine         ###   ########.fr       */
+/*   Created: 2019/04/08 17:38:01 by rloraine          #+#    #+#             */
+/*   Updated: 2019/04/09 15:21:42 by rloraine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
-#include "./libft/libft.h"
+#include "libft.h"
 
-int	main(int argc, char **argv)
+void	ft_strrev(char *s)
 {
-	int		fd;
-	char	*line;
+	char *str;
+	char c;
 
-	if (argc == 1)
-		fd = 0;
-	else if (argc == 2)
-		fd = open(argv[1], O_RDONLY);
-	else
-		return (2);
-	while (get_next_line(fd, &line) == 1)
+	str = s + ft_strlen(s) - 1;
+	while (s < str)
 	{
-		ft_putendl(line);
-		free(line);
+		c = *str;
+		*str-- = *s;
+		*s++ = c;
 	}
-	if (argc == 2)
-		close(fd);
 }

@@ -1,34 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_memcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rloraine <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/04/19 15:56:11 by rloraine          #+#    #+#             */
-/*   Updated: 2019/04/22 15:37:31 by rloraine         ###   ########.fr       */
+/*   Created: 2019/04/06 21:09:08 by rloraine          #+#    #+#             */
+/*   Updated: 2019/04/21 16:59:32 by rloraine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
-#include "./libft/libft.h"
+#include "libft.h"
 
-int	main(int argc, char **argv)
+void	*ft_memcpy(void *restrict dst, const void *restrict src, size_t n)
 {
-	int		fd;
-	char	*line;
+	size_t i;
 
-	if (argc == 1)
-		fd = 0;
-	else if (argc == 2)
-		fd = open(argv[1], O_RDONLY);
-	else
-		return (2);
-	while (get_next_line(fd, &line) == 1)
+	i = 0;
+	while (i < n)
 	{
-		ft_putendl(line);
-		free(line);
+		((unsigned char*)dst)[i] = ((unsigned char*)src)[i];
+		i++;
 	}
-	if (argc == 2)
-		close(fd);
+	return ((void*)dst);
 }

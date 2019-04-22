@@ -1,34 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_isword.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rloraine <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/04/19 15:56:11 by rloraine          #+#    #+#             */
-/*   Updated: 2019/04/22 15:37:31 by rloraine         ###   ########.fr       */
+/*   Created: 2019/04/11 20:33:40 by rloraine          #+#    #+#             */
+/*   Updated: 2019/04/11 20:35:03 by rloraine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
-#include "./libft/libft.h"
+#include "libft.h"
 
-int	main(int argc, char **argv)
+int	ft_isword(const char *s, char c)
 {
-	int		fd;
-	char	*line;
+	int i;
+	int n;
 
-	if (argc == 1)
-		fd = 0;
-	else if (argc == 2)
-		fd = open(argv[1], O_RDONLY);
-	else
-		return (2);
-	while (get_next_line(fd, &line) == 1)
+	i = 0;
+	n = 0;
+	while (s[i] == c)
+		i++;
+	while (s[i])
 	{
-		ft_putendl(line);
-		free(line);
+		if (s[i] != c)
+		{
+			n++;
+			while (s[i] != c && s[i])
+				i++;
+		}
+		i++;
 	}
-	if (argc == 2)
-		close(fd);
+	return (n);
 }

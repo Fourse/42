@@ -1,34 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rloraine <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/04/19 15:56:11 by rloraine          #+#    #+#             */
-/*   Updated: 2019/04/22 15:37:31 by rloraine         ###   ########.fr       */
+/*   Created: 2019/04/07 21:18:47 by rloraine          #+#    #+#             */
+/*   Updated: 2019/04/12 14:46:39 by rloraine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
-#include "./libft/libft.h"
+#include "libft.h"
 
-int	main(int argc, char **argv)
+char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
-	int		fd;
-	char	*line;
+	char			*str;
+	unsigned int	i;
 
-	if (argc == 1)
-		fd = 0;
-	else if (argc == 2)
-		fd = open(argv[1], O_RDONLY);
-	else
-		return (2);
-	while (get_next_line(fd, &line) == 1)
+	if (s)
 	{
-		ft_putendl(line);
-		free(line);
+		i = 0;
+		if (!(str = ft_strnew(ft_strlen(s))))
+			return (NULL);
+		while (s[i])
+		{
+			str[i] = f(i, s[i]);
+			i++;
+		}
+		return (str);
 	}
-	if (argc == 2)
-		close(fd);
+	return (NULL);
 }

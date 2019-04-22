@@ -1,34 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strcat.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rloraine <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/04/19 15:56:11 by rloraine          #+#    #+#             */
-/*   Updated: 2019/04/22 15:37:31 by rloraine         ###   ########.fr       */
+/*   Created: 2019/04/05 15:36:10 by rloraine          #+#    #+#             */
+/*   Updated: 2019/04/07 19:14:55 by rloraine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
-#include "./libft/libft.h"
+#include "libft.h"
 
-int	main(int argc, char **argv)
+char	*ft_strcat(char *restrict s1, const char *restrict s2)
 {
-	int		fd;
-	char	*line;
+	int i;
+	int j;
 
-	if (argc == 1)
-		fd = 0;
-	else if (argc == 2)
-		fd = open(argv[1], O_RDONLY);
-	else
-		return (2);
-	while (get_next_line(fd, &line) == 1)
+	i = 0;
+	j = 0;
+	while (s1[i])
+		i++;
+	while (s2[j])
 	{
-		ft_putendl(line);
-		free(line);
+		s1[i] = s2[j];
+		i++;
+		j++;
 	}
-	if (argc == 2)
-		close(fd);
+	s1[i] = '\0';
+	return (s1);
 }

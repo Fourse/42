@@ -1,34 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_lstmap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rloraine <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/04/19 15:56:11 by rloraine          #+#    #+#             */
-/*   Updated: 2019/04/22 15:37:31 by rloraine         ###   ########.fr       */
+/*   Created: 2019/04/12 18:49:25 by rloraine          #+#    #+#             */
+/*   Updated: 2019/04/21 16:58:42 by rloraine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
-#include "./libft/libft.h"
+#include "libft.h"
 
-int	main(int argc, char **argv)
+t_list	*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem))
 {
-	int		fd;
-	char	*line;
+	t_list *element;
+	t_list *list;
 
-	if (argc == 1)
-		fd = 0;
-	else if (argc == 2)
-		fd = open(argv[1], O_RDONLY);
-	else
-		return (2);
-	while (get_next_line(fd, &line) == 1)
+	if (!lst)
+		return (NULL);
+	list = f(lst);
+	element = list;
+	while (lst->next)
 	{
-		ft_putendl(line);
-		free(line);
+		lst = lst->next;
+		if (!(list->next = f(lst)))
+		{
+			free(lst->next);
+			return (NULL);
+		}
+		list = list->next;
 	}
-	if (argc == 2)
-		close(fd);
+	return (element);
 }

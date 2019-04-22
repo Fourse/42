@@ -1,34 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strstr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rloraine <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/04/19 15:56:11 by rloraine          #+#    #+#             */
-/*   Updated: 2019/04/22 15:37:31 by rloraine         ###   ########.fr       */
+/*   Created: 2019/04/06 17:16:54 by rloraine          #+#    #+#             */
+/*   Updated: 2019/04/21 17:04:38 by rloraine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
-#include "./libft/libft.h"
+#include "libft.h"
 
-int	main(int argc, char **argv)
+char	*ft_strstr(const char *haystack, const char *needle)
 {
-	int		fd;
-	char	*line;
+	int i;
+	int s;
 
-	if (argc == 1)
-		fd = 0;
-	else if (argc == 2)
-		fd = open(argv[1], O_RDONLY);
-	else
-		return (2);
-	while (get_next_line(fd, &line) == 1)
+	i = 0;
+	if (!needle[0])
+		return ((char*)haystack);
+	while (haystack[i])
 	{
-		ft_putendl(line);
-		free(line);
+		s = 0;
+		while (haystack[i + s] == needle[s] && needle[s])
+		{
+			s++;
+			if (!needle[s])
+				return ((char*)(haystack + i));
+		}
+		i++;
 	}
-	if (argc == 2)
-		close(fd);
+	return (NULL);
 }

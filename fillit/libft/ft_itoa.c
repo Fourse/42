@@ -1,34 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rloraine <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/04/19 15:56:11 by rloraine          #+#    #+#             */
-/*   Updated: 2019/04/22 15:37:31 by rloraine         ###   ########.fr       */
+/*   Created: 2019/04/08 17:27:43 by rloraine          #+#    #+#             */
+/*   Updated: 2019/04/12 15:24:52 by rloraine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
-#include "./libft/libft.h"
+#include "libft.h"
 
-int	main(int argc, char **argv)
+char	*ft_itoa(int n)
 {
-	int		fd;
-	char	*line;
+	char			*str;
+	unsigned int	nb;
+	int				i;
+	int				s;
 
-	if (argc == 1)
-		fd = 0;
-	else if (argc == 2)
-		fd = open(argv[1], O_RDONLY);
-	else
-		return (2);
-	while (get_next_line(fd, &line) == 1)
+	nb = n;
+	if (!(str = ft_strnew(ft_count(n))))
+		return (NULL);
+	if ((s = n) < 0)
+		nb = -n;
+	i = 0;
+	if (nb == 0)
+		str[i++] = '0';
+	while (nb > 0)
 	{
-		ft_putendl(line);
-		free(line);
+		str[i++] = nb % 10 + '0';
+		nb /= 10;
 	}
-	if (argc == 2)
-		close(fd);
+	if (s < 0)
+		str[i++] = '-';
+	str[i] = '\0';
+	ft_strrev(str);
+	return (str);
 }
