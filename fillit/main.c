@@ -6,61 +6,169 @@
 /*   By: rloraine <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/27 15:24:59 by rloraine          #+#    #+#             */
-/*   Updated: 2019/04/27 18:07:10 by rloraine         ###   ########.fr       */
+/*   Updated: 2019/04/28 17:38:10 by rloraine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
+#define BUFF_SIZE 21
 
-void print_map(int fd, char **map)
+int is_z(char **figure)
 {
-	
+	int x;
+	int y;
+
+	x = 0;
+	y = 0;
+	while (figure[y] && figure[y][x] && y <= 4)
+	{
+		if (((figure[y][x] == '#' && figure[y + 1][x] == '#' && figure[y + 1][x + 1] == '#' && figure[y + 2][x + 1] == '#')\
+			 || (figure[y][x] == '#' && figure[y + 1][x] == '#' && figure[y + 1][x - 1] == '#' && figure[y + 2][x - 1] == '#')\
+			 || (figure[y][x] == '#' && figure[y][x + 1] == '#' && figure[y + 1][x] == '#' && figure[y + 1][x - 1] == '#')\
+			 || (figure[y][x] == '#' && figure[y][x + 1] == '#' && figure[y + 1][x + 1] == '#' && figure[y + 1][x + 2] == '#')) && x <= 4)
+			return (1);
+		if (figure[y][x] == '\0')
+        {
+            x = 0;
+            y++;
+        }
+        x++;
+	}
+	return (0);
 }
 
-int figure(int fd)
+int is_g(char **figure)
+{
+	int x;
+	int y;
+
+	x = 0;
+	y = 0;
+	while (figure[y] && figure[y][x] && y <= 4)
+	{
+		if (((figure[y][x] == '#' && figure[y][x + 1] == '#' && figure[y][x + 2] == '#' && figure[y + 1][x + 2] == '#')\
+			 || (figure[y][x] == '#' && figure[y + 1][x] == '#' && figure[y][x + 1] == '#' && figure[y][x + 2] == '#')\
+			 || (figure[y][x] == '#' && figure[y + 1][x] == '#' && figure[y + 1][x + 1] == '#' && figure[y + 1][x + 2] == '#')\
+			 || (figure[y][x] == '#' && figure[y + 1][x - 2] == '#' && figure[y + 1][x - 1] == '#' && figure[y + 1][x] == '#')\
+			 || (figure[y][x] == '#' && figure[y + 1][x] == '#' && figure[y + 2][x] == '#' && figure[y + 2][x - 1] == '#')\
+			 || (figure[y][x] == '#' && figure[y + 1][x] == '#' && figure[y + 2][x] == '#' && figure[y + 2][x + 1] == '#')\
+			 || (figure[y][x] == '#' && figure[y][x + 1] == '#' && figure[y + 1][x + 1] == '#' && figure[y + 2][x + 1] == '#')\
+			 || (figure[y][x] == '#' figure[y][x + 1] == '#' && figure[y + 1][x] == '#' && figure[y + 2][x] == '#')) && x <= 4)
+			return (1);
+		if (figure[y][x] == '\0')
+        {
+            x = 0;
+            y++;
+        }
+        x++;
+	}
+	return (0);
+}
+
+int is_palka(char **figure)
+{
+	int x;
+	int y;
+
+	x = 0;
+	y = 0;
+	while (figure[y] && figure[y][x] && y <= 4)
+	{
+		if (((figure[y][x] == '#' && figure[y + 1][x] == '#' && figure[y + 2][x] == '#' && figure[y + 3][x] == '#')	\
+			 || (figure[y][x] == '#' && figure[y][x + 1] == '#' figure[y][x + 2] == '#' && figure[y][x + 3] == '#')) && x <= 4)
+			return (1);
+		if (figure[y][x] == '\0')
+        {
+            x = 0;
+            y++;
+		}
+        x++;
+	}
+	return (0);
+}
+
+int is_ti(char **figure)
+{
+	int x;
+	int y;
+
+	x = 0;
+	y = 0;
+	while (figure[y] && figure[y][x] && y <= 4)
+	{
+		if (((figure[y][x] == '#' && figure[y][x + 1] == '#' && figure[y][x + 2] == '#' && figure[y + 1][x + 1] == '#') \
+			|| (figure[y][x] == '#' && figure[y + 1][x - 1] == '#' && figure[y + 1][x] == '#' && figure[y + 1][x + 1] == '#') \
+			|| (figure[y][x] == '#' && figure[y + 1][x] == '#' && figure[y + 2][x] == '#' && figure[y + 1][x + 1] == '#') \
+			 || (figure[y][x] == '#' && figure[y + 1][x] == '#' && figure[y + 2][x] == '#' && figure[y + 1][x - 1] == '#')) && x <= 4)
+			return (1);
+		if (figure[y][x] == '\0')
+		{
+			x = 0;
+			y++;
+		}
+		x++;
+	}
+	return (0);
+}
+
+int is_square(char **figure)
+{
+	int x;
+	int y;
+
+	x = 0;
+	y = 0;
+	while (figure[y] && figure[y][x] && y <= 4)
+	{
+		if ((figure[y][x] == '#' && figure[y][x + 1] == '#' &&		\
+			 figure[y + 1][x] == '#' && figure[y + 1][x + 1] == '#') && x <= 4)
+			return (1);
+		if (figure[y][x] == '\0')
+		{
+			x = 0;
+			y++;
+		}
+		x++;
+	}
+	return (0);
+}
+
+int what_is(char **figure)
 {
 	int i;
-	int n;
-	int k;
-	static char buf[22];
-
-	i = 0;
-	n = 1;
-	read(fd, buf, 21);
-	ft_strsplit(buf, '\n');
-	while (buf[0][i] != '#')
-		i++;
-	k = i;
-	while (buf[n])
-	{
-		i = 0;
-		while (buf[n][i] != '#')
-		{
-			if (buf[n][i] == '#')
-				i == k ? n++, continue : return (0);
-			i++;
-		}
-		if (buf[n][i] == '#')
-			i == k ? n++, continue : return (0);
-	}
-	return (1);
+	
+	is_square(figure) == 1 || is_ti(figure) == 1 || is_palka(figure) == 1 ||
+		is_g(figure) == 1 || is_z(figure) == 1 ? i = 1 : i = 0;
+	return (i);
 }
+
+int get_figure(int fd)
+{
+	int ret;
+	char buf[BUFF_SIZE + 1];
+	char **figure;
+
+	while ((ret = read(fd, buf, BUFF_SIZE) > 0))
+	{
+		buf[ret] = '\0';
+		figure = ft_strsplit(buf, '\n');
+		what_is(figure) > 0 ? break : return (-1);
+	}
+	if (ret < 0)
+		return (-1);
+	return (0);
+}
+
 
 int main(int argc, char **argv)
 {
-	char **map;
+	int fd;
 
-	if (argc == 2)
-	{
-		if (figure(open(argv[1], O_RDONLY)) == 0)
-		{
-			write(1, "error\n", 6);
-			return (0);
-		}
-		else if (figure(open(argv[1], O_RDONLY)) == 1)
-		{
-			print_square(fd, map);
-			return (0);
-		}
+	fd = open(argv[1], O_RDONLY);
+	if (get_figure(fd) == 0)
+		print_map();
+	else
+		write(1, "error\n", 6);
+	close(fd);
 	return (0);
 }

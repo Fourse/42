@@ -1,28 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   smth.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rloraine <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/04/14 15:53:43 by rloraine          #+#    #+#             */
-/*   Updated: 2019/04/27 19:46:29 by rloraine         ###   ########.fr       */
+/*   Created: 2019/04/27 20:58:07 by rloraine          #+#    #+#             */
+/*   Updated: 2019/04/28 16:02:29 by rloraine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
-
-# define FS(x, y) free(x), x = y
-# define BUFF_SIZE 1
-# include <unistd.h>
-# include <sys/types.h>
-# include <sys/uio.h>
-# include <fcntl.h>
-# include <string.h>
-
-# include "./libft/libft.h"
-
-int	get_next_line(const int fd, char **line);
-
-#endif
+int valid(char **figure, int n, int i)
+{
+	if (figure[n][i] != '#' && (n >= 4 || n < 0) && (i >= 4 || i < 0))
+		return (0);
+	figure[n][i] = '*';
+	return (valid(figure, n + 1, i) + valid(figure, n - 1, i) + valid(figure, n, i - 1) + valid(figure, n, i + 1))
+}
