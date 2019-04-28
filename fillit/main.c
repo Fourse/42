@@ -6,12 +6,55 @@
 /*   By: rloraine <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/27 15:24:59 by rloraine          #+#    #+#             */
-/*   Updated: 2019/04/28 17:38:10 by rloraine         ###   ########.fr       */
+/*   Updated: 2019/04/28 18:40:52 by rloraine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 #define BUFF_SIZE 21
+
+int ft_sqrt(int nb)
+{
+	int i;
+
+	if (nb > 0)
+	{
+		i = 0;
+		while (((i * i) <= nb) && (i < 46431))
+		{
+			i++;
+			if ((i * i) == nb)
+				return (i);
+		}
+	}
+	return (0);
+}
+
+void printing(int n)
+{
+
+}
+
+void print_map(int fd)
+{
+	int count;
+	int i;
+	int n;
+	char buf[4097];
+
+	i = 0;
+	read(fd, buf, 4096);
+	buf[4097] = '\0';
+	while (buf[i])
+	{
+		if (buf[i] == '\n')
+			count++;
+		i++;
+	}
+	count /= 4 - 1;
+	while (n = ft_sqrt(count) != 0 ? printing(n) : ft_sqrt(--count))
+		;
+}
 
 int is_z(char **figure)
 {
@@ -166,7 +209,7 @@ int main(int argc, char **argv)
 
 	fd = open(argv[1], O_RDONLY);
 	if (get_figure(fd) == 0)
-		print_map();
+		print_map(fd);
 	else
 		write(1, "error\n", 6);
 	close(fd);
