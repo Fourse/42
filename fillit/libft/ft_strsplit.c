@@ -3,16 +3,29 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strsplit.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rloraine <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: rloraine <rloraine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/09 16:34:44 by rloraine          #+#    #+#             */
-/*   Updated: 2019/04/21 17:04:32 by rloraine         ###   ########.fr       */
+/*   Updated: 2019/04/29 15:32:47 by rloraine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <stdlib.h>
 
-char	**ft_strsplit(char const *s, char c)
+static void	*ft_deleverytning(char **split, int n)
+{
+	while (n >= 0)
+	{
+		free(split[n]);
+		n--;
+	}
+	free(split);
+	split = NULL;
+	return (split);
+}
+
+char		**ft_strsplit(char const *s, char c)
 {
 	int		i;
 	int		n;
@@ -30,7 +43,8 @@ char	**ft_strsplit(char const *s, char c)
 		k = 0;
 		while (s[i] == c)
 			i++;
-		split[n] = ft_strnew(ft_wsize(s, c, i));
+		if (!(split[n] = ft_strnew(ft_wsize(s, c, i))))
+			split = ft_deleverytning(split, n);
 		while (s[i] != c && s[i])
 			split[n][k++] = s[i++];
 		split[n++][k] = '\0';
