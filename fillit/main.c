@@ -5,74 +5,44 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: rloraine <rloraine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/04/29 16:22:28 by rloraine          #+#    #+#             */
-/*   Updated: 2019/05/06 17:10:06 by rloraine         ###   ########.fr       */
+/*   Created: 2019/05/06 18:59:02 by rloraine          #+#    #+#             */
+/*   Updated: 2019/05/06 19:30:22 by rloraine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-/*void ft_copyonly(char *s, char *d, char c)
+int read_file(int fd)
 {
+	int n;
+	char buf[BUFF_SIZE + 1];
+	static char **s;
 
-}
-*/
-void ft_printmap(char **s, int n)
-{
-    char **map;
-    int i;
-
-    i = 0;
-  /*  while (n <= 4)
-    {
-		ft_copyonly(map[n], s[n], '#');
-*/
-}
-
-int ft_valid(char **figure, int n, int i)
-{
-	if (figure[n][i] != '#' && (n >= 4 || n < 0) && (i >= 4 || i < 0))
-		return (0);
-	figure[n][i] = '*';
-	return (ft_valid(figure, n + 1, i) + ft_valid(figure, n - 1, i) + ft_valid(figure, n, i - 1) + ft_valid(figure, n, i + 1) + 1);
-}
-
-void ft_massjoin(char **s, char **f)
-{
-	static int n;
-	int i;
-
-	while (f[n])
+	while ((n = read(fd, buf, BUFF_SIZE)) >= 20)
 	{
-		i = 0;
-		while (f[n][i++])
-			s[n][i] = f[n][i];
-		n++;
+		buf[n] = '\0';
+		s = ft_strsplit(buf, '\n');
+		
 	}
- }
+	return (0);
+}
 
 int main(int argc, char **argv)
 {
 	int fd;
-	int n;
-	char buf[BUFF_SIZE + 1];
-	char **figure;
-	static char **s;
 
 	fd = open(argv[1], O_RDONLY);
-	while ((n = read(fd, buf, BUFF_SIZE) > 20))
+	if (argc != 2)
 	{
-		buf[n] = '\0';
-		figure = ft_strsplit(buf, '\n');
-		if (ft_valid(figure, 0, 0) == 4)
-			ft_massjoin(s, figure);
-		else
-		{
-			ft_putstr("error\n");
-			return (0);
-		}
+		ft_putstr("usage: fillit input_file\n");
+		return (0);
 	}
-	ft_printmap(s, 0);
-	free(s);
+	if ((read_file(fd)) == 0)
+	{
+		ft_putstr("error\n");
+		return (0);
+	}
+
+	close(fd);
 	return (0);
 }
