@@ -1,24 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fillit.h                                           :+:      :+:    :+:   */
+/*   ft_print_numbers.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rloraine <rloraine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/04/27 15:17:32 by rloraine          #+#    #+#             */
-/*   Updated: 2019/05/06 14:31:47 by rloraine         ###   ########.fr       */
+/*   Created: 2019/05/01 16:11:24 by rloraine          #+#    #+#             */
+/*   Updated: 2019/05/01 16:12:04 by rloraine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FILLIT_H
-# define FILLIT_H
+#include <unistd.h>
 
-# define BUFF_SIZE 21
-
-# include <fcntl.h>
-# include <sys/types.h>
-# include <sys/uio.h>
-# include <unistd.h>
-# include "./libft/libft.h"
-
-#endif
+void ft_print_numbers(void)
+{
+    write(1, "0123456789", 10);
+}

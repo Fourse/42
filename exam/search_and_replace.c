@@ -1,24 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fillit.h                                           :+:      :+:    :+:   */
+/*   search_and_replace.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rloraine <rloraine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/04/27 15:17:32 by rloraine          #+#    #+#             */
-/*   Updated: 2019/05/06 14:31:47 by rloraine         ###   ########.fr       */
+/*   Created: 2019/05/01 16:44:28 by rloraine          #+#    #+#             */
+/*   Updated: 2019/05/01 17:17:30 by rloraine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FILLIT_H
-# define FILLIT_H
+#include <unistd.h>
 
-# define BUFF_SIZE 21
+int main(int argc, char **argv)
+{
+    int i;
 
-# include <fcntl.h>
-# include <sys/types.h>
-# include <sys/uio.h>
-# include <unistd.h>
-# include "./libft/libft.h"
-
-#endif
+    i = 0;
+    if (argc != 4 || argv[2][1] != '\0' || argv[3][1] != '\0')
+    {
+        write(1, "\n", 1);
+        return (0);
+    }
+    while (argv[1][i])
+    {
+        if (argv[1][i] == argv[2][0])
+            argv[1][i] = argv[3][0];
+        write(1, &argv[1][i++], 1);
+    }
+    write(1, "\n", 1);
+    return (0);
+}

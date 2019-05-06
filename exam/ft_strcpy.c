@@ -1,24 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fillit.h                                           :+:      :+:    :+:   */
+/*   ft_strcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rloraine <rloraine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/04/27 15:17:32 by rloraine          #+#    #+#             */
-/*   Updated: 2019/05/06 14:31:47 by rloraine         ###   ########.fr       */
+/*   Created: 2019/05/01 16:24:24 by rloraine          #+#    #+#             */
+/*   Updated: 2019/05/01 16:27:55 by rloraine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FILLIT_H
-# define FILLIT_H
+char *ft_strcpy(char *s1, char *s2)
+{
+    int i;
 
-# define BUFF_SIZE 21
-
-# include <fcntl.h>
-# include <sys/types.h>
-# include <sys/uio.h>
-# include <unistd.h>
-# include "./libft/libft.h"
-
-#endif
+    i = 0;
+    while (s2[i++])
+        s1[i] = s2[i];
+    s1[i] = '\0';
+    return (s1);
+}
