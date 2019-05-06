@@ -6,7 +6,7 @@
 /*   By: rloraine <rloraine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/27 15:17:32 by rloraine          #+#    #+#             */
-/*   Updated: 2019/05/06 14:31:47 by rloraine         ###   ########.fr       */
+/*   Updated: 2019/05/06 16:54:55 by rloraine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,5 +20,6 @@
 # include <sys/uio.h>
 # include <unistd.h>
 # include "./libft/libft.h"
+# include <stdlib.h>
 
 #endif
