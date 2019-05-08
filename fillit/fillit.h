@@ -6,7 +6,7 @@
 /*   By: rloraine <rloraine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/27 15:17:32 by rloraine          #+#    #+#             */
-/*   Updated: 2019/05/07 16:20:37 by rloraine         ###   ########.fr       */
+/*   Updated: 2019/05/07 17:44:27 by rloraine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # define BUFF_SIZE 21
 
+# include <stdio.h>
 # include <fcntl.h>
 # include <sys/types.h>
 # include <sys/uio.h>
