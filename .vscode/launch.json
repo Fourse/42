@@ -5,13 +5,12 @@
 	"version": "0.2.0",
 	"configurations": [
 
-
 		{
-			"name": "gcc build and debug active file",
+			"name": "(lldb) Launch",
 			"type": "cppdbg",
 			"request": "launch",
-			"program": "/Users/rloraine/Desktop/myrep/fillit/a.out",
-			"args": ["/Users/rloraine/Desktop/myrep/fillit/valid.sample"],
+			"program": "/Users/rloraine/Desktop/smth1/fillit",
+			"args": ["/Users/rloraine/Desktop/smth/samples/atata"],
 			"stopAtEntry": false,
 			"cwd": "${workspaceFolder}",
 			"environment": [],
