@@ -6,7 +6,7 @@
 /*   By: rloraine <rloraine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/07 16:22:04 by rloraine          #+#    #+#             */
-/*   Updated: 2019/05/13 16:23:00 by rloraine         ###   ########.fr       */
+/*   Updated: 2019/05/13 16:50:42 by rloraine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ void solve(char **list, int count)
 	int max;
 
 	max = high_sqrt(count);
+	y = 0;
+	x = 0;
 	while (y < max && x < max)
 	{
 
@@ -60,8 +62,8 @@ int	valid(char *buf)
 	int dots;
 
 	i = 0;
-	hash = 0;
 	block = 0;
+	hash = 0;
 	dots = 0;
 	while (i < 20)
 	{
@@ -84,19 +86,20 @@ int	valid(char *buf)
 	return (((block == 6 || block == 8) && hash == 4 && dots == 12) ? 1 : 0);
 }
 
-int	read_file(int fd, char *figure, char **list, int n)
+int	read_file(int fd, char *figure, char **list)
 {
 	unsigned char	cur;
 	char			buf[BUFF_SIZE + 1];
 	int				ret;
+	int n;
 
 	cur = 'A';
+	n = 0;
 	while ((ret = read(fd, buf, BUFF_SIZE) >= 20))
 	{
 		if (valid(buf) == 0)
 			return (0);
 		figure = new_fig(figure, buf, cur++);
-		ft_putstr(figure);
 		list[n++] = ft_strdup(figure);
 	}
 	if (ret != 0)
@@ -110,9 +113,11 @@ int	main(int argc, char **argv)
 	char	*list[27];
 	int		count;
 
+	if (argc != 2)
+		ft_putendl("ebani odin argument plz");
 	figure = ft_strnew(BUFF_SIZE);
 	ft_bzero(figure, BUFF_SIZE + 1);
-	if ((count = read_file(open(argv[1], O_RDONLY), figure, list, count)) == 0)
+	if ((count = read_file(open(argv[1], O_RDONLY), figure, list)) == 0)
 		ft_putendl("error");
 	solve(list, count);
 	return (0);
