@@ -6,24 +6,13 @@
 /*   By: rloraine <rloraine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/07 16:22:04 by rloraine          #+#    #+#             */
-/*   Updated: 2019/05/14 18:27:29 by rloraine         ###   ########.fr       */
+/*   Updated: 2019/05/15 13:57:48 by rloraine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-void solve(char **list, int count, int y, int x)
-{
-	char **map;
-	int size;
-
-	size = 0;
-	while (size * size < count * 4)
-		size++;
-	
-}
-
-char *new_fig(char *figure, char *buf, char cur)
+char	*new_fig(char *figure, char *buf, char cur)
 {
 	int i;
 
@@ -39,7 +28,7 @@ char *new_fig(char *figure, char *buf, char cur)
 	return (figure);
 }
 
-int	connect(char *buf)
+int		connect(char *buf)
 {
 	int i;
 	int block;
@@ -67,7 +56,7 @@ int	connect(char *buf)
 	return (((block == 6 || block == 8) && hash == 4) ? 1 : 0);
 }
 
-int valid(char *buf, int ret)
+int		valid(char *buf, int ret)
 {
 	int i;
 	int error;
@@ -92,12 +81,12 @@ int valid(char *buf, int ret)
 	return (error);
 }
 
-int	read_file(int fd, char *figure, char **list)
+int		read_file(int fd, char *figure, char **list)
 {
 	unsigned char	cur;
-	char			buf[BUFF_SIZE + 1];
+	char			buf[BUFF_SIZE];
 	int				ret;
-	int 			n;
+	int				n;
 
 	cur = 'A';
 	n = 0;
@@ -113,13 +102,12 @@ int	read_file(int fd, char *figure, char **list)
 	return (cur - 'A');
 }
 
-int	main(int argc, char **argv)
+int		main(int argc, char **argv)
 {
-	char	*figure;
+	char	figure[BUFF_SIZE + 1];
 	char	*list[27];
 	int		count;
 
-	figure = ft_strnew(BUFF_SIZE);
 	ft_bzero(figure, BUFF_SIZE + 1);
 	if ((count = read_file(open(argv[1], O_RDONLY), figure, list)) == 0)
 		ft_putendl("error");
