@@ -6,7 +6,7 @@
 /*   By: rloraine <rloraine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/27 15:17:32 by rloraine          #+#    #+#             */
-/*   Updated: 2019/05/15 13:57:49 by rloraine         ###   ########.fr       */
+/*   Updated: 2019/05/17 16:48:26 by rloraine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ int		connect(char *buf);
 int		valid(char *buf, int ret);
 int		read_file(int fd, char *figure, char **list);
 char	*new_fig(char *figure, char *buf, char cur);
-void	solve(char **list, int count, int y, int x);
+char	*empty_map(char *map, int count);
+void	solve(char *map, char **list);
+int		error(char *str);
 
 #endif

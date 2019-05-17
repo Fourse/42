@@ -6,12 +6,11 @@
 /*   By: rloraine <rloraine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/09 16:34:44 by rloraine          #+#    #+#             */
-/*   Updated: 2019/05/07 17:44:24 by rloraine         ###   ########.fr       */
+/*   Updated: 2019/05/17 13:38:09 by rloraine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdlib.h>
 
 static void	*ft_deleverytning(char **split, int n)
 {

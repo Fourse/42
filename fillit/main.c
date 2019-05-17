@@ -6,7 +6,7 @@
 /*   By: rloraine <rloraine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/07 16:22:04 by rloraine          #+#    #+#             */
-/*   Updated: 2019/05/15 13:57:48 by rloraine         ###   ########.fr       */
+/*   Updated: 2019/05/17 16:48:25 by rloraine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,6 +97,7 @@ int		read_file(int fd, char *figure, char **list)
 		figure = new_fig(figure, buf, cur++);
 		list[n++] = ft_strdup(figure);
 	}
+	list[n] = NULL;
 	if (ret != 0)
 		return (0);
 	return (cur - 'A');
@@ -106,11 +107,15 @@ int		main(int argc, char **argv)
 {
 	char	figure[BUFF_SIZE + 1];
 	char	*list[27];
+	char	*map;
 	int		count;
 
+	if (argc != 2)
+		return (error("ebani ka argument, drujishe"));
 	ft_bzero(figure, BUFF_SIZE + 1);
 	if ((count = read_file(open(argv[1], O_RDONLY), figure, list)) == 0)
-		ft_putendl("error");
-	solve(list, count, 0, 0);
+		return (error("error"));
+	map = empty_map(map, count);
+	solve(map, list);
 	return (0);
 }
