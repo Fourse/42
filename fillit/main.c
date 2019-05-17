@@ -6,7 +6,7 @@
 /*   By: rloraine <rloraine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/07 16:22:04 by rloraine          #+#    #+#             */
-/*   Updated: 2019/05/17 16:48:25 by rloraine         ###   ########.fr       */
+/*   Updated: 2019/05/17 17:47:29 by rloraine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ char	*new_fig(char *figure, char *buf, char cur)
 			figure[i] = buf[i];
 		i++;
 	}
+	figure[i] = '\0';
 	return (figure);
 }
 
@@ -110,6 +111,7 @@ int		main(int argc, char **argv)
 	char	*map;
 	int		count;
 
+	map = NULL;
 	if (argc != 2)
 		return (error("ebani ka argument, drujishe"));
 	ft_bzero(figure, BUFF_SIZE + 1);

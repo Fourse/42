@@ -6,13 +6,13 @@
 /*   By: rloraine <rloraine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/17 14:09:22 by rloraine          #+#    #+#             */
-/*   Updated: 2019/05/17 14:11:12 by rloraine         ###   ########.fr       */
+/*   Updated: 2019/05/17 17:39:35 by rloraine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-int error(char *str)
+int	error(char *str)
 {
 	ft_putendl(str);
 	return (0);
