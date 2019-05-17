@@ -6,7 +6,7 @@
 /*   By: rloraine <rloraine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/15 13:35:19 by rloraine          #+#    #+#             */
-/*   Updated: 2019/05/17 17:40:02 by rloraine         ###   ########.fr       */
+/*   Updated: 2019/05/17 18:10:25 by rloraine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,34 +14,18 @@
 
 void	solve(char *map, char **list)
 {
-	int y;
-	int x;
-	int num_fig;
-	int x_fig;
-	int hash;
+	int i;
+	int j;
+	int n;
 
-	y = 0;
-	x = 0;
-	num_fig = 0;
-	while (list[num_fig])
+	i = 0;
+	j = 0;
+	n = 0;
+	while (list[n])
 	{
-		x_fig = 0;
-		hash = 0;
-		while (hash < 4)
-		{
-			if (list[num_fig][x_fig] >= 'A' && list[num_fig][x_fig] <= 'Z')
-			{
-				map[x++] = list[num_fig][x_fig];
-				hash++;
-			}
-			if (map[x] == '\n')
-				x++;
-			x_fig++;
-		}
-		num_fig++;
+		if ()
+		j++;
 	}
-	map[x] = '\0';
-	ft_putstr(map);
 }
 
 char	*empty_map(char *map, int count)
