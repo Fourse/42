@@ -1,33 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   validation.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rloraine <rloraine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/05/07 16:22:04 by rloraine          #+#    #+#             */
-/*   Updated: 2019/05/18 16:24:20 by rloraine         ###   ########.fr       */
+/*   Created: 2019/05/18 16:28:41 by rloraine          #+#    #+#             */
+/*   Updated: 2019/05/18 16:34:11 by rloraine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
-
-char	*new_fig(char *figure, char *buf, char cur)
-{
-	int i;
-
-	i = 0;
-	while (i < 20)
-	{
-		if (buf[i] == '#')
-			figure[i] = cur;
-		else
-			figure[i] = buf[i];
-		i++;
-	}
-	figure[i] = '\0';
-	return (figure);
-}
 
 int		connect(char *buf)
 {
@@ -80,44 +63,4 @@ int		valid(char *buf, int ret)
 	if (connect(buf) == 0)
 		error++;
 	return (error);
-}
-
-int		read_file(int fd, char *figure, char **list)
-{
-	unsigned char	cur;
-	char			buf[BUFF_SIZE];
-	int				ret;
-	int				n;
-
-	cur = 'A';
-	n = 0;
-	while ((ret = read(fd, buf, BUFF_SIZE)) >= 20)
-	{
-		if (valid(buf, ret) != 0)
-			return (0);
-		figure = new_fig(figure, buf, cur++);
-		list[n++] = ft_strdup(figure);
-	}
-	list[n] = NULL;
-	if (ret != 0)
-		return (0);
-	return (cur - 'A');
-}
-
-int		main(int argc, char **argv)
-{
-	char	figure[BUFF_SIZE + 1];
-	char	*list[27];
-	char	*map;
-	int		count;
-
-	map = NULL;
-	if (argc != 2)
-		return (error("ebani ka argument, drujishe"));
-	ft_bzero(figure, BUFF_SIZE + 1);
-	if ((count = read_file(open(argv[1], O_RDONLY), figure, list)) == 0)
-		return (error("error"));
-	map = empty_map(map, count);
-	solve(map, list);
-	return (0);
 }

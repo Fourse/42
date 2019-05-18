@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: rloraine <rloraine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/04/27 15:17:32 by rloraine          #+#    #+#             */
-/*   Updated: 2019/05/18 16:24:19 by rloraine         ###   ########.fr       */
+/*   Created: 2019/05/18 13:40:55 by rloraine          #+#    #+#             */
+/*   Updated: 2019/05/18 18:22:13 by rloraine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,15 @@
 # include <stdlib.h>
 # include <string.h>
 
+typedef struct		s_etris
+{
+	struct s_etris	*next;
+	char 			**value;
+	int				weight;
+	int 			height;
+}					t_etris;
+
 int		connect(char *buf);
 int		valid(char *buf, int ret);
-int		read_file(int fd, char *figure, char **list);
-char	*new_fig(char *figure, char *buf, char cur);
-char	*empty_map(char *map, int count);
-void	solve(char *map, char **list);
-int		error(char *str);
 
 #endif

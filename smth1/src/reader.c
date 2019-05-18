@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   reader.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pbondoer <pbondoer@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rloraine <rloraine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/15 17:43:27 by pbondoer          #+#    #+#             */
-/*   Updated: 2017/02/03 01:51:47 by pbondoer         ###   ########.fr       */
+/*   Updated: 2019/05/18 17:46:53 by rloraine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,10 @@ void	min_max(const char *str, char *m)
 		}
 		i++;
 	}
+	ft_putnbr(m[0]);
+	ft_putnbr(m[1]);
+	ft_putnbr(m[2]);
+	ft_putnbr(m[3]);
 }
 
 /*
