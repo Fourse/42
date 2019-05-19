@@ -6,11 +6,67 @@
 /*   By: rloraine <rloraine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/18 16:28:41 by rloraine          #+#    #+#             */
-/*   Updated: 2019/05/18 16:34:11 by rloraine         ###   ########.fr       */
+/*   Updated: 2019/05/19 17:28:16 by rloraine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
+
+char	*trim_fig(char *s, char *buf)
+{
+	int i;
+
+	i = 0;
+	SQU(buf);
+	VST(buf);
+	GST(buf);
+	T0(buf);
+	T90(buf);
+	T180(buf);
+	T250(buf);
+	Z0(buf);
+	Z90(buf);
+	Z180(buf);
+	Z250(buf);
+	L0G(buf);
+	R0G(buf);
+	RU90G(buf);
+	LU90G(buf);
+	L180G(buf);
+	R180G(buf);
+	LD90G(buf);
+	RD90G(buf);
+	return (s);
+}
+
+char	**new_fig(char *buf, char cur, t_etris ***list)
+{
+	char	**tmp;
+	char	*s;
+	int		j;
+	int		y;
+	int		x;
+
+	j = -1;
+	y = 0;
+	while (*buf != '#')
+		buf++;
+	s = trim_fig(s, buf);
+	while (s[++j])
+		if (s[j] == '#')
+			s[j] = cur;
+	tmp = ft_strsplit(s, '\n');
+	while (tmp[y])
+	{
+		x = 0;
+		while (tmp[y][x++])
+			(**list)->weigth = x;
+		ft_putendl(tmp[y]);
+		y++;
+	}
+	(**list)->heigth = y;
+	return (tmp);
+}
 
 int		connect(char *buf)
 {

@@ -6,7 +6,7 @@
 /*   By: rloraine <rloraine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/18 16:30:21 by rloraine          #+#    #+#             */
-/*   Updated: 2019/05/19 15:24:11 by rloraine         ###   ########.fr       */
+/*   Updated: 2019/05/19 16:16:14 by rloraine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,8 @@ int		solve(char **map, int count, int size)
 
 	while (size * size < count * 4)
 		size++;
-	map = (char**)malloc(sizeof(char*) * size + 1);
+	if (!(map = (char**)malloc(sizeof(char*) * size + 1)))
+		return (0);
 	y = 0;
 	while (y < size)
 	{

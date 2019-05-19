@@ -6,86 +6,11 @@
 /*   By: rloraine <rloraine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/18 13:40:43 by rloraine          #+#    #+#             */
-/*   Updated: 2019/05/19 15:23:27 by rloraine         ###   ########.fr       */
+/*   Updated: 2019/05/19 17:28:15 by rloraine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
-
-char	*trim_fig(char *buf)
-{
-	char	*s;
-	int		i;
-
-	i = 0;
-	if (buf[i + 1] == '#' && buf[i + 5] == '#' && buf[i + 6] == '#') //square
-		s = ft_strdup("##\n##\n");
-	if (buf[i + 5] == '#' && buf[i + 10] == '#' && buf[i + 15] == '#') //stick
-		s = ft_strdup("#\n#\n#\n#\n");
-	if (buf[i + 1] == '#' && buf[i + 2] == '#' && buf[i + 3] == '#') //stick
-		s = ft_strdup("####\n");
-	if (buf[i + 4] == '#' && buf[i + 5] == '#' && buf[i + 6] == '#') //T
-		s = ft_strdup(".#.\n###\n");
-	if (buf[i + 1] == '#' && buf[i + 2] == '#' && buf[i + 6] == '#') //T
-		s = ft_strdup("###\n.#.\n");
-	if (buf[i + 5] == '#' && buf[i + 6] == '#' && buf[i + 10] == '#') //T
-		s = ft_strdup("#.\n##\n#.\n");
-	if (buf[i + 4] == '#' && buf[i + 5] == '#' && buf[i + 10] == '#') //T
-		s = ft_strdup(".#\n##\n.#\n");
-	if (buf[i + 4] == '#' && buf[i + 5] == '#' && buf[i + 9] == '#') //Z
-		s = ft_strdup(".#\n##\n#.\n");
-	if (buf[i + 5] == '#' && buf[i + 6] == '#' && buf[i + 11] == '#') //Z
-		s = ft_strdup("#.\n##\n.#\n");
-	if (buf[i + 1] == '#' && buf[i + 4] == '#' && buf[i + 5] == '#') //Z
-		s = ft_strdup(".##\n##.\n");
-	if (buf[i + 1] == '#' && buf[i + 6] == '#' && buf[i + 7] == '#') //Z
-		s = ft_strdup("##.\n.##\n");
-	if (buf[i + 1] == '#' && buf[i + 6] == '#' && buf[i + 11] == '#') //G
-		s = ft_strdup("##\n.#\n.#\n");
-	if (buf[i + 1] == '#' && buf[i + 5] == '#' && buf[i + 10] == '#') //G
-		s = ft_strdup("##\n#.\n#.\n");
-	if (buf[i + 3] == '#' && buf[i + 4] == '#' && buf[i + 5] == '#') //G
-		s = ft_strdup("..#\n###\n");
-	if (buf[i + 5] == '#' && buf[i + 6] == '#' && buf[i + 7] == '#') //G
-		s = ft_strdup("#..\n###\n");
-	if (buf[i + 5] == '#' && buf[i + 9] == '#' && buf[i + 10] == '#') //G
-		s = ft_strdup(".#\n.#\n##\n");
-	if (buf[i + 5] == '#' && buf[i + 10] == '#' && buf[i + 11] == '#') //G
-		s = ft_strdup("#.\n#.\n##\n");
-	if (buf[i + 1] == '#' && buf[i + 2] == '#' && buf[i + 5] == '#') //G
-		s = ft_strdup("###\n#..\n");
-	if (buf[i + 1] == '#' && buf[i + 2] == '#' && buf[i + 7] == '#') //G
-		s = ft_strdup("###\n..#\n");
-	return (s);
-}
-
-char	**new_fig(char *buf, char cur, t_etris ***list)
-{
-	char	**tmp;
-	char	*s;
-	int		j;
-	int		y;
-	int		x;
-
-	j = -1;
-	y = 0;
-	while (*buf != '#')
-		buf++;
-	s = trim_fig(buf);
-	while (s[++j])
-		if (s[j] == '#')
-			s[j] = cur;
-	tmp = ft_strsplit(s, '\n');
-	while (tmp[y])
-	{
-		x = 0;
-		while (tmp[y][x++])
-			(**list)->weigth = x;
-		y++;
-	}
-	(**list)->heigth = y;
-	return (tmp);
-}
 
 int		read_file(int fd, t_etris **list)
 {
