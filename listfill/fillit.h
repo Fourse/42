@@ -6,7 +6,7 @@
 /*   By: rloraine <rloraine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/18 13:40:55 by rloraine          #+#    #+#             */
-/*   Updated: 2019/05/18 18:22:13 by rloraine         ###   ########.fr       */
+/*   Updated: 2019/05/19 15:25:13 by rloraine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,18 @@
 typedef struct		s_etris
 {
 	struct s_etris	*next;
-	char 			**value;
-	int				weight;
-	int 			height;
+	char			**value;
+	int				weigth;
+	int				heigth;
 }					t_etris;
 
-int		connect(char *buf);
-int		valid(char *buf, int ret);
+int					connect(char *buf);
+int					valid(char *buf, int ret);
+void				solve_map(char **map, t_etris *list, int y, int x);
+int					solve(char **map, int count, int size);
+char				*trim_fig(char *buf);
+char				**new_fig(char *buf, char cur, t_etris ***list);
+int					read_file(int fd, t_etris **list);
+int					error(char *str);
 
 #endif
