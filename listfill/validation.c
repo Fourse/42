@@ -6,7 +6,7 @@
 /*   By: rloraine <rloraine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/18 16:28:41 by rloraine          #+#    #+#             */
-/*   Updated: 2019/05/19 17:28:16 by rloraine         ###   ########.fr       */
+/*   Updated: 2019/05/19 18:05:11 by rloraine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,6 @@ char	**new_fig(char *buf, char cur, t_etris ***list)
 		x = 0;
 		while (tmp[y][x++])
 			(**list)->weigth = x;
-		ft_putendl(tmp[y]);
 		y++;
 	}
 	(**list)->heigth = y;

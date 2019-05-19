@@ -6,7 +6,7 @@
 /*   By: rloraine <rloraine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/18 13:40:43 by rloraine          #+#    #+#             */
-/*   Updated: 2019/05/19 17:28:15 by rloraine         ###   ########.fr       */
+/*   Updated: 2019/05/19 18:08:21 by rloraine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ int		main(int argc, char **argv)
 	int		count;
 	int		size;
 
+	int i;
 	if (argc != 2)
 		return (error("ebani ka argiment, drujishe"));
 	if (!(list = (t_etris*)malloc(sizeof(t_etris))))
@@ -54,8 +55,15 @@ int		main(int argc, char **argv)
 		return (error("error"));
 	map = NULL;
 	size = 0;
-	if ((size = solve(map, count, size)) == 0)
+	if ((size = solve(&map, count, size)) == 0)
 		return (error("error"));
+	while (list)
+	{
+		i = 0;
+		while (i < 4)
+			ft_putendl(list->value[i]);
+		list = list->next;
+	}
 	solve_map(map, list, 0, 0);
 	return (0);
 }
