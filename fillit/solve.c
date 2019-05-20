@@ -6,26 +6,31 @@
 /*   By: rloraine <rloraine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/15 13:35:19 by rloraine          #+#    #+#             */
-/*   Updated: 2019/05/18 16:24:19 by rloraine         ###   ########.fr       */
+/*   Updated: 2019/05/20 16:14:18 by rloraine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-void	solve(char *map, char **list)
+void	solve(char *map, char **list, int num_fig, int x)
 {
-	int i;
-	int j;
-	int n;
+	int x_fig;
 
-	i = 0;
-	j = 0;
-	n = 0;
-	while (list[n])
+	x_fig = 0;
+	while (list[num_fig])
 	{
-		if ()
-		j++;
+		while (list[num_fig][x_fig])
+		{
+			while (list[num_fig][x_fig] != '\n')
+				map[x++] = list[num_fig][x_fig++];
+			if (list[num_fig][x_fig] == '\n')
+				x_fig++;
+			if (map[x] == '\n')
+				x++;
+		}
+		num_fig++;
 	}
+	ft_putstr(map);
 }
 
 char	*empty_map(char *map, int count)

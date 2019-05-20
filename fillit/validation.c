@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: rloraine <rloraine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/05/18 16:28:41 by rloraine          #+#    #+#             */
-/*   Updated: 2019/05/20 18:15:30 by rloraine         ###   ########.fr       */
+/*   Created: 2019/05/20 15:33:28 by rloraine          #+#    #+#             */
+/*   Updated: 2019/05/20 15:44:11 by rloraine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,32 +39,20 @@ char	*trim_fig(char *s, char *buf)
 	return (s);
 }
 
-char	**new_fig(char *buf, char cur, t_etris **list)
+char	*new_fig(char *buf, char cur)
 {
-	char	**tmp;
-	char	*s;
-	int		j;
-	int		y;
-	int		x;
+	char *s;
+	int i;
 
-	j = -1;
-	y = 0;
+	i = -1;
+	s = NULL;
 	while (*buf != '#')
 		buf++;
 	s = trim_fig(s, buf);
-	while (s[++j])
-		if (s[j] == '#')
-			s[j] = cur;
-	tmp = ft_strsplit(s, '\n');
-	while (tmp[y])
-	{
-		x = 0;
-		while (tmp[y][x++])
-			(*list)->weigth = x;
-		y++;
-	}
-	(*list)->heigth = y;
-	return (tmp);
+	while (s[++i])
+		if (s[i] == '#')
+			s[i] = cur;
+	return (s);
 }
 
 int		connect(char *buf)
