@@ -6,7 +6,7 @@
 /*   By: rloraine <rloraine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/18 13:40:43 by rloraine          #+#    #+#             */
-/*   Updated: 2019/05/21 16:26:15 by rloraine         ###   ########.fr       */
+/*   Updated: 2019/05/21 17:35:12 by rloraine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,14 +61,16 @@ int			read_file(int fd, t_etris *list)
 	cur = 'A';
 	while ((ret = read(fd, buf, BUFF_SIZE)) >= 20)
 	{
+		list->weigth = 0;
+		list->heigth = 0;
 		list->next = (t_etris*)malloc(sizeof(t_etris));
 		if (valid(buf, ret) != 0)
 			return (0);
-		buf[ret] = '\0';
 		list->value = new_fig(buf, cur++, list);
 		list = list->next;
 		list->next = NULL;
 	}
+	list->next = NULL;
 	if (ret != 0)
 		return (0);
 	return (cur - 'A');

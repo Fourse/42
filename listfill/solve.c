@@ -6,7 +6,7 @@
 /*   By: rloraine <rloraine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/18 16:30:21 by rloraine          #+#    #+#             */
-/*   Updated: 2019/05/21 15:31:34 by rloraine         ###   ########.fr       */
+/*   Updated: 2019/05/21 17:35:12 by rloraine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,17 @@
 
 int	solve_map(char **map, t_etris *list, int y, int x)
 {
-	
+	int size;
+
+	size = ft_strlen(map[0]);
+	if (list->next)
+	{
+		if (y  + list->heigth <= size)
+		{
+			
+		}
+		return (1);
+	}
 	return (0);
 }
 

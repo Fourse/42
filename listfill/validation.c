@@ -6,7 +6,7 @@
 /*   By: rloraine <rloraine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/18 16:28:41 by rloraine          #+#    #+#             */
-/*   Updated: 2019/05/21 16:06:13 by rloraine         ###   ########.fr       */
+/*   Updated: 2019/05/21 17:35:14 by rloraine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ char	**new_fig(char *buf, char cur, t_etris *list)
 	{
 		x = -1;
 		while (list->value[y][++x])
-			list->weigth = x;
+			list->weigth = x + 1;
 	}
 	list->heigth = y;
 	return (list->value);
