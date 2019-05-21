@@ -6,7 +6,7 @@
 /*   By: rloraine <rloraine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/18 16:28:41 by rloraine          #+#    #+#             */
-/*   Updated: 2019/05/20 18:15:30 by rloraine         ###   ########.fr       */
+/*   Updated: 2019/05/21 16:06:13 by rloraine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,32 +39,31 @@ char	*trim_fig(char *s, char *buf)
 	return (s);
 }
 
-char	**new_fig(char *buf, char cur, t_etris **list)
+char	**new_fig(char *buf, char cur, t_etris *list)
 {
-	char	**tmp;
 	char	*s;
 	int		j;
 	int		y;
 	int		x;
 
 	j = -1;
-	y = 0;
 	while (*buf != '#')
 		buf++;
 	s = trim_fig(s, buf);
 	while (s[++j])
 		if (s[j] == '#')
 			s[j] = cur;
-	tmp = ft_strsplit(s, '\n');
-	while (tmp[y])
+	list->value = ft_strsplit(s, '\n');
+	free(s);
+	y = -1;
+	while (list->value[++y])
 	{
-		x = 0;
-		while (tmp[y][x++])
-			(*list)->weigth = x;
-		y++;
+		x = -1;
+		while (list->value[y][++x])
+			list->weigth = x;
 	}
-	(*list)->heigth = y;
-	return (tmp);
+	list->heigth = y;
+	return (list->value);
 }
 
 int		connect(char *buf)

@@ -1,30 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strnew.c                                        :+:      :+:    :+:   */
+/*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rloraine <rloraine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/04/07 20:37:14 by rloraine          #+#    #+#             */
-/*   Updated: 2019/05/21 14:00:16 by rloraine         ###   ########.fr       */
+/*   Created: 2019/05/21 15:57:58 by rloraine          #+#    #+#             */
+/*   Updated: 2019/05/21 16:01:34 by rloraine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "fillit.h"
 
-char	*ft_strnew(size_t size)
+int	error(char *str)
 {
-	char	*str;
-	size_t	i;
-
-	i = 0;
-	if (!(str = malloc(size + 1)))
-		return (NULL);
-	while (i < size)
-	{
-		str[i] = '\0';
-		i++;
-	}
-	str[i] = '\0';
-	return (str);
+	ft_putendl(str);
+	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: rloraine <rloraine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/18 16:30:21 by rloraine          #+#    #+#             */
-/*   Updated: 2019/05/20 18:19:03 by rloraine         ###   ########.fr       */
+/*   Updated: 2019/05/21 15:31:34 by rloraine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,28 +29,39 @@ int	empty_map(char ***map, int size)
 	while (y < size)
 	{
 		x = 0;
-		(*map)[y] = (char*)malloc(sizeof(char) * size + 1);
+		if (!((*map)[y] = (char*)malloc(sizeof(char) * size + 1)))
+		{
+			while (y >= 0)
+				free((*map)[y--]);
+			free((*map));
+			return (0);
+		}
 		while (x < size)
 			(*map)[y][x++] = '.';
 		(*map)[y++][x] = '\0';
 	}
-	map[y] = NULL;
+	(*map)[y] = NULL;
 	return (1);
 }
 
 int	solve(char ***map, int count, t_etris *list)
 {
-	int y;
-	int x;
+	int n;
 	int size;
 
+	if (count > 26)
+		return (0);
 	size = 2;
 	while (size * size < count * 4)
 		size++;
 	while ((empty_map(map, size)) && size < 17)
 	{
-		if (solve_map((*map), list, 0 , 0) == 0)
-			break;
+		n = 0;
+		if ((solve_map((*map), list, 0, 0)) == 0)
+			break ;
+		while ((*map[n]))
+			free((*map)[n++]);
+		free((*map));
 		size++;
 	}
 	return ((size == 17) ? 0 : size);
