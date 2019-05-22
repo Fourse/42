@@ -6,7 +6,7 @@
 /*   By: rloraine <rloraine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/18 13:40:43 by rloraine          #+#    #+#             */
-/*   Updated: 2019/05/22 15:10:45 by rloraine         ###   ########.fr       */
+/*   Updated: 2019/05/22 18:32:18 by rloraine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ int			main(int argc, char **argv)
 	int		size;
 
 	if (argc != 2)
-		return (error("ebani ka argiment, drujishe"));
+		return (error("usage: ./fillit [input_file]"));
 	if (!(list = (t_etris*)malloc(sizeof(t_etris))))
 		return (0);
 	if ((count = read_file(open(argv[1], O_RDONLY), list)) == 0)

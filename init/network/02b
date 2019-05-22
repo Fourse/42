@@ -1,0 +1,4 @@
+#!/bin/sh
+#IP adresses ONE NETWORK
+#arp -a | awk '{print $2}' if u want only IP adresses
+arp -a

@@ -1,0 +1,6 @@
+#traceroute slash16.org
+1 - Local IP
+#https://ru.wikipedia.org/wiki/%D0%A7%D0%B0%D1%81%D1%82%D0%BD%D1%8B%D0%B9_IP-%D0%B0%D0%B4%D1%80%D0%B5%D1%81
+2 - NAT IP
+#https://ru.wikipedia.org/wiki/NAT
+3 - Public IP

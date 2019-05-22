@@ -1,0 +1,3 @@
+#!/bin/sh
+#folder "/etc" keeps all configurations, file "resolv.conf" keeps using adresses
+cat /etc/resolv.conf

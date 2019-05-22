@@ -1,0 +1,3 @@
+#!/bin/sh
+#Dynamic Host Configuration Protocol
+ifconfig en0 | grep "inet " | awk '{print $2}'

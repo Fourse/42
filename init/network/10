@@ -1,0 +1,3 @@
+#!/bin/sh
+#man "traceroute"
+traceroute slash16.org

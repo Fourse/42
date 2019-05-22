@@ -1,0 +1,3 @@
+#!/bin/sh
+#AWSDNS Amazon Web Service Domain Name System
+whois slash16.org | grep "Server"
