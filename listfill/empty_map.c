@@ -1,19 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error.c                                            :+:      :+:    :+:   */
+/*   empty_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rloraine <rloraine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/05/21 15:57:58 by rloraine          #+#    #+#             */
-/*   Updated: 2019/05/21 16:01:34 by rloraine         ###   ########.fr       */
+/*   Created: 2019/05/22 12:27:39 by rloraine          #+#    #+#             */
+/*   Updated: 2019/05/22 12:49:58 by rloraine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-int	error(char *str)
+int	empty_map(char ***map, int size)
 {
-	ft_putendl(str);
-	return (0);
+	int y;
+	int x;
+
+	if (!((*map) = (char**)malloc(sizeof(char*) * size + 1)))
+		return (0);
+	y = 0;
+	while (y < size)
+	{
+		x = 0;
+		if (!((*map)[y] = (char*)malloc(sizeof(char) * size + 1)))
+		{
+			while (y >= 0)
+				free((*map)[y--]);
+			free((*map));
+			return (0);
+		}
+		while (x < size)
+			(*map)[y][x++] = '.';
+		(*map)[y++][x] = '\0';
+	}
+	(*map)[y] = NULL;
+	return (1);
 }

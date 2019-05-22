@@ -6,7 +6,7 @@
 /*   By: rloraine <rloraine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/18 13:40:43 by rloraine          #+#    #+#             */
-/*   Updated: 2019/05/21 17:35:12 by rloraine         ###   ########.fr       */
+/*   Updated: 2019/05/22 12:31:47 by rloraine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,6 @@ int			main(int argc, char **argv)
 	char	**map;
 	int		count;
 	int		size;
-	int		i;
 
 	if (argc != 2)
 		return (error("ebani ka argiment, drujishe"));

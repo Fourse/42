@@ -6,13 +6,13 @@
 /*   By: rloraine <rloraine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/18 16:28:41 by rloraine          #+#    #+#             */
-/*   Updated: 2019/05/21 17:35:14 by rloraine         ###   ########.fr       */
+/*   Updated: 2019/05/22 12:36:12 by rloraine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-char	*trim_fig(char *s, char *buf)
+static char	*trim_fig(char *s, char *buf)
 {
 	int i;
 
@@ -39,13 +39,14 @@ char	*trim_fig(char *s, char *buf)
 	return (s);
 }
 
-char	**new_fig(char *buf, char cur, t_etris *list)
+char		**new_fig(char *buf, char cur, t_etris *list)
 {
 	char	*s;
 	int		j;
 	int		y;
 	int		x;
 
+	s = NULL;
 	j = -1;
 	while (*buf != '#')
 		buf++;
@@ -66,7 +67,7 @@ char	**new_fig(char *buf, char cur, t_etris *list)
 	return (list->value);
 }
 
-int		connect(char *buf)
+static int	connect(char *buf)
 {
 	int i;
 	int block;
@@ -94,7 +95,7 @@ int		connect(char *buf)
 	return (((block == 6 || block == 8) && hash == 4) ? 1 : 0);
 }
 
-int		valid(char *buf, int ret)
+int			valid(char *buf, int ret)
 {
 	int i;
 	int error;
@@ -117,4 +118,10 @@ int		valid(char *buf, int ret)
 	if (connect(buf) == 0)
 		error++;
 	return (error);
+}
+
+int			error(char *str)
+{
+	ft_putendl(str);
+	return (0);
 }
