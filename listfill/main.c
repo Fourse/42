@@ -6,7 +6,7 @@
 /*   By: rloraine <rloraine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/18 13:40:43 by rloraine          #+#    #+#             */
-/*   Updated: 2019/05/22 12:31:47 by rloraine         ###   ########.fr       */
+/*   Updated: 2019/05/22 15:10:45 by rloraine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,9 +69,11 @@ int			read_file(int fd, t_etris *list)
 		list->value = new_fig(buf, cur++, list);
 		list = list->next;
 		list->next = NULL;
+		if (ret == 20)
+			break ;
 	}
 	list->next = NULL;
-	if (ret != 0)
+	if (ret != 20)
 		return (0);
 	return (cur - 'A');
 }
