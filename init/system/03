@@ -1,1 +1,1 @@
-/etc/hosts
+/etc/hostname
