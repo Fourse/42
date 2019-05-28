@@ -1,2 +1,1 @@
-#!/bin/sh
-ssh status
+service ssh status

@@ -1,1 +1,2 @@
-/etc/hosts
+#!/bin/sh
+cat /etc/hosts

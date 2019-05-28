@@ -1,0 +1,3 @@
+#!/bin/bash
+#login, UID, path
+cat /etc/passwd | awk -F ":" '{print $1 $3 $ 7}'

@@ -1,0 +1,5 @@
+#first need to give rights to user
+#!/bin/bash
+USER=$1
+pkill -u $USER
+userdel $USER

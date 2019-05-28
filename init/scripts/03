@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 du -sh ~/
 rm -rf ~/Library/*42_cache*
