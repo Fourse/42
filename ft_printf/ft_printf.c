@@ -6,7 +6,7 @@
 /*   By: rloraine <rloraine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/29 17:24:55 by rloraine          #+#    #+#             */
-/*   Updated: 2019/06/01 15:37:02 by rloraine         ###   ########.fr       */
+/*   Updated: 2019/06/01 20:29:21 by rloraine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	ft_printf(const char *format, ...)
 
 	result = 0;
 	va_start(list, format);
-	result = treatment((char*)format, result);
+	result = treatment((char*)format, result, list);
 	va_end(list);
 	return (result);
 }
