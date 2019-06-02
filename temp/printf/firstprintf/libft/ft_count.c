@@ -1,25 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   ft_count.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rloraine <rloraine@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rloraine <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/06/02 20:36:54 by rloraine          #+#    #+#             */
-/*   Updated: 2019/06/02 21:01:48 by rloraine         ###   ########.fr       */
+/*   Created: 2019/04/09 15:24:53 by rloraine          #+#    #+#             */
+/*   Updated: 2019/04/13 18:22:30 by rloraine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-int	ft_printf(const char *format, ...)
+int	ft_count(int n)
 {
-	int		result;
-	va_list	args;
+	int				i;
+	unsigned int	k;
 
-	result = 0;
-	va_start(args, format);
-	result = treatment((char*)format, result, args);
-	va_end(args);
-	return (result);
+	i = 0;
+	if (n == 0)
+		i++;
+	else if (n < 0)
+	{
+		i++;
+		n = n * -1;
+	}
+	k = n;
+	while (k > 0)
+	{
+		k /= 10;
+		i++;
+	}
+	return (i);
 }

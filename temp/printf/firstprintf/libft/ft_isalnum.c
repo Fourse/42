@@ -1,20 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_isalnum.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rloraine <rloraine@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rloraine <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/05/29 18:56:27 by rloraine          #+#    #+#             */
-/*   Updated: 2019/06/01 17:38:24 by rloraine         ###   ########.fr       */
+/*   Created: 2019/04/06 20:18:01 by rloraine          #+#    #+#             */
+/*   Updated: 2019/04/07 19:09:48 by rloraine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
-#include <stdio.h>
+#include "libft.h"
 
-int main()
+int	ft_isalnum(int c)
 {
-    printf("%.5s\n", "qwerty qwer qwer qwer qwer qwer qwer qwer");
-    return (0);
+	return ((c >= '0' && c <= '9')\
+			|| (c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z'));
 }

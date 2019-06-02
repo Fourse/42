@@ -1,25 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   ft_isalpha.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rloraine <rloraine@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rloraine <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/06/02 20:36:54 by rloraine          #+#    #+#             */
-/*   Updated: 2019/06/02 21:01:48 by rloraine         ###   ########.fr       */
+/*   Created: 2019/04/06 20:13:20 by rloraine          #+#    #+#             */
+/*   Updated: 2019/04/07 19:10:15 by rloraine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-int	ft_printf(const char *format, ...)
+int	ft_isalpha(int c)
 {
-	int		result;
-	va_list	args;
-
-	result = 0;
-	va_start(args, format);
-	result = treatment((char*)format, result, args);
-	va_end(args);
-	return (result);
+	return ((c >= 65 && c <= 90) || (c >= 97 && c <= 122));
 }

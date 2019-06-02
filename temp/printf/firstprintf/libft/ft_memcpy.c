@@ -1,25 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   ft_memcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rloraine <rloraine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/06/02 20:36:54 by rloraine          #+#    #+#             */
-/*   Updated: 2019/06/02 21:01:48 by rloraine         ###   ########.fr       */
+/*   Created: 2019/04/06 21:09:08 by rloraine          #+#    #+#             */
+/*   Updated: 2019/05/17 13:45:59 by rloraine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-int	ft_printf(const char *format, ...)
+void	*ft_memcpy(void *restrict dst, const void *restrict src, size_t n)
 {
-	int		result;
-	va_list	args;
+	size_t i;
 
-	result = 0;
-	va_start(args, format);
-	result = treatment((char*)format, result, args);
-	va_end(args);
-	return (result);
+	i = 0;
+	while (i < n)
+	{
+		((unsigned char*)dst)[i] = ((unsigned char*)src)[i];
+		i++;
+	}
+	return ((void*)dst);
 }

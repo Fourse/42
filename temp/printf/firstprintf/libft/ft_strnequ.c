@@ -1,25 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   ft_strnequ.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rloraine <rloraine@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rloraine <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/06/02 20:36:54 by rloraine          #+#    #+#             */
-/*   Updated: 2019/06/02 21:01:48 by rloraine         ###   ########.fr       */
+/*   Created: 2019/04/07 21:40:34 by rloraine          #+#    #+#             */
+/*   Updated: 2019/04/21 17:03:39 by rloraine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-int	ft_printf(const char *format, ...)
+int	ft_strnequ(char const *s1, char const *s2, size_t n)
 {
-	int		result;
-	va_list	args;
-
-	result = 0;
-	va_start(args, format);
-	result = treatment((char*)format, result, args);
-	va_end(args);
-	return (result);
+	if (s1 && s2)
+		return (ft_strncmp(s1, s2, n) == 0);
+	return (0);
 }

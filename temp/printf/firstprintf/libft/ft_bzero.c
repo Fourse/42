@@ -1,25 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   ft_bzero.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rloraine <rloraine@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rloraine <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/06/02 20:36:54 by rloraine          #+#    #+#             */
-/*   Updated: 2019/06/02 21:01:48 by rloraine         ###   ########.fr       */
+/*   Created: 2019/04/06 21:05:38 by rloraine          #+#    #+#             */
+/*   Updated: 2019/04/21 16:57:12 by rloraine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-int	ft_printf(const char *format, ...)
+void	ft_bzero(void *s, size_t n)
 {
-	int		result;
-	va_list	args;
+	size_t i;
 
-	result = 0;
-	va_start(args, format);
-	result = treatment((char*)format, result, args);
-	va_end(args);
-	return (result);
+	i = 0;
+	while (i < n)
+	{
+		((unsigned char*)s)[i] = '\0';
+		i++;
+	}
 }

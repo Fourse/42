@@ -1,25 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rloraine <rloraine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/06/02 20:36:54 by rloraine          #+#    #+#             */
-/*   Updated: 2019/06/02 21:01:48 by rloraine         ###   ########.fr       */
+/*   Created: 2019/04/06 21:20:42 by rloraine          #+#    #+#             */
+/*   Updated: 2019/04/29 16:08:23 by rloraine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-int	ft_printf(const char *format, ...)
+void	*ft_memmove(void *dst, const void *src, size_t len)
 {
-	int		result;
-	va_list	args;
+	size_t				i;
+	unsigned char		*s;
+	const unsigned char	*d;
 
-	result = 0;
-	va_start(args, format);
-	result = treatment((char*)format, result, args);
-	va_end(args);
-	return (result);
+	s = (unsigned char*)dst;
+	d = (unsigned char*)src;
+	i = 0;
+	if (s == d)
+		return (dst);
+	if (d < s)
+		while (++i <= len)
+			s[len - i] = d[len - i];
+	else
+		while (len-- > 0)
+			*(s++) = *(d++);
+	return (dst);
 }
