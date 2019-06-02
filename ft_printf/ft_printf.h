@@ -6,7 +6,7 @@
 /*   By: rloraine <rloraine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/02 20:36:56 by rloraine          #+#    #+#             */
-/*   Updated: 2019/06/02 21:33:23 by rloraine         ###   ########.fr       */
+/*   Updated: 2019/06/02 21:59:12 by rloraine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@
 # define I_S(s) *s == 's'
 # define I_BS(s) *s == 'S'
 # define I_P(s) *s == 'p'
-# define I_N(s) *s == 'N'
+# define I_N(s) *s == 'n'
 
 /*
 ** very useful macro
@@ -82,10 +82,12 @@
 # define IS_GAV(s) (I_A(s) O I_BA(s) O I_P(s) O I_N(s))
 
 # define CHK_F(s) (IS_MI(s) O IS_PL(s) O IS_SP(s) O IS_HA(s) O IS_NU(s))
-# define CHK_W(s) (ft_isdit(*s))
+# define CHK_W(s) (ft_isdigit(*s))
 # define CHK_A(s) *s == '.'
 # define CHK_M(s) (IS_H(s) O IS_L(s) O IS_Z(s) O IS_J(s))
-# define CHR_C(s) (IS_INT(s) O IS_816(s) O IS_FLO(s) O IS_CHA(s) O IS_GAV(s))
+# define CHK_C(s) (IS_INT(s) O IS_816(s) O IS_FLO(s) O IS_CHA(s) O IS_GAV(s))
+
+# define ROLL_NUMBS(s) while (ft_isdigit(*s++)) ;
 
 /*
 ** structures
