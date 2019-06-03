@@ -6,21 +6,21 @@
 /*   By: rloraine <rloraine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/02 20:36:54 by rloraine          #+#    #+#             */
-/*   Updated: 2019/06/02 21:59:11 by rloraine         ###   ########.fr       */
+/*   Updated: 2019/06/03 15:25:45 by rloraine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static void	list_initialization(t_format *list)
+static void	list_initialization(t_format **list)
 {
-	list = (t_format*)malloc(sizeof(t_format));
-	list->flag = 0;
-	list->width = 0;
-	list->acc = 0;
-	list->mod = 0;
-	list->spec = 0;
-	list->next = NULL;
+	(*list) = (t_format*)malloc(sizeof(t_format));
+	(*list)->flag = 0;
+	(*list)->width = 0;
+	(*list)->acc = 0;
+	(*list)->mod = 0;
+	(*list)->spec = 0;
+	(*list)->next = NULL;
 }
 
 int			treatment(char *format, int result, va_list args)
@@ -29,7 +29,7 @@ int			treatment(char *format, int result, va_list args)
 
 	while (*format)
 	{
-		list_initialization(list);
+		list_initialization(&list);
 		if (*format == '%')
 		{
 			format++;
@@ -53,11 +53,39 @@ int			treatment(char *format, int result, va_list args)
 			}
 			if (CHK_M(format))
 			{
-
+				if (IS_H(format))
+				{
+					if (*(format + 1) == 'h')
+					{
+						format++;
+						list->mod = HH;
+					}
+					else
+						list->mod = H;
+				}
+				else if (IS_L(format))
+				{
+					if (*(format + 1) == 'l')
+					{
+						format++;
+						list->mod = LL;
+					}
+					else
+						list->mod = L;
+				}
+				else if (IS_Z(format))
+					list->mod = Z;
+				else if (IS_J(format))
+					list->mod = J;
+				format++;
+					
 			}
 			if (CHK_C(format))
 			{
-				list->spec = (unsigned char)format++;
+				list->spec = *format++;
+				printf("%d", list->width);
+				printf("%d", list->mod);
+				printf("%c", list->spec);
 				list = list->next;
 				continue;
 			}

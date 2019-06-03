@@ -6,7 +6,7 @@
 /*   By: rloraine <rloraine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/02 20:36:56 by rloraine          #+#    #+#             */
-/*   Updated: 2019/06/02 21:59:12 by rloraine         ###   ########.fr       */
+/*   Updated: 2019/06/03 15:25:40 by rloraine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,9 +41,9 @@
 ** type of conversion
 */
 
+# define I_I(s) *s == 'i'
 # define I_D(s) *s == 'd'
 # define I_BD(s) *s == 'D'
-# define I_I(s) *s == 'i'
 # define I_U(s) *s == 'u'
 # define I_BU(s) *s == 'U'
 # define I_O(s) *s == 'o'
@@ -75,7 +75,7 @@
 ** used macro
 */
 
-# define IS_INT(s) (I_D(s) O I_BD(s) O I_I(s) O I_U(s) O I_BU(s))
+# define IS_INT(s) (I_I(s) O I_D(s) O I_BD(s) O I_U(s) O I_BU(s))
 # define IS_816(s) (I_O(s) O I_BO(s) O I_X(s) O I_BX(s))
 # define IS_FLO(s) (I_F(s) O I_BF(s) O I_E(s) O I_BE(s) O I_G(s) O I_BG(s))
 # define IS_CHA(s) (I_C(s) O I_BC(s) O I_S(s) O I_BS(s))
@@ -87,7 +87,7 @@
 # define CHK_M(s) (IS_H(s) O IS_L(s) O IS_Z(s) O IS_J(s))
 # define CHK_C(s) (IS_INT(s) O IS_816(s) O IS_FLO(s) O IS_CHA(s) O IS_GAV(s))
 
-# define ROLL_NUMBS(s) while (ft_isdigit(*s++)) ;
+# define ROLL_NUMBS(s) while (ft_isdigit(*s)) s++;
 
 /*
 ** structures
