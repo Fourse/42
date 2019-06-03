@@ -1,18 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   fdf.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rloraine <rloraine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/06/03 14:57:49 by rloraine          #+#    #+#             */
-/*   Updated: 2019/06/03 15:36:23 by rloraine         ###   ########.fr       */
+/*   Created: 2019/06/03 15:37:20 by rloraine          #+#    #+#             */
+/*   Updated: 2019/06/03 15:39:13 by rloraine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#ifndef FDF_H
+# define FDF_H
 
-int main()
-{
-	ft_printf("%6d%4c");
-}
+# include "mlx.h"
+# include <math.h>
+# include "./libft/libft.h"
+
+
+
+#endif

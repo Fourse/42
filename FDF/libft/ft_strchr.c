@@ -1,18 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rloraine <rloraine@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rloraine <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/06/03 14:57:49 by rloraine          #+#    #+#             */
-/*   Updated: 2019/06/03 15:36:23 by rloraine         ###   ########.fr       */
+/*   Created: 2019/04/06 13:15:27 by rloraine          #+#    #+#             */
+/*   Updated: 2019/04/21 17:01:29 by rloraine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-int main()
+char	*ft_strchr(const char *s, int c)
 {
-	ft_printf("%6d%4c");
+	while (*s)
+	{
+		if ((const char)*s == c)
+			break ;
+		s++;
+	}
+	if (!*s && *s != c)
+		return (NULL);
+	return ((char*)s);
 }

@@ -1,18 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strequ.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rloraine <rloraine@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rloraine <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/06/03 14:57:49 by rloraine          #+#    #+#             */
-/*   Updated: 2019/06/03 15:36:23 by rloraine         ###   ########.fr       */
+/*   Created: 2019/04/07 21:27:43 by rloraine          #+#    #+#             */
+/*   Updated: 2019/04/12 14:51:06 by rloraine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-int main()
+int	ft_strequ(char const *s1, char const *s2)
 {
-	ft_printf("%6d%4c");
+	if (s1 && s2)
+		return (ft_strcmp(s1, s2) == 0);
+	return (0);
 }

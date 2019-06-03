@@ -1,18 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strnew.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rloraine <rloraine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/06/03 14:57:49 by rloraine          #+#    #+#             */
-/*   Updated: 2019/06/03 15:36:23 by rloraine         ###   ########.fr       */
+/*   Created: 2019/04/07 20:37:14 by rloraine          #+#    #+#             */
+/*   Updated: 2019/05/21 14:00:16 by rloraine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-int main()
+char	*ft_strnew(size_t size)
 {
-	ft_printf("%6d%4c");
+	char	*str;
+	size_t	i;
+
+	i = 0;
+	if (!(str = malloc(size + 1)))
+		return (NULL);
+	while (i < size)
+	{
+		str[i] = '\0';
+		i++;
+	}
+	str[i] = '\0';
+	return (str);
 }

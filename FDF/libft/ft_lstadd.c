@@ -1,18 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_lstadd.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rloraine <rloraine@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rloraine <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/06/03 14:57:49 by rloraine          #+#    #+#             */
-/*   Updated: 2019/06/03 15:36:23 by rloraine         ###   ########.fr       */
+/*   Created: 2019/04/12 18:40:20 by rloraine          #+#    #+#             */
+/*   Updated: 2019/04/12 18:45:23 by rloraine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-int main()
+void	ft_lstadd(t_list **alst, t_list *new)
 {
-	ft_printf("%6d%4c");
+	t_list *elem;
+
+	elem = *alst;
+	*alst = new;
+	new->next = elem;
 }

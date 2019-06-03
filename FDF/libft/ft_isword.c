@@ -1,18 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_isword.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rloraine <rloraine@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rloraine <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/06/03 14:57:49 by rloraine          #+#    #+#             */
-/*   Updated: 2019/06/03 15:36:23 by rloraine         ###   ########.fr       */
+/*   Created: 2019/04/11 20:33:40 by rloraine          #+#    #+#             */
+/*   Updated: 2019/04/11 20:35:03 by rloraine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-int main()
+int	ft_isword(const char *s, char c)
 {
-	ft_printf("%6d%4c");
+	int i;
+	int n;
+
+	i = 0;
+	n = 0;
+	while (s[i] == c)
+		i++;
+	while (s[i])
+	{
+		if (s[i] != c)
+		{
+			n++;
+			while (s[i] != c && s[i])
+				i++;
+		}
+		i++;
+	}
+	return (n);
 }
