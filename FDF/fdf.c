@@ -6,21 +6,33 @@
 /*   By: rloraine <rloraine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/03 15:37:22 by rloraine          #+#    #+#             */
-/*   Updated: 2019/06/03 17:31:16 by rloraine         ###   ########.fr       */
+/*   Updated: 2019/06/04 20:43:13 by rloraine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-int main(int argc, char **argv)
+int	error(char *str)
 {
-	void *mlx_ptr;
-	void *win_ptr;
+	ft_putendl(str);
+	return (0);
+}
 
-	mlx_ptr = mlx_init();
-	win_ptr = mlx_new_window(mlx_ptr, 1000, 1000, "nnnu davay");
-//	mlx_clear_window(mlx_ptr, win_ptr);
-	mlx_pixel_put(mlx_ptr, win_ptr, 10, 10, 0xfffafa);
-//	mlx_new_image(mlx_ptr, 10, 10);
+int	main(int argc, char **argv)
+{
+	//int fd;
+	t_fdf *fdf;
+
+	//if (argc != 2)
+	//	return (error("ebani ti uje kartu"));
+	//fd = open(argv[1], O_RDONLY);
+	if (!(fdf = (t_fdf*)malloc(sizeof(t_fdf))))
+		return (error("error"));
+	if (!(fdf->mlx = mlx_init()))
+		return (error("error"));
+	if (!(fdf->win = mlx_new_window(fdf->mlx, WEIGHT, HEIGHT, "hello")))
+		return (error("error"));
+	mlx_string_put(fdf->mlx, fdf->win, 820, 510, 0xda70d6, "EBALA TO KAKAYA, EBALAAAAAAAA");
+	mlx_loop(fdf->mlx);
 	return (0);
 }

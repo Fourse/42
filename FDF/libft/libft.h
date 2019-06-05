@@ -6,16 +6,20 @@
 /*   By: rloraine <rloraine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/04 18:38:56 by rloraine          #+#    #+#             */
-/*   Updated: 2019/05/17 13:38:16 by rloraine         ###   ########.fr       */
+/*   Updated: 2019/06/04 16:57:35 by rloraine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
 
-# include <string.h>
-# include <stdlib.h>
+# include <stdio.h>
+# include <fcntl.h>
+# include <sys/types.h>
+# include <sys/uio.h>
 # include <unistd.h>
+# include <stdlib.h>
+# include <string.h>
 
 typedef	struct		s_list
 {
