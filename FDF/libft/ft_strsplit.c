@@ -6,7 +6,7 @@
 /*   By: rloraine <rloraine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/09 16:34:44 by rloraine          #+#    #+#             */
-/*   Updated: 2019/05/21 15:38:58 by rloraine         ###   ########.fr       */
+/*   Updated: 2019/06/07 14:43:46 by rloraine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,9 @@ char		**ft_strsplit(char const *s, char c)
 	i = 0;
 	if (!s)
 		return (NULL);
-	if (!(split = (char**)malloc(sizeof(char*) * ft_isword(s, c) + 1)))
+	if (!(split = (char**)malloc(sizeof(char*) * (int)ft_isword(s, c) + 1)))
 		return (0);
-	while (s[i] && n < ft_isword(s, c))
+	while (s[i] && n < (int)ft_isword(s, c))
 	{
 		k = 0;
 		while (s[i] == c)

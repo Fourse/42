@@ -6,33 +6,39 @@
 /*   By: rloraine <rloraine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/03 15:37:22 by rloraine          #+#    #+#             */
-/*   Updated: 2019/06/04 20:43:13 by rloraine         ###   ########.fr       */
+/*   Updated: 2019/06/07 15:17:45 by rloraine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-int	error(char *str)
+static int		hook_keydown(int key, t_fdf *fdf)
 {
-	ft_putendl(str);
+	(void)fdf;
+	if (key == 53)
+		exit(0);
 	return (0);
 }
 
-int	main(int argc, char **argv)
+int				error(char *str)
 {
-	//int fd;
-	t_fdf *fdf;
+	ft_putendl(str);
+	exit(0);
+}
 
-	//if (argc != 2)
-	//	return (error("ebani ti uje kartu"));
-	//fd = open(argv[1], O_RDONLY);
-	if (!(fdf = (t_fdf*)malloc(sizeof(t_fdf))))
+int				main(int argc, char **argv)
+{
+	t_fdf	*fdf;
+	t_map	*map;
+	t_list	*list;
+
+	if (argc != 2)
+		return (error("ebani ti uje kartu"));
+	if (!(read_file(open(argv[1], O_RDONLY), &map, &list)))
 		return (error("error"));
-	if (!(fdf->mlx = mlx_init()))
-		return (error("error"));
-	if (!(fdf->win = mlx_new_window(fdf->mlx, WEIGHT, HEIGHT, "hello")))
-		return (error("error"));
-	mlx_string_put(fdf->mlx, fdf->win, 820, 510, 0xda70d6, "EBALA TO KAKAYA, EBALAAAAAAAA");
+	fdf_init(&fdf);
+	fdf->map = map;
+	mlx_key_hook(fdf->win, hook_keydown, fdf);
 	mlx_loop(fdf->mlx);
 	return (0);
 }

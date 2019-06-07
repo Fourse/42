@@ -6,7 +6,7 @@
 /*   By: rloraine <rloraine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/04 18:38:56 by rloraine          #+#    #+#             */
-/*   Updated: 2019/06/04 16:57:35 by rloraine         ###   ########.fr       */
+/*   Updated: 2019/06/07 14:54:25 by rloraine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <string.h>
+# include "get_next_line.h"
 
 typedef	struct		s_list
 {
@@ -91,10 +92,13 @@ void				ft_lstdel(t_list **alst, void (*del)(void *, size_t));
 void				ft_lstadd(t_list **alst, t_list *new);
 void				ft_lstiter(t_list *lst, void (*f)(t_list *elem));
 t_list				*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem));
+size_t				ft_lstcount(t_list *lst);
 void				ft_strrev(char *s);
 int					ft_count(int n);
 int					ft_wsize(const char *s, char c, int i);
-int					ft_isword(const char *s, char c);
+size_t				ft_isword(const char *s, char c);
 void				ft_swap(int *a, int *b);
+int					get_next_line(const int fd, char **line);
+void				ft_lstrev(t_list **alst);
 
 #endif
