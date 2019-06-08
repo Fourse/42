@@ -6,7 +6,7 @@
 /*   By: rloraine <rloraine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/05 16:37:11 by rloraine          #+#    #+#             */
-/*   Updated: 2019/06/08 15:58:17 by rloraine         ###   ########.fr       */
+/*   Updated: 2019/06/08 18:33:38 by rloraine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,30 +23,15 @@ int				fdf_init(t_fdf **fdf)
 	return (1);
 }
 
-static t_map	*map_init(size_t x, size_t y)
-{
-	t_map *map;
-
-	if (!(map = (t_map*)malloc(sizeof(t_map))))
-		error("error");
-	map->weigth = (int)x;
-	map->heigth = (int)y;
-	map->depthmax = INT_MAX;
-	map->depthmin = INT_MIN;
-	if (!(map->pixel = (t_pixel**)malloc(sizeof(t_pixel*) * (int)x * (int)y)))
-		error("error");
-	return (map);
-}
-
-t_pixel			*pixel_init(int x, int y, char *split)
+static t_pixel	*pixel_init(int x, int y, char *split)
 {
 	t_pixel *pixel;
 
 	if (!(pixel = (t_pixel*)malloc(sizeof(t_pixel))))
 		error("error");
-	pixel->x = (double)x;
-	pixel->y = (double)y;
-	pixel->z = (double)atoi(split);
+	pixel->x = (double)x + 5;
+	pixel->y = (double)y + 5;
+	pixel->z = (double)atoi(split) + 5;
 	pixel->color = 0xee82ee;
 	return (pixel);
 }
@@ -74,6 +59,21 @@ void			get_pixel(t_list **list, t_map **map)
 		lst = lst->next;
 		y++;
 	}
+}
+
+static t_map	*map_init(size_t x, size_t y)
+{
+	t_map *map;
+
+	if (!(map = (t_map*)malloc(sizeof(t_map))))
+		error("error");
+	map->weigth = (int)x;
+	map->heigth = (int)y;
+	map->depthmax = INT_MAX;
+	map->depthmin = INT_MIN;
+	if (!(map->pixel = (t_pixel**)malloc(sizeof(t_pixel*) * (int)x * (int)y)))
+		error("error");
+	return (map);
 }
 
 int				read_file(int fd, t_map **map, t_list **list)
