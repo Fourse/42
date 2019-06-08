@@ -6,7 +6,7 @@
 /*   By: rloraine <rloraine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/03 15:37:20 by rloraine          #+#    #+#             */
-/*   Updated: 2019/06/07 15:15:19 by rloraine         ###   ########.fr       */
+/*   Updated: 2019/06/08 15:40:36 by rloraine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,13 @@
 # define WEIGHT 1920
 # define HEIGHT 1080
 
-
+typedef struct	s_pixel
+{
+	double		x;
+	double		y;
+	double		z;
+	int			color;
+}				t_pixel;
 
 typedef struct	s_map
 {
@@ -30,7 +36,7 @@ typedef struct	s_map
 	int			heigth;
 	int			depthmin;
 	int			depthmax;
-	int			y;
+	t_pixel		**pixel;
 }				t_map;
 
 typedef struct	s_fdf
@@ -38,15 +44,30 @@ typedef struct	s_fdf
 	void		*mlx;
 	void		*win;
 	void		*image;
+	char		*addr;
 	int			bpp;
 	int			wide;
 	int			endian;
 	t_map		*map;
 }				t_fdf;
 
-int	error(char *str);
-int read_file(int fd, t_map **map, t_list **list);
-//t_map *map_init(size_t x, size_t y);
-int fdf_init(t_fdf **fdf);
+/*
+**	main.c
+*/
+void			error(char *str);
+void			del_arr(char ***split);
+
+/*
+**	reader.c
+*/
+
+int				read_file(int fd, t_map **map, t_list **list);
+int				fdf_init(t_fdf **fdf);
+
+/*
+**	solution.c
+*/
+
+void			solution(t_fdf *fdf, t_list *list);
 
 #endif

@@ -1,2 +1,2 @@
 #!/bin/sh
-gcc fdf.c reader.c libft/libft.a -lmlx -framework OpenGL -framework AppKit -g
+gcc main.c reader.c solution.c libft/libft.a -lmlx -framework OpenGL -framework AppKit -g
