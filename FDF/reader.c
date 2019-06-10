@@ -6,7 +6,7 @@
 /*   By: rloraine <rloraine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/05 16:37:11 by rloraine          #+#    #+#             */
-/*   Updated: 2019/06/08 18:33:38 by rloraine         ###   ########.fr       */
+/*   Updated: 2019/06/10 17:52:45 by rloraine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,9 @@ static t_pixel	*pixel_init(int x, int y, char *split)
 
 	if (!(pixel = (t_pixel*)malloc(sizeof(t_pixel))))
 		error("error");
-	pixel->x = (double)x + 5;
-	pixel->y = (double)y + 5;
-	pixel->z = (double)atoi(split) + 5;
+	pixel->x = (double)x + 40;
+	pixel->y = (double)y + 10;
+	pixel->z = (double)atoi(split);
 	pixel->color = 0xee82ee;
 	return (pixel);
 }

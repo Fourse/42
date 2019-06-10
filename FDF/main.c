@@ -6,13 +6,13 @@
 /*   By: rloraine <rloraine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/03 15:37:22 by rloraine          #+#    #+#             */
-/*   Updated: 2019/06/08 19:02:13 by rloraine         ###   ########.fr       */
+/*   Updated: 2019/06/10 19:23:27 by rloraine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-int iso_y(t_fdf *fdf, int y, int x)
+void iso_x(t_fdf *fdf, int y, int x)
 {
 	int previous_x;
 	int previous_y;
@@ -21,19 +21,6 @@ int iso_y(t_fdf *fdf, int y, int x)
 	previous_y = fdf->map->pixel[y * fdf->map->weigth + x]->y;
 	fdf->map->pixel[y * fdf->map->weigth + x]->x = (previous_x - previous_y) * cos(0.523599);
 	fdf->map->pixel[y * fdf->map->weigth + x]->y = fdf->map->pixel[y * fdf->map->weigth + x]->z * -1 + (previous_x + previous_y) * sin(0.523599);
-	return (fdf->map->pixel[y * fdf->map->weigth + x]->y);
-}
-
-int iso_x(t_fdf *fdf, int y, int x)
-{
-	int previous_x;
-	int previous_y;
-
-	previous_x = fdf->map->pixel[y * fdf->map->weigth + x]->x;
-	previous_y = fdf->map->pixel[y * fdf->map->weigth + x]->y;
-	fdf->map->pixel[y * fdf->map->weigth + x]->x = (previous_x - previous_y) * cos(0.523599);
-	fdf->map->pixel[y * fdf->map->weigth + x]->y = fdf->map->pixel[y * fdf->map->weigth + x]->z * -1 + (previous_x + previous_y) * sin(0.523599);
-	return (fdf->map->pixel[y * fdf->map->weigth + x]->x);
 }
 
 void		del_arr(char ***split)
@@ -46,11 +33,64 @@ void		del_arr(char ***split)
 	free((*split));
 }
 
+void iso_par(t_fdf *fdf, int key)
+{
+	int y = 0;
+	int x;
+	t_fdf *tmp;
+	tmp = fdf;
+	if (key == 34)
+	{
+		while (y < tmp->map->heigth)
+		{
+			x = 0;
+			while (x < tmp->map->weigth)
+			{
+				iso_x(tmp, y, x);
+				if (tmp->map->pixel[y * tmp->map->weigth + x]->z > 0)
+					mlx_pixel_put(tmp->mlx, tmp->win, tmp->map->pixel[y * tmp->map->weigth + x]->x * 20, tmp->map->pixel[y * tmp->map->weigth + x]->y * 20, 0xeee8aa);
+				else
+					mlx_pixel_put(tmp->mlx, tmp->win, tmp->map->pixel[y * tmp->map->weigth + x]->x * 20, tmp->map->pixel[y * tmp->map->weigth + x]->y * 20, 0x8b0000);
+				x++;
+			}
+			y++;
+		}
+	}
+	if (key == 35)
+	{
+		while (y < fdf->map->heigth)
+		{
+			x = 0;
+			while (x < fdf->map->weigth)
+			{
+				if (fdf->map->pixel[y * fdf->map->weigth + x]->z > 0)
+					mlx_pixel_put(fdf->mlx, fdf->win, fdf->map->pixel[y * fdf->map->weigth + x]->x * 20, fdf->map->pixel[y * fdf->map->weigth + x]->y * 20, 0xeee8aa);
+				else
+					mlx_pixel_put(fdf->mlx, fdf->win, fdf->map->pixel[y * fdf->map->weigth + x]->x * 20, fdf->map->pixel[y * fdf->map->weigth + x]->y * 20, 0x8b0000);
+				x++;
+			}
+			y++;
+		}
+	}
+}
+
 static int	hook_keydown(int key, t_fdf *fdf)
 {
 	(void)fdf;
+	t_fdf *tmp;
+	tmp = fdf;
 	if (key == 53)
 		exit(0);
+	if (key == 34 || key == 35)
+	{
+		iso_par(tmp, key);
+		tmp = fdf;
+	}
+	if (key == 8)
+	{
+		mlx_clear_window(fdf->mlx, fdf->win);
+		tmp = fdf;
+	}
 	return (0);
 }
 
@@ -73,19 +113,6 @@ int			main(int argc, char **argv)
 	fdf_init(&fdf);
 	fdf->map = map;
 	//solution(fdf, list);
-	int y = 0;
-	int x;
-	while (y < map->heigth)
-	{
-		x = 0;
-		while (x < map->weigth)
-		{
-			mlx_pixel_put(fdf->mlx, fdf->win, iso_x(fdf, y, x) * 20, iso_y(fdf, y, x) * 20, 0xee82ee);
-			//mlx_pixel_put(fdf->mlx, fdf->win, fdf->map->pixel[y * fdf->map->weigth + x]->x * 70, fdf->map->pixel[y * fdf->map->weigth + x]->y * 70, 0xee82ee);
-			x++;
-		}
-		y++;
-	}
 	mlx_key_hook(fdf->win, hook_keydown, fdf);
 	mlx_loop(fdf->mlx);
 	return (0);
