@@ -6,7 +6,7 @@
 /*   By: rloraine <rloraine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/05 16:37:11 by rloraine          #+#    #+#             */
-/*   Updated: 2019/06/11 17:14:46 by rloraine         ###   ########.fr       */
+/*   Updated: 2019/06/11 18:30:03 by rloraine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,33 @@ void	get_pixel(t_list **list, t_map **map)
 	}
 }
 
+void	find_minmax(t_map *map)
+{
+	int min;
+	int max;
+	int y;
+	int x;
+
+	min = INT_MAX;
+	max = INT_MIN;
+	y = 0;
+	while (y < map->heigth)
+	{
+		x = 0;
+		while (x < map->weigth)
+		{
+			if (map->pixel[y * map->weigth + x]->z < min)
+				min = map->pixel[y * map->weigth + x]->z;
+			if (map->pixel[y * map->weigth + x]->z > max)
+				max = map->pixel[y * map->weigth + x]->z;
+			x++;
+		}
+		y++;
+	}
+	map->depthmin = min;
+	map->depthmax = max;
+}
+
 int		read_file(int fd, t_map **map, t_list **list)
 {
 	t_list	*tmp;
@@ -61,5 +88,6 @@ int		read_file(int fd, t_map **map, t_list **list)
 	ft_lstrev(list);
 	(*map) = map_init(count, ft_lstcount((*list)));
 	get_pixel(list, map);
+	find_minmax(*map);
 	return (1);
 }

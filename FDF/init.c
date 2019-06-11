@@ -6,19 +6,12 @@
 /*   By: rloraine <rloraine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/11 16:52:05 by rloraine          #+#    #+#             */
-/*   Updated: 2019/06/11 17:18:58 by rloraine         ###   ########.fr       */
+/*   Updated: 2019/06/11 17:37:07 by rloraine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
-
-void	image_init(t_fdf *fdf)
-{
-	if (!(fdf->image = mlx_new_image(fdf->mlx, WEIGHT, HEIGHT)))
-		error("error");
-	fdf->addr = mlx_get_data_addr(fdf->image, &fdf->bpp, &fdf->wide, &fdf->end);
-	fdf->bpp /= 8;
-}
+#define FDF (*fdf)
 
 t_pixel	*pixel_init(int x, int y, char *split)
 {
@@ -35,12 +28,16 @@ t_pixel	*pixel_init(int x, int y, char *split)
 
 int		fdf_init(t_fdf **fdf)
 {
-	if (!((*fdf) = (t_fdf*)malloc(sizeof(t_fdf))))
+	if (!(FDF = (t_fdf*)malloc(sizeof(t_fdf))))
 		error("error");
-	if (!((*fdf)->mlx = mlx_init()))
+	if (!(FDF->mlx = mlx_init()))
 		error("error");
-	if (!((*fdf)->win = mlx_new_window((*fdf)->mlx, WEIGHT, HEIGHT, "hello")))
+	if (!(FDF->win = mlx_new_window(FDF->mlx, WEIGHT, HEIGHT, "hello")))
 		error("error");
+	if (!(FDF->image = mlx_new_image(FDF->mlx, WEIGHT, HEIGHT)))
+		error("error");
+	FDF->addr = mlx_get_data_addr(FDF->image, &FDF->bpp, &FDF->wide, &FDF->end);
+	FDF->bpp /= 8;
 	return (1);
 }
 

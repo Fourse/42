@@ -6,7 +6,7 @@
 /*   By: rloraine <rloraine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/03 15:37:20 by rloraine          #+#    #+#             */
-/*   Updated: 2019/06/11 17:22:32 by rloraine         ###   ########.fr       */
+/*   Updated: 2019/06/11 18:31:13 by rloraine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,8 @@ void			iso_x(t_fdf *fdf, int y, int x);
 */
 
 int				read_file(int fd, t_map **map, t_list **list);
+void			find_minmax(t_map *map);
+void			get_pixel(t_list **list, t_map **map);
 
 /*
 **	init.c
