@@ -6,37 +6,13 @@
 /*   By: rloraine <rloraine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/05 16:37:11 by rloraine          #+#    #+#             */
-/*   Updated: 2019/06/10 17:52:45 by rloraine         ###   ########.fr       */
+/*   Updated: 2019/06/11 17:14:46 by rloraine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-int				fdf_init(t_fdf **fdf)
-{
-	if (!((*fdf) = (t_fdf*)malloc(sizeof(t_fdf))))
-		error("error");
-	if (!((*fdf)->mlx = mlx_init()))
-		error("error");
-	if (!((*fdf)->win = mlx_new_window((*fdf)->mlx, WEIGHT, HEIGHT, "hello")))
-		error("error");
-	return (1);
-}
-
-static t_pixel	*pixel_init(int x, int y, char *split)
-{
-	t_pixel *pixel;
-
-	if (!(pixel = (t_pixel*)malloc(sizeof(t_pixel))))
-		error("error");
-	pixel->x = (double)x + 40;
-	pixel->y = (double)y + 10;
-	pixel->z = (double)atoi(split);
-	pixel->color = 0xee82ee;
-	return (pixel);
-}
-
-void			get_pixel(t_list **list, t_map **map)
+void	get_pixel(t_list **list, t_map **map)
 {
 	t_list	*lst;
 	char	**split;
@@ -61,22 +37,7 @@ void			get_pixel(t_list **list, t_map **map)
 	}
 }
 
-static t_map	*map_init(size_t x, size_t y)
-{
-	t_map *map;
-
-	if (!(map = (t_map*)malloc(sizeof(t_map))))
-		error("error");
-	map->weigth = (int)x;
-	map->heigth = (int)y;
-	map->depthmax = INT_MAX;
-	map->depthmin = INT_MIN;
-	if (!(map->pixel = (t_pixel**)malloc(sizeof(t_pixel*) * (int)x * (int)y)))
-		error("error");
-	return (map);
-}
-
-int				read_file(int fd, t_map **map, t_list **list)
+int		read_file(int fd, t_map **map, t_list **list)
 {
 	t_list	*tmp;
 	char	*line;

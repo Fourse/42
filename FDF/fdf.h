@@ -6,7 +6,7 @@
 /*   By: rloraine <rloraine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/03 15:37:20 by rloraine          #+#    #+#             */
-/*   Updated: 2019/06/08 15:40:36 by rloraine         ###   ########.fr       */
+/*   Updated: 2019/06/11 17:22:32 by rloraine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ typedef struct	s_fdf
 	char		*addr;
 	int			bpp;
 	int			wide;
-	int			endian;
+	int			end;
 	t_map		*map;
 }				t_fdf;
 
@@ -56,18 +56,31 @@ typedef struct	s_fdf
 */
 void			error(char *str);
 void			del_arr(char ***split);
+void			iso_par(t_fdf *fdf, int key);
+void			iso_x(t_fdf *fdf, int y, int x);
 
 /*
 **	reader.c
 */
 
 int				read_file(int fd, t_map **map, t_list **list);
+
+/*
+**	init.c
+*/
+
 int				fdf_init(t_fdf **fdf);
+t_pixel			*pixel_init(int x, int y, char *split);
+t_map			*map_init(size_t x, size_t y);
 
 /*
 **	solution.c
 */
 
-void			solution(t_fdf *fdf, t_list *list);
+/*
+**	keys.c
+*/
+
+int				hook_keydown(int key, t_fdf *fdf);
 
 #endif
