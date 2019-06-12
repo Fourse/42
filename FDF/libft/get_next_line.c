@@ -5,61 +5,130 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: rloraine <rloraine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/04/20 15:25:14 by rloraine          #+#    #+#             */
-/*   Updated: 2019/05/07 16:35:22 by rloraine         ###   ########.fr       */
+/*   Created: 2016/02/16 19:11:50 by pbondoer          #+#    #+#             */
+/*   Updated: 2019/06/12 18:32:01 by rloraine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-
-static int	get_line(char **s, char **line, int fd, int n)
+char	*get_append(t_gnl *gnl)
 {
-	char	*d;
-	size_t	i;
+	int i;
 
 	i = 0;
-	while (s[fd][i] != '\n' && s[fd][i])
+	gnl->nl = 0;
+	while (gnl->i + i < gnl->count)
+	{
+		if (gnl->buf[gnl->i + i] == '\n')
+		{
+			gnl->nl = 1;
+			i++;
+			break ;
+		}
 		i++;
-	if (s[fd][i] == '\n')
-	{
-		*line = ft_strsub(s[fd], 0, i);
-		d = ft_strdup(s[fd] + i + 1);
-		FS(s[fd], d);
-		if (!s[fd][0])
-			ft_strdel(&s[fd]);
 	}
-	else if (!s[fd][i])
-	{
-		if (n == BUFF_SIZE)
-			return (get_next_line(fd, line));
-		*line = ft_strdup(s[fd]);
-		ft_strdel(&s[fd]);
-	}
-	return (1);
+	gnl->i += i;
+	return (ft_strsub(gnl->buf, gnl->i - i, i - gnl->nl));
 }
 
-int			get_next_line(const int fd, char **line)
+t_gnl	*get_gnl(t_list **lst, int fd)
 {
-	int			n;
-	char		buf[BUFF_SIZE + 1];
-	char		*d;
-	static char	*s[12000];
+	t_gnl	*gnl;
+	t_list	*temp;
 
-	if ((fd < 0 || line == NULL || BUFF_SIZE == 0 || read(fd, buf, 0) < 0))
-		return (-1);
-	while ((n = read(fd, buf, BUFF_SIZE)))
+	temp = *lst;
+	while (temp)
 	{
-		buf[n] = '\0';
-		if (!s[fd])
-			s[fd] = ft_strnew(1);
-		d = ft_strjoin(s[fd], buf);
-		FS(s[fd], d);
-		if (ft_strchr(buf, '\n'))
-			break ;
+		gnl = (t_gnl *)(temp->content);
+		if (gnl->fd == fd)
+			return (gnl);
+		temp = temp->next;
 	}
-	if (n < 0)
+	gnl = (t_gnl *)ft_memalloc(sizeof(t_gnl));
+	gnl->buf = ft_strnew(BUFF_SIZE);
+	gnl->count = BUFF_SIZE;
+	gnl->i = BUFF_SIZE;
+	gnl->fd = fd;
+	gnl->nl = 1;
+	temp = ft_lstnew(gnl, sizeof(t_gnl));
+	ft_memdel((void **)&gnl);
+	ft_lstadd(lst, temp);
+	return ((t_gnl *)(temp->content));
+}
+
+void	del_gnl(t_list **lst, int fd, char **str)
+{
+	t_gnl	*gnl;
+	t_list	**temp;
+	t_list	*ptr;
+
+	temp = lst;
+	while (*temp)
+	{
+		gnl = (t_gnl *)((*temp)->content);
+		if (gnl->fd == fd)
+			break ;
+		*temp = ((*temp)->next);
+	}
+	if (*temp)
+	{
+		ptr = (*temp)->next;
+		ft_strdel(&(gnl->buf));
+		ft_memdel((void **)&gnl);
+		ft_memdel((void **)temp);
+		*temp = ptr;
+	}
+	ft_strdel(str);
+}
+
+int		read_buffer(t_gnl *gnl, t_list **lst, char **temp, char **line)
+{
+	if (gnl->i == gnl->count)
+	{
+		gnl->count = read(gnl->fd, gnl->buf, BUFF_SIZE);
+		if (gnl->count == -1)
+		{
+			del_gnl(lst, gnl->fd, temp);
+			return (-1);
+		}
+		gnl->i = 0;
+		if (gnl->count == 0)
+		{
+			if (gnl->nl == 0)
+			{
+				*line = *temp;
+				return (1);
+			}
+		}
+	}
+	return (0);
+}
+
+int		get_next_line(int const fd, char **line)
+{
+	static t_list	*lst;
+	t_gnl			*gnl;
+	char			*temp;
+	int				ret;
+
+	if (fd < 0 || line == NULL)
 		return (-1);
-	else if (!n && (!s[fd] || !s[fd][0]))
-		return (0);
-	return (get_line(s, line, fd, n));
+	gnl = get_gnl(&lst, fd);
+	temp = ft_strnew(0);
+	while (gnl->count > 0)
+	{
+		if ((ret = read_buffer(gnl, &lst, &temp, line)) != 0)
+			return (ret);
+		while (gnl->i < gnl->count)
+		{
+			temp = ft_strmerge(temp, get_append(gnl));
+			if (gnl->nl)
+			{
+				*line = temp;
+				return (1);
+			}
+		}
+	}
+	del_gnl(&lst, fd, &temp);
+	return (0);
 }

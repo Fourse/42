@@ -6,7 +6,7 @@
 /*   By: rloraine <rloraine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/04 18:38:56 by rloraine          #+#    #+#             */
-/*   Updated: 2019/06/12 15:55:17 by rloraine         ###   ########.fr       */
+/*   Updated: 2019/06/12 18:31:58 by rloraine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,5 +101,7 @@ void				ft_swap(int *a, int *b);
 int					get_next_line(const int fd, char **line);
 void				ft_lstrev(t_list **alst);
 int					ft_abs(int i);
+char				*ft_strmerge(char *a, char *b);
+size_t				ft_lstcount(t_list *lst);
 
 #endif
