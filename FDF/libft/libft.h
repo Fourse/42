@@ -6,7 +6,7 @@
 /*   By: rloraine <rloraine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/04 18:38:56 by rloraine          #+#    #+#             */
-/*   Updated: 2019/06/07 14:54:25 by rloraine         ###   ########.fr       */
+/*   Updated: 2019/06/12 15:55:17 by rloraine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,5 +100,6 @@ size_t				ft_isword(const char *s, char c);
 void				ft_swap(int *a, int *b);
 int					get_next_line(const int fd, char **line);
 void				ft_lstrev(t_list **alst);
+int					ft_abs(int i);
 
 #endif

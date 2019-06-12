@@ -6,11 +6,21 @@
 /*   By: rloraine <rloraine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/05 16:37:11 by rloraine          #+#    #+#             */
-/*   Updated: 2019/06/11 18:30:03 by rloraine         ###   ########.fr       */
+/*   Updated: 2019/06/12 17:35:35 by rloraine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
+
+void	del_arr(char ***split)
+{
+	int n;
+
+	n = 0;
+	while ((*split)[n])
+		free((*split)[n++]);
+	free((*split));
+}
 
 void	get_pixel(t_list **list, t_map **map)
 {
@@ -89,5 +99,6 @@ int		read_file(int fd, t_map **map, t_list **list)
 	(*map) = map_init(count, ft_lstcount((*list)));
 	get_pixel(list, map);
 	find_minmax(*map);
+	find_colors((*map));
 	return (1);
 }

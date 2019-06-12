@@ -6,7 +6,7 @@
 /*   By: rloraine <rloraine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/11 16:52:05 by rloraine          #+#    #+#             */
-/*   Updated: 2019/06/11 17:37:07 by rloraine         ###   ########.fr       */
+/*   Updated: 2019/06/12 17:39:53 by rloraine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,25 @@ t_pixel	*pixel_init(int x, int y, char *split)
 
 	if (!(pixel = (t_pixel*)malloc(sizeof(t_pixel))))
 		error("error");
-	pixel->x = (double)x + 40;
-	pixel->y = (double)y + 10;
+	pixel->x = (double)x;
+	pixel->y = (double)y;
 	pixel->z = (double)atoi(split);
-	pixel->color = 0xee82ee;
+	pixel->color = 0x8b0000;
 	return (pixel);
+}
+
+t_cam	*cam_init(t_fdf **fdf)
+{
+	t_cam *cam;
+
+	if (!(cam = (t_cam*)malloc(sizeof(t_cam))))
+		error("error");
+	cam->x = 0;
+	cam->y = 0;
+	cam->scale = 30;
+	cam->offsetx = WEIGHT / 2;
+	cam->offsety = HEIGHT / 2;
+	return (cam);
 }
 
 int		fdf_init(t_fdf **fdf)
@@ -36,8 +50,11 @@ int		fdf_init(t_fdf **fdf)
 		error("error");
 	if (!(FDF->image = mlx_new_image(FDF->mlx, WEIGHT, HEIGHT)))
 		error("error");
-	FDF->addr = mlx_get_data_addr(FDF->image, &FDF->bpp, &FDF->wide, &FDF->end);
+	FDF->adr = mlx_get_data_addr(FDF->image, &FDF->bpp, &FDF->wide, &FDF->end);
 	FDF->bpp /= 8;
+	if (!(FDF->mouse = (t_mouse*)malloc(sizeof(t_mouse))))
+		error("error");
+	FDF->cam = cam_init(fdf);
 	return (1);
 }
 
