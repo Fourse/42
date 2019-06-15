@@ -6,7 +6,7 @@
 /*   By: rloraine <rloraine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/03 15:37:20 by rloraine          #+#    #+#             */
-/*   Updated: 2019/06/12 18:18:58 by rloraine         ###   ########.fr       */
+/*   Updated: 2019/06/15 20:57:33 by rloraine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,7 @@ typedef struct	s_cam
 	double		offsety;
 	double		x;
 	double		y;
-	int			scale;
-	double		**matrix;
+	int			factor;
 }				t_cam;
 
 typedef struct	s_mouse
@@ -72,7 +71,7 @@ typedef struct	s_fdf
 	t_mouse		*mouse;
 }				t_fdf;
 
-typedef struct	s_line
+typedef struct	s_tmp
 {
 	t_pixel		start;
 	t_pixel		stop;
@@ -82,7 +81,7 @@ typedef struct	s_line
 	int			sy;
 	int			err;
 	int			err2;
-}				t_line;
+}				t_tmp;
 
 
 /*
@@ -116,14 +115,28 @@ void			del_arr(char ***split);
 **	color.c
 */
 
-void			find_colors(t_map *m);
+void			find_color(t_map *m);
 int				clerp(int c1, int c2, double p);
 int				ft_lerpi(int first, int second, double p);
 double			ft_ilerp(double val, double first, double second);
 
 /*
-**	image.c
+**	draw.c
 */
+
+void			draw(t_fdf *fdf, t_map *map);
+t_pixel			project(t_pixel pixel, t_fdf *fdf);
+t_pixel			projection(t_fdf *fdf, t_pixel pixel1);
+void			put_pixel(t_fdf *fdf, int x, int y, int color);
+
+/*
+**	draw_line.c
+*/
+
+void			draw_line(t_fdf *fdf, t_pixel pixel1, t_pixel pixel2);
+int				line_twist(t_pixel *pixel1, t_pixel *pixel2);
+void			change(t_pixel *tmp, t_pixel *pixel1, t_pixel *pixel2, int addiction);
+int				line_cur(t_fdf *fdf, t_tmp *tmp, t_pixel *pixel1, t_pixel *pixel2);
 
 /*
 **	keys.c
@@ -134,5 +147,4 @@ int				hook_mousemove(int x, int y, t_fdf *mlx);
 int				hook_mouseup(int button, int x, int y, t_fdf *mlx);
 int				hook_mousedown(int button, int x, int y, t_fdf *mlx);
 
-void		render(t_fdf *fdf, t_map *map);
 #endif

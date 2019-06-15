@@ -6,7 +6,7 @@
 /*   By: rloraine <rloraine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/12 17:29:36 by rloraine          #+#    #+#             */
-/*   Updated: 2019/06/12 17:32:43 by rloraine         ###   ########.fr       */
+/*   Updated: 2019/06/15 21:07:18 by rloraine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int		clerp(int c1, int c2, double p)
 	return (r << 16 | g << 8 | b);
 }
 
-void	find_colors(t_map *map)
+void	find_color(t_map *map)
 {
 	t_pixel	v;
 	t_pixel	*cur;
@@ -54,7 +54,7 @@ void	find_colors(t_map *map)
 		while (v.x < map->weigth)
 		{
 			cur = map->pixel[(int)v.y * map->weigth + (int)v.x];
-			cur->color = clerp(0x8b0000, 0xeee8aa, ft_ilerp(cur->z,
+			cur->color = clerp(0xffd700, 0xbfff, ft_ilerp(cur->z,
 				map->depthmin, map->depthmax));
 			v.x++;
 		}

@@ -6,7 +6,7 @@
 /*   By: rloraine <rloraine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/11 16:52:05 by rloraine          #+#    #+#             */
-/*   Updated: 2019/06/12 17:39:53 by rloraine         ###   ########.fr       */
+/*   Updated: 2019/06/15 21:02:56 by rloraine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ t_cam	*cam_init(t_fdf **fdf)
 		error("error");
 	cam->x = 0;
 	cam->y = 0;
-	cam->scale = 30;
+	cam->factor = 1;
 	cam->offsetx = WEIGHT / 2;
 	cam->offsety = HEIGHT / 2;
 	return (cam);

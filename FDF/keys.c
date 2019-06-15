@@ -6,7 +6,7 @@
 /*   By: rloraine <rloraine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/11 16:57:15 by rloraine          #+#    #+#             */
-/*   Updated: 2019/06/12 17:35:06 by rloraine         ###   ########.fr       */
+/*   Updated: 2019/06/15 19:36:30 by rloraine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,11 +58,11 @@ int	hook_mousemove(int x, int y, t_fdf *fdf)
 	}
 	else if (fdf->mouse->isdown & (1 << 2))
 	{
-		fdf->cam->scale += (fdf->mouse->lasty - y) / 10.0f + 0.5f;
-		if (fdf->cam->scale < 1)
-			fdf->cam->scale = 1;
+		fdf->cam->factor += (fdf->mouse->lasty - y) / 10.0f + 0.5f;
+		if (fdf->cam->factor < 1)
+			fdf->cam->factor = 1;
 	}
 	if (fdf->mouse->isdown)
-		render(fdf, fdf->map);
+		draw(fdf, fdf->map);
 	return (0);
 }
