@@ -6,7 +6,7 @@
 /*   By: rloraine <rloraine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/11 17:15:40 by rloraine          #+#    #+#             */
-/*   Updated: 2019/06/16 10:15:10 by rloraine         ###   ########.fr       */
+/*   Updated: 2019/06/18 15:04:43 by rloraine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,9 @@ t_pixel	projection(t_fdf *fdf, t_pixel pixel1)
 
 t_pixel	project(t_pixel pixel, t_fdf *fdf)
 {
-	pixel.x -= (double)(fdf->map->weigth - 1) / 2.0;
-	pixel.y -= (double)(fdf->map->heigth - 1) / 2.0;
-	pixel.z -= (double)(fdf->map->depthmin + fdf->map->depthmax) / 2.0;
+	pixel.x -= (double)(fdf->map->weigth - 1) / 2.0f;
+	pixel.y -= (double)(fdf->map->heigth - 1) / 2.0f;
+	pixel.z -= (double)(fdf->map->depthmin + fdf->map->depthmax) / 2.0f;
 	pixel = projection(fdf, pixel);
 	pixel.x *= fdf->cam->factor;
 	pixel.y *= fdf->cam->factor;

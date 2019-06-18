@@ -6,7 +6,7 @@
 /*   By: rloraine <rloraine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/11 16:52:05 by rloraine          #+#    #+#             */
-/*   Updated: 2019/06/18 14:54:26 by rloraine         ###   ########.fr       */
+/*   Updated: 2019/06/18 15:36:39 by rloraine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ t_pixel	*pixel_init(int x, int y, char *split)
 	return (pixel);
 }
 
-t_cam	*cam_init()
+t_cam	*cam_init(void)
 {
 	t_cam *cam;
 
