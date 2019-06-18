@@ -6,11 +6,12 @@
 /*   By: rloraine <rloraine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/16 19:11:50 by pbondoer          #+#    #+#             */
-/*   Updated: 2019/06/12 18:32:01 by rloraine         ###   ########.fr       */
+/*   Updated: 2019/06/16 10:21:33 by rloraine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
+
 char	*get_append(t_gnl *gnl)
 {
 	int i;

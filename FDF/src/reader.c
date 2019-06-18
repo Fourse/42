@@ -6,7 +6,7 @@
 /*   By: rloraine <rloraine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/05 16:37:11 by rloraine          #+#    #+#             */
-/*   Updated: 2019/06/13 16:29:15 by rloraine         ###   ########.fr       */
+/*   Updated: 2019/06/18 14:54:49 by rloraine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ int		read_file(int fd, t_map **map, t_list **list)
 		if (!(tmp = ft_lstnew(line, ft_strlen(line) + 1)))
 			error("error");
 		ft_lstadd(list, tmp);
-		if (count != ft_isword(line, ' '))
+		if (count != (int)ft_isword(line, ' '))
 			return (0);
 		free(line);
 	}

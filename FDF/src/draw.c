@@ -6,7 +6,7 @@
 /*   By: rloraine <rloraine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/11 17:15:40 by rloraine          #+#    #+#             */
-/*   Updated: 2019/06/15 20:22:57 by rloraine         ###   ########.fr       */
+/*   Updated: 2019/06/16 10:15:10 by rloraine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	put_pixel(t_fdf *fdf, int x, int y, int color)
 	*(int*)(fdf->adr + ((x + y * WEIGHT) * fdf->bpp)) = color;
 }
 
-t_pixel projection(t_fdf *fdf, t_pixel pixel1)
+t_pixel	projection(t_fdf *fdf, t_pixel pixel1)
 {
 	t_pixel	pixel2;
 	double	x;
@@ -53,9 +53,8 @@ t_pixel	project(t_pixel pixel, t_fdf *fdf)
 
 void	draw(t_fdf *fdf, t_map *map)
 {
-	int y;
-	int x;
-	t_pixel pixel;
+	int		y;
+	int		x;
 
 	ft_bzero(fdf->adr, WEIGHT * HEIGHT * fdf->bpp);
 	y = 0;
@@ -65,9 +64,11 @@ void	draw(t_fdf *fdf, t_map *map)
 		while (x < map->weigth)
 		{
 			if (x + 1 < map->weigth)
-				draw_line(fdf, project(*map->pixel[y * map->weigth + x], fdf), project(*map->pixel[y * map->weigth + x + 1], fdf));
+				draw_line(fdf, project(*map->pixel[y * map->weigth + x], fdf),\
+				project(*map->pixel[y * map->weigth + x + 1], fdf));
 			if (y + 1 < map->heigth)
-				draw_line(fdf, project(*map->pixel[y * map->weigth + x], fdf), project(*map->pixel[(y + 1) * map->weigth + x], fdf));
+				draw_line(fdf, project(*map->pixel[y * map->weigth + x], fdf),\
+				project(*map->pixel[(y + 1) * map->weigth + x], fdf));
 			x++;
 		}
 		y++;

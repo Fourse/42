@@ -6,7 +6,7 @@
 /*   By: rloraine <rloraine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/03 15:37:20 by rloraine          #+#    #+#             */
-/*   Updated: 2019/06/15 20:57:33 by rloraine         ###   ########.fr       */
+/*   Updated: 2019/06/18 14:54:25 by rloraine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,7 @@
 
 # include "mlx.h"
 # include <math.h>
-# include "./libft/libft.h"
-# include <stdio.h>
+# include "../libft/libft.h"
 # include <limits.h>
 
 # define WEIGHT 1920
@@ -83,15 +82,12 @@ typedef struct	s_tmp
 	int			err2;
 }				t_tmp;
 
-
 /*
 **	main.c
 */
 
 void			error(char *str);
 void			del_arr(char ***split);
-void			iso_par(t_fdf *fdf, int key);
-void			iso_x(t_fdf *fdf, int y, int x);
 
 /*
 **	init.c
@@ -99,7 +95,7 @@ void			iso_x(t_fdf *fdf, int y, int x);
 
 int				fdf_init(t_fdf **fdf);
 t_pixel			*pixel_init(int x, int y, char *split);
-t_cam			*cam_init(t_fdf **fdf);
+t_cam			*cam_init();
 t_map			*map_init(size_t x, size_t y);
 
 /*
@@ -135,8 +131,8 @@ void			put_pixel(t_fdf *fdf, int x, int y, int color);
 
 void			draw_line(t_fdf *fdf, t_pixel pixel1, t_pixel pixel2);
 int				line_twist(t_pixel *pixel1, t_pixel *pixel2);
-void			change(t_pixel *tmp, t_pixel *pixel1, t_pixel *pixel2, int addiction);
-int				line_cur(t_fdf *fdf, t_tmp *tmp, t_pixel *pixel1, t_pixel *pixel2);
+void			change(t_pixel *tmp, t_pixel *pix1, t_pixel *pix2, int addict);
+int				line_cur(t_fdf *fdf, t_tmp *tmp, t_pixel *pix1, t_pixel *pix2);
 
 /*
 **	keys.c

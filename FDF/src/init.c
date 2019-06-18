@@ -6,7 +6,7 @@
 /*   By: rloraine <rloraine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/11 16:52:05 by rloraine          #+#    #+#             */
-/*   Updated: 2019/06/15 21:02:56 by rloraine         ###   ########.fr       */
+/*   Updated: 2019/06/18 14:54:26 by rloraine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ t_pixel	*pixel_init(int x, int y, char *split)
 	return (pixel);
 }
 
-t_cam	*cam_init(t_fdf **fdf)
+t_cam	*cam_init()
 {
 	t_cam *cam;
 
@@ -34,7 +34,7 @@ t_cam	*cam_init(t_fdf **fdf)
 		error("error");
 	cam->x = 0;
 	cam->y = 0;
-	cam->factor = 1;
+	cam->factor = 30;
 	cam->offsetx = WEIGHT / 2;
 	cam->offsety = HEIGHT / 2;
 	return (cam);
@@ -54,7 +54,7 @@ int		fdf_init(t_fdf **fdf)
 	FDF->bpp /= 8;
 	if (!(FDF->mouse = (t_mouse*)malloc(sizeof(t_mouse))))
 		error("error");
-	FDF->cam = cam_init(fdf);
+	FDF->cam = cam_init();
 	return (1);
 }
 
