@@ -6,7 +6,7 @@
 /*   By: rloraine <rloraine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/02 20:36:56 by rloraine          #+#    #+#             */
-/*   Updated: 2019/06/03 15:25:40 by rloraine         ###   ########.fr       */
+/*   Updated: 2019/06/20 14:25:22 by rloraine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,24 +89,36 @@
 
 # define ROLL_NUMBS(s) while (ft_isdigit(*s)) s++;
 
+# define BUFF_SIZE 128
+
 /*
 ** structures
 */
 
-enum			e_mods
+typedef struct	s_out
+{
+	char		buf[BUFF_SIZE];
+	int			len;
+	int			print;
+	int			fd;
+	int			error;
+}				t_out;
+
+typedef enum	e_mod
 {
 	NO, HH, H, L, LL, Z, J
-};
+}				t_mod;
 
-typedef struct		s_format
+typedef struct	s_format
 {
-	struct s_format	*next;
-	unsigned char	flag;
-	unsigned char	width;
-	unsigned char	acc;
-	enum e_mods		mod;
-	unsigned char	spec;
-}					t_format;
+	int			flag;
+	int			width;
+	int			acc;
+	t_mod		mod;
+	int			spec;
+}				t_format;
+
+extern t_out	g_print;
 
 /*
 ** functions' prototypes
