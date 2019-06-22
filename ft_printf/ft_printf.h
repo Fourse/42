@@ -6,7 +6,7 @@
 /*   By: rloraine <rloraine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/02 20:36:56 by rloraine          #+#    #+#             */
-/*   Updated: 2019/06/20 14:25:22 by rloraine         ###   ########.fr       */
+/*   Updated: 2019/06/22 14:56:39 by rloraine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 # include "./libft/libft.h"
 
 /*
-** flags
+**	flags
 */
 
 # define IS_MI(s) *s == '-'
@@ -29,7 +29,7 @@
 # define IS_NU(s) *s == '0'
 
 /*
-** modifier
+**	modifier
 */
 
 # define IS_H(s) *s == 'h'
@@ -38,7 +38,7 @@
 # define IS_J(s) *s == 'j'
 
 /*
-** type of conversion
+**	type of conversion
 */
 
 # define I_I(s) *s == 'i'
@@ -66,13 +66,13 @@
 # define I_N(s) *s == 'n'
 
 /*
-** very useful macro
+**	very useful macro
 */
 
 # define O ||
 
 /*
-** used macro
+**	used macro
 */
 
 # define IS_INT(s) (I_I(s) O I_D(s) O I_BD(s) O I_U(s) O I_BU(s))
@@ -87,12 +87,10 @@
 # define CHK_M(s) (IS_H(s) O IS_L(s) O IS_Z(s) O IS_J(s))
 # define CHK_C(s) (IS_INT(s) O IS_816(s) O IS_FLO(s) O IS_CHA(s) O IS_GAV(s))
 
-# define ROLL_NUMBS(s) while (ft_isdigit(*s)) s++;
-
 # define BUFF_SIZE 128
 
 /*
-** structures
+**	structures
 */
 
 typedef struct	s_out
@@ -121,10 +119,32 @@ typedef struct	s_format
 extern t_out	g_print;
 
 /*
-** functions' prototypes
+**	functions' prototypes
 */
 
-int					ft_printf(const char *format, ...);
-int					treatment(char *format, int result, va_list args);
+/*
+**	ft_printf.c
+*/
+
+int				ft_printf(const char *format, ...);
+void			check_frmt(const char **format, va_list ap, t_format *params);
+void			char_to_buf(char c, int i);
+void			print_buf(void);
+
+/*
+**	parsing.c
+*/
+
+int				parse_prms(const char **format, va_list ap, t_format *params);
+void			get_flag(const char **format, t_format *params);
+void			get_width(const char **format, va_list ap, t_format *params);
+void			get_acc(const char **format, va_list ap, t_format *params);
+void			get_mod(const char **format, t_format *params);
+
+/*
+**	do_smth.c
+*/
+
+int				do_c(const char *format, t_format *params);
 
 #endif
