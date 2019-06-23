@@ -6,7 +6,7 @@
 /*   By: rloraine <rloraine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/22 13:51:18 by rloraine          #+#    #+#             */
-/*   Updated: 2019/06/22 14:56:37 by rloraine         ###   ########.fr       */
+/*   Updated: 2019/06/23 11:50:40 by rloraine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,8 +79,8 @@ int		parse_paramss(const char **format, va_list ap, t_format *params)
 			get_acc(format, ap, params);
 		else if (CHK_M(*format))
 			get_mod(format, params);
-		else if (**format)
-			return (do_c(*(format)++, params));
+		//else if (**format)
+		//	return (do_c(*(format)++, params));
 		else
 			return (0);
 	}

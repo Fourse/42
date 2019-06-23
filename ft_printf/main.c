@@ -1,23 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   do_smth.c                                          :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rloraine <rloraine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/06/22 14:34:29 by rloraine          #+#    #+#             */
-/*   Updated: 2019/06/23 11:50:38 by rloraine         ###   ########.fr       */
+/*   Created: 2019/06/23 11:29:21 by rloraine          #+#    #+#             */
+/*   Updated: 2019/06/23 11:47:21 by rloraine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+#include <stdio.h>
 
-int do_c(const char *format, t_format *params)
+int main()
 {
-	
-}
-
-int do_format(va_list ap, t_format *params)
-{
-
+	ft_printf("%td", 1246);
 }

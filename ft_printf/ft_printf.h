@@ -6,7 +6,7 @@
 /*   By: rloraine <rloraine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/02 20:36:56 by rloraine          #+#    #+#             */
-/*   Updated: 2019/06/22 14:56:39 by rloraine         ###   ########.fr       */
+/*   Updated: 2019/06/23 11:50:37 by rloraine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -145,6 +145,7 @@ void			get_mod(const char **format, t_format *params);
 **	do_smth.c
 */
 
+int 			do_format(va_list ap, t_format *params);
 int				do_c(const char *format, t_format *params);
 
 #endif
