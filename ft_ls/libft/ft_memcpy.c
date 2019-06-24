@@ -1,19 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_memcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rloraine <rloraine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/06/23 11:29:21 by rloraine          #+#    #+#             */
-/*   Updated: 2019/06/24 17:46:31 by rloraine         ###   ########.fr       */
+/*   Created: 2019/04/06 21:09:08 by rloraine          #+#    #+#             */
+/*   Updated: 2019/05/17 13:45:59 by rloraine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
-#include <stdio.h>
+#include "libft.h"
 
-int main()
+void	*ft_memcpy(void *restrict dst, const void *restrict src, size_t n)
 {
-	printf("%", 1246);
+	size_t i;
+
+	i = 0;
+	while (i < n)
+	{
+		((unsigned char*)dst)[i] = ((unsigned char*)src)[i];
+		i++;
+	}
+	return ((void*)dst);
 }

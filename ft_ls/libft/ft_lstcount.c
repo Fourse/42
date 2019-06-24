@@ -1,19 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_lstcount.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rloraine <rloraine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/06/23 11:29:21 by rloraine          #+#    #+#             */
-/*   Updated: 2019/06/24 17:46:31 by rloraine         ###   ########.fr       */
+/*   Created: 2016/02/06 18:41:34 by pbondoer          #+#    #+#             */
+/*   Updated: 2019/06/12 18:29:54 by rloraine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
-#include <stdio.h>
+#include "libft.h"
 
-int main()
+size_t	ft_lstcount(t_list *lst)
 {
-	printf("%", 1246);
+	size_t i;
+
+	i = 0;
+	while (lst != NULL)
+	{
+		lst = lst->next;
+		i++;
+	}
+	return (i);
 }

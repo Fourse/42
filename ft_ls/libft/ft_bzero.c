@@ -1,19 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_bzero.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rloraine <rloraine@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rloraine <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/06/23 11:29:21 by rloraine          #+#    #+#             */
-/*   Updated: 2019/06/24 17:46:31 by rloraine         ###   ########.fr       */
+/*   Created: 2019/04/06 21:05:38 by rloraine          #+#    #+#             */
+/*   Updated: 2019/04/21 16:57:12 by rloraine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
-#include <stdio.h>
+#include "libft.h"
 
-int main()
+void	ft_bzero(void *s, size_t n)
 {
-	printf("%", 1246);
+	size_t i;
+
+	i = 0;
+	while (i < n)
+	{
+		((unsigned char*)s)[i] = '\0';
+		i++;
+	}
 }

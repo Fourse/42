@@ -1,23 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   do_smth.c                                          :+:      :+:    :+:   */
+/*   ft_isalnum.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rloraine <rloraine@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rloraine <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/06/22 14:34:29 by rloraine          #+#    #+#             */
-/*   Updated: 2019/06/23 11:50:38 by rloraine         ###   ########.fr       */
+/*   Created: 2019/04/06 20:18:01 by rloraine          #+#    #+#             */
+/*   Updated: 2019/04/07 19:09:48 by rloraine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-int do_c(const char *format, t_format *params)
+int	ft_isalnum(int c)
 {
-	
-}
-
-int do_format(va_list ap, t_format *params)
-{
-
+	return ((c >= '0' && c <= '9')\
+			|| (c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z'));
 }

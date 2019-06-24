@@ -1,19 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   do_format.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rloraine <rloraine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/06/23 11:29:21 by rloraine          #+#    #+#             */
-/*   Updated: 2019/06/24 17:46:31 by rloraine         ###   ########.fr       */
+/*   Created: 2019/06/24 16:58:18 by rloraine          #+#    #+#             */
+/*   Updated: 2019/06/24 17:02:27 by rloraine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-#include <stdio.h>
 
-int main()
+int	do_format(const char **format, va_list ap, t_format *params)
 {
-	printf("%", 1246);
+	while (CHK_C(*format))
+	{
+		if (IS_INT(*format))
+			do_int(format, ap, params);
+		if (IS_816(*format))
+			
+	}
+	return (1);
 }

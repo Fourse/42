@@ -1,19 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_isword.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rloraine <rloraine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/06/23 11:29:21 by rloraine          #+#    #+#             */
-/*   Updated: 2019/06/24 17:46:31 by rloraine         ###   ########.fr       */
+/*   Created: 2019/04/11 20:33:40 by rloraine          #+#    #+#             */
+/*   Updated: 2019/06/16 10:20:50 by rloraine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
-#include <stdio.h>
+#include "libft.h"
 
-int main()
+size_t	ft_isword(const char *str, char sep)
 {
-	printf("%", 1246);
+	size_t result;
+	size_t i;
+
+	i = 0;
+	result = 0;
+	while (str[i] && str[i] == sep)
+		i++;
+	while (str[i])
+	{
+		while (str[i] && str[i] != sep)
+			i++;
+		result++;
+		while (str[i] && str[i] == sep)
+			i++;
+	}
+	return (result);
 }

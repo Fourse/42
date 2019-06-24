@@ -1,19 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rloraine <rloraine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/06/23 11:29:21 by rloraine          #+#    #+#             */
-/*   Updated: 2019/06/24 17:46:31 by rloraine         ###   ########.fr       */
+/*   Created: 2019/04/08 17:27:43 by rloraine          #+#    #+#             */
+/*   Updated: 2019/06/06 13:42:57 by rloraine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
-#include <stdio.h>
+#include "libft.h"
 
-int main()
+char	*ft_itoa(int n)
 {
-	printf("%", 1246);
+	char			*str;
+	unsigned int	nb;
+	int				i;
+	int				s;
+
+	nb = n;
+	if (!(str = ft_strnew(ft_count(n))))
+		return (NULL);
+	if ((s = n) < 0)
+		nb = -n;
+	i = 0;
+	if (nb == 0)
+		str[i++] = '0';
+	while (nb > 0)
+	{
+		str[i++] = nb % 10 + '0';
+		nb /= 10;
+	}
+	if (s < 0)
+		str[i++] = '-';
+	str[i] = '\0';
+	ft_strrev(str);
+	return (str);
 }

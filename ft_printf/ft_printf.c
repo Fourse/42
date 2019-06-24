@@ -6,7 +6,7 @@
 /*   By: rloraine <rloraine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/20 13:04:00 by rloraine          #+#    #+#             */
-/*   Updated: 2019/06/22 14:56:36 by rloraine         ###   ########.fr       */
+/*   Updated: 2019/06/24 17:02:13 by rloraine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void	check_frmt(const char **format, va_list ap, t_format *params)
 				++(*format);
 			}
 			else if (**format)
-				if (parse_prms(format, ap, params))
+				if (!parse_prms(format, ap, params))
 					return ;
 		}
 		else
