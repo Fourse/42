@@ -6,7 +6,7 @@
 /*   By: rloraine <rloraine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/23 12:25:58 by rloraine          #+#    #+#             */
-/*   Updated: 2019/06/24 16:44:23 by rloraine         ###   ########.fr       */
+/*   Updated: 2019/06/25 14:01:54 by rloraine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,8 +98,13 @@ int		main(int ac, char **av)
 	char	*args;
 
 	args = ft_strnew(0);
-	check_args(&args, av);
-	list_init(&list);
-	printf("%s\n", args);
+//	if (ac > 1)
+//	{
+		check_args(&args, av);
+		list_init(&list);
+		printf("%s\n", args);
+//	}
+//	else
+//		cur_dir();
 	return (g_ls.print);
 }

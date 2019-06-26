@@ -1,25 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   do_format.c                                        :+:      :+:    :+:   */
+/*   out.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rloraine <rloraine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/06/24 16:58:18 by rloraine          #+#    #+#             */
-/*   Updated: 2019/06/24 17:02:27 by rloraine         ###   ########.fr       */
+/*   Created: 2019/06/26 15:17:40 by rloraine          #+#    #+#             */
+/*   Updated: 2019/06/26 15:21:21 by rloraine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	do_format(const char **format, va_list ap, t_format *params)
+void	print_buf(void)
 {
-	while (CHK_C(*format))
+	int print;
+
+	print = write(g_print.fd, g_print.buf, g_print.len);
+	if (print != g_print.len)
+		g_print.error = -1;
+	g_print.print += print;
+	g_print.len = 0;
+}
+
+void	char_to_buf(char c, int i)
+{
+	while (i)
 	{
-		if (IS_INT(*format))
-			do_int(format, ap, params);
-		if (IS_816(*format))
-			
+		*(g_print.buf + g_print.len) = c;
+		++g_print.len;
+		if (g_print.len == BUFF_SIZE)
+			print_buf();
+		--i;
 	}
-	return (1);
 }

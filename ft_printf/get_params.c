@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing.c                                          :+:      :+:    :+:   */
+/*   get_params.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rloraine <rloraine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/22 13:51:18 by rloraine          #+#    #+#             */
-/*   Updated: 2019/06/24 17:00:30 by rloraine         ###   ########.fr       */
+/*   Updated: 2019/06/26 15:25:08 by rloraine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	get_mod(const char **format, t_format *params)
 	++(*format);
 }
 
-void	get_acc(const char **format, va_list ap, t_format *params)
+void	get_acc(const char **format, va_list *ap, t_format *params)
 {
 	++(*format);
 	params->acc = ft_atoi(*format);
@@ -45,7 +45,7 @@ void	get_acc(const char **format, va_list ap, t_format *params)
 		++(*format);
 }
 
-void	get_width(const char **format, va_list ap, t_format *params)
+void	get_width(const char **format, va_list *ap, t_format *params)
 {
 	params->width = ft_atoi(*format);
 	while (ft_isdigit(**format))
@@ -65,26 +65,4 @@ void	get_flag(const char **format, t_format *params)
 	else if (**format == '0')
 		params->flag = '0';
 	++(*format);
-}
-
-int		parse_paramss(const char **format, va_list ap, t_format *params)
-{
-	while (!CHK_C(*format))
-	{
-		if (CHK_F(*format))
-			get_flag(format, params);
-		else if (CHK_W(*format))
-			get_width(format, ap, params);
-		else if (CHK_A(*format))
-			get_acc(format, ap, params);
-		else if (CHK_M(*format))
-			get_mod(format, params);
-		//else if (**format)
-		//	return (do_c(*(format)++, params));
-		else
-			return (0);
-	}
-	params->spec = **format;
-	++(*format);
-	return (do_format(format, ap, params));
 }

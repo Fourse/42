@@ -1,19 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   do_n.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rloraine <rloraine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/06/23 11:29:21 by rloraine          #+#    #+#             */
-/*   Updated: 2019/06/26 15:23:35 by rloraine         ###   ########.fr       */
+/*   Created: 2019/06/26 15:19:43 by rloraine          #+#    #+#             */
+/*   Updated: 2019/06/26 15:19:44 by rloraine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-#include <stdio.h>
 
-int	main(void)
+int	do_n(int *tmp)
 {
-	printf("%c", 'c');
+	print_buf();
+	if (!tmp)
+		return (g_print.error = 0);
+	*tmp = g_print.print;
+	return (1);
 }

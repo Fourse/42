@@ -6,7 +6,7 @@
 /*   By: rloraine <rloraine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/20 13:04:00 by rloraine          #+#    #+#             */
-/*   Updated: 2019/06/24 17:02:13 by rloraine         ###   ########.fr       */
+/*   Updated: 2019/06/26 15:26:57 by rloraine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,30 +14,54 @@
 
 t_out g_print;
 
-void	print_buf(void)
+int		do_format(va_list *ap, t_format *params)
 {
-	int print;
+	int sp;
 
-	print = write(g_print.fd, g_print.buf, g_print.len);
-	if (print != g_print.len)
-		g_print.error = -1;
-	g_print.print += print;
-	g_print.len = 0;
-}
-
-void	char_to_buf(char c, int i)
-{
-	while (i)
+	sp = params->spec;
+	if (I_IN(sp) || I_GA(sp) || I_816(sp))
 	{
-		*(g_print.buf + g_print.len) = c;
-		++g_print.len;
-		if (g_print.len == BUFF_SIZE)
-			print_buf();
-		--i;
+		if (I_I(sp) || I_D(sp) || I_BD(sp))
+			return (do_d(ap, params));
+		else if (I_U(sp) || I_BU(sp))
+			return (do_u(ap, params));
+		else if (I_O(sp) || I_BO(sp))
+			return (do_o(ap, params));
+		else if (I_X(sp) || I_BX(sp) || I_P(sp))
+			return (do_x(ap, params));
+		else if (I_N(sp))
+			return (do_n(va_arg(*ap, int*)));
 	}
+	else if (I_FL(sp) || I_FL2(sp))
+		return (do_fl(ap, params));
+	else if (I_CH(sp))
+		return (do_c(ap, params));
+	return (0);
 }
 
-void	check_frmt(const char **format, va_list ap, t_format *params)
+int		parse_prms(const char **format, va_list *ap, t_format *params)
+{
+	while (!CHK_C(**format))
+	{
+		if (CHK_F(**format))
+			get_flag(format, params);
+		else if (CHK_W(**format))
+			get_width(format, ap, params);
+		else if (CHK_A(**format))
+			get_acc(format, ap, params);
+		else if (CHK_M(**format))
+			get_mod(format, params);
+		else
+			return (0);
+	}
+	params->spec = **format;
+	if (I_BD(**format) || I_BU(**format) || I_BO(**format))
+		params->mod = J;
+	++(*format);
+	return (do_format(ap, params));
+}
+
+void	check_frmt(const char **format, va_list *ap, t_format *params)
 {
 	while (**format)
 	{
@@ -72,12 +96,12 @@ int		ft_printf(const char *format, ...)
 	params.mod = 0;
 	params.spec = 0;
 	g_print.print = 0;
-	g_print.error = 0;
+	g_print.error = 1;
 	g_print.len = 0;
 	g_print.fd = 1;
 	va_start(ap, format);
-	check_frmt(&format, ap, &params);
+	check_frmt(&format, &ap, &params);
 	print_buf();
 	va_end(ap);
-	return (g_print.error ? -1 : g_print.print);
+	return (g_print.error == 0 ? -1 : g_print.print);
 }
