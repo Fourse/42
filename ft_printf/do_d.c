@@ -6,7 +6,7 @@
 /*   By: rloraine <rloraine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/26 13:34:57 by rloraine          #+#    #+#             */
-/*   Updated: 2019/06/26 15:21:19 by rloraine         ###   ########.fr       */
+/*   Updated: 2019/06/26 18:31:21 by rloraine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ int	do_d_wm(intmax_t ret, t_format *params)
 
 int	do_d(va_list *ap, t_format *params)
 {
+	if (params->flag & ZERO && params->width > params->acc)
+		params->acc = params->width - 1;
 	if (params->mod == NO)
 		return (do_d_wm(va_arg(*ap, int), params));
 	else if (params->mod == HH)
@@ -42,5 +44,5 @@ int	do_d(va_list *ap, t_format *params)
 		return (do_d_wm(va_arg(*ap, ssize_t), params));
 	else if (params->mod == J)
 		return (do_d_wm(va_arg(*ap, intmax_t), params));
-	return (0);
+	return (g_print.print = 0);
 }
