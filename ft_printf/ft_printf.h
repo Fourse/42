@@ -6,7 +6,7 @@
 /*   By: rloraine <rloraine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/02 20:36:56 by rloraine          #+#    #+#             */
-/*   Updated: 2019/06/27 11:33:44 by rloraine         ###   ########.fr       */
+/*   Updated: 2019/06/27 16:53:35 by rloraine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -166,12 +166,16 @@ void			get_mod(const char **format, t_format *params);
 
 int				do_d(va_list *ap, t_format *params);
 int				do_d_wm(intmax_t ret, t_format *params);
+int				chk_fl_for(char *tmp, int sign, t_format *params);
+void			do_d_itoa(char **tmp, intmax_t ret, t_format *params);
 
 /*
 **	do_u.c
 */
 
 int				do_u(va_list *ap, t_format *params);
+int				do_u_wm(uintmax_t ret, t_format *params);
+void			do_u_itoa(char **tmp, uintmax_t ret, t_format *params);
 
 /*
 **	do_o.c

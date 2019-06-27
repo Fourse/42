@@ -6,7 +6,7 @@
 /*   By: rloraine <rloraine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/20 13:04:00 by rloraine          #+#    #+#             */
-/*   Updated: 2019/06/27 11:34:16 by rloraine         ###   ########.fr       */
+/*   Updated: 2019/06/27 16:53:53 by rloraine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,10 @@ int		do_format(va_list *ap, t_format *params)
 	{
 		if (I_I(sp) || I_D(sp) || I_BD(sp))
 			return (do_d(ap, params));
-		// else if (I_U(sp) || I_BU(sp))
-		// 	return (do_u(ap, params));
-		// else if (I_O(sp) || I_BO(sp))
-		// 	return (do_o(ap, params));
+		 else if (I_U(sp) || I_BU(sp))
+		 	return (do_u(ap, params));
+		else if (I_O(sp) || I_BO(sp))
+			return (do_o(ap, params));
 		// else if (I_X(sp) || I_BX(sp) || I_P(sp))
 		// 	return (do_x(ap, params));
 		// else if (I_N(sp))
