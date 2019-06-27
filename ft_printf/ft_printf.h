@@ -6,7 +6,7 @@
 /*   By: rloraine <rloraine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/02 20:36:56 by rloraine          #+#    #+#             */
-/*   Updated: 2019/06/26 18:09:04 by rloraine         ###   ########.fr       */
+/*   Updated: 2019/06/27 11:33:44 by rloraine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,6 +123,7 @@ typedef struct	s_format
 	int			acc;
 	t_mod		mod;
 	int			spec;
+	size_t		len;
 }				t_format;
 
 extern t_out	g_print;
@@ -146,6 +147,9 @@ int				do_format(va_list *ap, t_format *params);
 
 void			char_to_buf(char c, int i);
 void			print_buf(void);
+char			*make_width(t_format *params);
+void			to_print(char *tmp, char *width, t_format *params);
+void			string_to_buf(const char *start, const char *end);
 
 /*
 **	get_params.c
