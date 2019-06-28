@@ -6,7 +6,7 @@
 /*   By: rloraine <rloraine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/02 20:36:56 by rloraine          #+#    #+#             */
-/*   Updated: 2019/06/27 16:53:35 by rloraine         ###   ########.fr       */
+/*   Updated: 2019/06/28 18:06:57 by rloraine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -166,7 +166,7 @@ void			get_mod(const char **format, t_format *params);
 
 int				do_d(va_list *ap, t_format *params);
 int				do_d_wm(intmax_t ret, t_format *params);
-int				chk_fl_for(char *tmp, int sign, t_format *params);
+int				chk_fl_ford(char *tmp, int sign, t_format *params);
 void			do_d_itoa(char **tmp, intmax_t ret, t_format *params);
 
 /*
@@ -182,17 +182,22 @@ void			do_u_itoa(char **tmp, uintmax_t ret, t_format *params);
 */
 
 int				do_o(va_list *ap, t_format *params);
+int				do_o_wm(uintmax_t ret, t_format *params);
+void			do_o_itoa(char **tmp, uintmax_t ret, t_format *params);
 
 /*
 **	do_x.c
 */
 
 int				do_x(va_list *ap, t_format *params);
+int				do_x_wm(uintmax_t ret, t_format *params);
+int				chk_fl_forx(char *tmp, int zero, t_format *params);
+void			do_x_itoa(char **tmp, uintmax_t ret, t_format *params);
 
 /*
 **	do_n.c
 */
 
 int				do_n(int *tmp);
-
+void	do_itoa(char **tmp, intmax_t ret, t_format *prms, int base);
 #endif

@@ -6,7 +6,7 @@
 /*   By: rloraine <rloraine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/26 13:34:57 by rloraine          #+#    #+#             */
-/*   Updated: 2019/06/27 16:51:07 by rloraine         ###   ########.fr       */
+/*   Updated: 2019/06/28 18:07:01 by rloraine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	do_d_itoa(char **tmp, intmax_t ret, t_format *params)
 	}
 }
 
-int		chk_fl_for(char *tmp, int sign, t_format *params)
+int		chk_fl_ford(char *tmp, int sign, t_format *params)
 {
 	if (sign)
 		*tmp = '-';
@@ -55,10 +55,10 @@ int		do_d_wm(intmax_t ret, t_format *params)
 	tmp += 21;
 	*tmp-- = 0;
 	if (ret)
-		do_d_itoa(&tmp, ret, params);
+		do_itoa(&tmp, ret, params, 10);
 	while (params->acc-- > 0)
 		*tmp-- = '0';
-	tmp -= chk_fl_for(tmp, (ret < 0), params);
+	tmp -= chk_fl_ford(tmp, (ret < 0), params);
 	params->len = ft_strlen(tmp);
 	width = NULL;
 	if (params->width > params->len)
