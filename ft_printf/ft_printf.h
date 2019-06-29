@@ -6,7 +6,7 @@
 /*   By: rloraine <rloraine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/02 20:36:56 by rloraine          #+#    #+#             */
-/*   Updated: 2019/06/29 13:09:00 by rloraine         ###   ########.fr       */
+/*   Updated: 2019/06/29 15:42:22 by rloraine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -177,7 +177,7 @@ int				do_n(int *tmp);
 int				do_wm(uintmax_t ret, t_format *params, int base);
 int				init_size_len(t_format *params, char *tmp, int check);
 int				chk_fl_for(char *tmp, int tof, t_format *params, int zero);
-void			do_itoa(char **tmp, intmax_t n, t_format *prms, int base);
+void			do_itoa(char **tmp, uintmax_t n, t_format *prms, int base);
 void			chk_to_print(char *tmp, char *width, t_format *params);
 
 #endif

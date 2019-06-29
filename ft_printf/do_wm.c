@@ -6,17 +6,18 @@
 /*   By: rloraine <rloraine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/28 17:49:39 by rloraine          #+#    #+#             */
-/*   Updated: 2019/06/29 13:08:27 by rloraine         ###   ########.fr       */
+/*   Updated: 2019/06/29 15:07:48 by rloraine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-#define SCROLL(n, base, tmp, prms) n /= base; --(*tmp); --prms->acc
+#define SCROLL(tmp, prms) --(*tmp); --prms->acc
 #define CHK_FL_FOR(a) I_I(a) || I_D(a) || I_D(a) || I_X(a) || I_BX(a) || I_P(a)
 #define ELSE_R1 else return(-1);
 #define ELSE_R0 else return(0);
 #define EQU(a, b, size) a = b; b += size; *b-- = 0;
 #define SMTH(a, b) *a-- = b; *a = '0';
+#define NOTU(a) (I_D(a) || I_BD(a) || I_I(a))
 
 void	chk_to_print(char *tmp, char *width, t_format *params)
 {
@@ -30,29 +31,31 @@ void	chk_to_print(char *tmp, char *width, t_format *params)
 		to_print(tmp, width, params);
 }
 
-void	do_itoa(char **tmp, intmax_t n, t_format *prms, int base)
+void	do_itoa(char **tmp, uintmax_t n, t_format *prms, int base)
 {
 	int sp;
 
-	if (n < 0 && (prms->spec == 'd' || prms->spec == 'D' || prms->spec == 'i'))
+	if ((intmax_t)n < 0 && (NOTU(prms->spec)))
 	{
-		**tmp = n % base * -1 + '0';
-		n = ~(n / base) + 1;
-		SCROLL(n, base, tmp, prms);
+		**tmp = (intmax_t)n % base * -1 + '0';
+		n = ~((intmax_t)n / base) + 1;
+		SCROLL(tmp, prms);
 	}
 	while (n)
 	{
-		sp = (prms->spec > 'a' ? 87 : 55);
 		if (base == 16)
 		{
+			sp = (prms->spec > 'a' ? 87 : 55);
 			**tmp = n % base;
 			**tmp += (**tmp > 9 ? sp : '0');
-			SCROLL(n, base, tmp, prms);
+			n /= base;
+			SCROLL(tmp, prms);
 		}
 		else
 		{
 			**tmp = n % base + '0';
-			SCROLL(n, base, tmp, prms);
+			n /= base;
+			SCROLL(tmp, prms);
 		}
 	}
 }
@@ -68,7 +71,7 @@ int		chk_fl_for(char *tmp, int tof, t_format *params, int zero)
 		else if (params->flag & SPACE)
 			*tmp = ' ';
 		ELSE_R1;
-		return (0);
+		return (1);
 	}
 	else if (I_X(params->spec) || I_BX(params->spec) || I_P(params->spec))
 	{
@@ -81,7 +84,7 @@ int		chk_fl_for(char *tmp, int tof, t_format *params, int zero)
 			SMTH(tmp, params->spec);
 		}
 		ELSE_R1;
-		return (0);
+		return (1);
 	}
 	return (0);
 }
@@ -114,7 +117,6 @@ int		init_size_len(t_format *params, char *tmp, int check)
 	}
 	return (0);
 }
-
 
 int		do_wm(uintmax_t ret, t_format *params, int base)
 {
