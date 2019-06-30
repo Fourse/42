@@ -6,7 +6,7 @@
 /*   By: rloraine <rloraine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/20 13:04:00 by rloraine          #+#    #+#             */
-/*   Updated: 2019/06/28 16:15:38 by rloraine         ###   ########.fr       */
+/*   Updated: 2019/06/30 13:50:31 by rloraine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int		do_format(va_list *ap, t_format *params)
 	// 	return (do_fl(ap, params));
 	// else if (I_CH(sp))
 	// 	return (do_c(ap, params));
-	return (0);
+	return (g_print.error = -1);
 }
 
 int		parse_prms(const char **format, va_list *ap, t_format *params)
@@ -74,7 +74,7 @@ void	check_frmt(const char **format, va_list *ap, t_format *params)
 				++(*format);
 			}
 			else if (**format)
-				if (!parse_prms(format, ap, params))
+				if (parse_prms(format, ap, params) == -1)
 					return ;
 		}
 		else
@@ -92,16 +92,16 @@ int		ft_printf(const char *format, ...)
 
 	params.flag = 0;
 	params.width = 0;
-	params.acc = 0;
+	params.acc = 1;
 	params.mod = 0;
 	params.spec = 0;
 	g_print.print = 0;
-	g_print.error = 1;
+	g_print.error = 0;
 	g_print.len = 0;
 	g_print.fd = 1;
 	va_start(ap, format);
 	check_frmt(&format, &ap, &params);
 	print_buf();
 	va_end(ap);
-	return (g_print.error == 0 ? -1 : g_print.print);
+	return (g_print.error ? -1 : g_print.print);
 }

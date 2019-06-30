@@ -6,7 +6,7 @@
 /*   By: rloraine <rloraine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/26 15:17:40 by rloraine          #+#    #+#             */
-/*   Updated: 2019/06/27 11:33:45 by rloraine         ###   ########.fr       */
+/*   Updated: 2019/06/30 13:50:04 by rloraine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ char	*make_width(t_format *params)
 	params->width -= params->len;
 	if (!(width = (char*)malloc(sizeof(char) * params->width + 1)))
 	{
-		g_print.error = 0;
+		g_print.error = -1;
 		return (NULL);
 	}
 	ft_memset(width, (params->flag & ZERO ? '0' : ' '), params->width);

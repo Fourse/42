@@ -6,7 +6,7 @@
 /*   By: rloraine <rloraine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/29 12:52:28 by rloraine          #+#    #+#             */
-/*   Updated: 2019/06/29 12:57:16 by rloraine         ###   ########.fr       */
+/*   Updated: 2019/06/30 14:12:31 by rloraine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@ int		do_n(int *tmp)
 {
 	print_buf();
 	if (!tmp)
-		return (g_print.error = 0);
+		return (g_print.error = -1);
 	*tmp = g_print.print;
-	return (1);
+	return (0);
 }
 
 int		do_x(va_list *ap, t_format *params)
@@ -107,5 +107,5 @@ int		do_d(va_list *ap, t_format *params)
 		return (do_wm(va_arg(*ap, ssize_t), params, 10));
 	else if (params->mod == J)
 		return (do_wm(va_arg(*ap, intmax_t), params, 10));
-	return (g_print.print = 0);
+	return (-1);
 }
