@@ -6,7 +6,7 @@
 /*   By: rloraine <rloraine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/22 13:51:18 by rloraine          #+#    #+#             */
-/*   Updated: 2019/06/30 15:23:29 by rloraine         ###   ########.fr       */
+/*   Updated: 2019/06/30 17:55:20 by rloraine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,17 +42,9 @@ void	get_mod(const char **format, t_format *params)
 void	get_acc(const char **format, va_list *ap, t_format *params)
 {
 	++(*format);
-	if (**format == '*')
-	{
-		params->acc = va_arg(*ap, int);
+	params->acc = ft_atoi(*format);
+	while (ft_isdigit(**format))
 		++(*format);
-	}
-	else
-	{
-		params->acc = ft_atoi(*format);
-		while (**format >= '0' && **format <= '9')
-			++(*format);
-	}
 	if (params->acc < 0)
 		params->acc = 1;
 	else

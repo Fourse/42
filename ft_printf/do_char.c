@@ -6,7 +6,7 @@
 /*   By: rloraine <rloraine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/29 14:26:03 by rloraine          #+#    #+#             */
-/*   Updated: 2019/06/29 15:42:21 by rloraine         ###   ########.fr       */
+/*   Updated: 2019/06/30 18:29:21 by rloraine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,5 +38,5 @@ int		do_c(va_list *ap, t_format *params)
 		else
 			return (do_s_wm(va_arg(*ap, const char *), params));
 	}
-	return (g_print.print = 0);
+	return (g_print.print = -1);
 }
