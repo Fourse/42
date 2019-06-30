@@ -6,7 +6,7 @@
 /*   By: rloraine <rloraine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/23 11:29:21 by rloraine          #+#    #+#             */
-/*   Updated: 2019/06/30 13:59:12 by rloraine         ###   ########.fr       */
+/*   Updated: 2019/06/30 15:58:32 by rloraine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -140,195 +140,195 @@ int		main(void)
 
 	//!  tests for spec "d"
 
-	// printf("------------test1-------------\n");
-	// ft_printf("ft: %#.10d\n", 1234);
-	// printf("or: %#.10d\n", 1234);
+	printf("------------test1-------------\n");
+	ft_printf("ft: %#.10d\n", 1234);
+	printf("or: %#.10d\n", 1234);
 
-	// printf("------------test2-------------\n");
-	// ft_printf("ft: %3###---.2d\n", 1234);
-	// printf("or: %3###---.2d\n", 1234);
+	printf("------------test2-------------\n");
+	ft_printf("ft: %3###---.2d\n", 1234);
+	printf("or: %3###---.2d\n", 1234);
 
-	// printf("------------test3-------------\n");
-	// ft_printf("ft: %--+++--10.40d\n", 1234);
-	// printf("or: %--+++--10.40d\n", 1234);
+	printf("------------test3-------------\n");
+	ft_printf("ft: %--+++--10.40d\n", 1234);
+	printf("or: %--+++--10.40d\n", 1234);
 
-	// printf("------------test4-------------\n");
-	// ft_printf("ft: %##....4..4lld\n", 1234);
-	// printf("or: %##....4..4lld\n", 1234);
+	printf("------------test4-------------\n");
+	ft_printf("ft: %##....4..4lld\n", 1234);
+	printf("or: %##....4..4lld\n", 1234);
 
-	// printf("------------test5-------------\n");
-	// ft_printf("ft: %0d\n", 1234);
-	// printf("or: %0d\n", 1234);
+	printf("------------test5-------------\n");
+	ft_printf("ft: %0d\n", 1234);
+	printf("or: %0d\n", 1234);
 
-	// printf("------------test6-------------\n");
-	// ft_printf("ft: %.0d\n", 1234);
-	// printf("or: %.0d\n", 1234);
+	printf("------------test6-------------\n");
+	ft_printf("ft: %.0d\n", 1234);
+	printf("or: %.0d\n", 1234);
 
-	// printf("------------test7-------------\n");
-	// ft_printf("ft: %#010.10d\n", 1234);
-	// printf("or: %#010.10d\n", 1234);
+	printf("------------test7-------------\n");
+	ft_printf("ft: %#010.10d\n", 1234);
+	printf("or: %#010.10d\n", 1234);
 
-	// printf("------------test8-------------\n");
-	// ft_printf("ft: %-10.10d\n", 1234);
-	// printf("or: %-10.10d\n", 1234);
+	printf("------------test8-------------\n");
+	ft_printf("ft: %-10.10d\n", 1234);
+	printf("or: %-10.10d\n", 1234);
 
-	// printf("------------test9-------------\n");
-	// ft_printf("ft: %+++10.40d\n", 1234);
-	// printf("or: %+++10.40d\n", 1234);
+	printf("------------test9-------------\n");
+	ft_printf("ft: %+++10.40d\n", 1234);
+	printf("or: %+++10.40d\n", 1234);
 
-	// //!не обрабатывается @
-	// printf("------------test10-------------\n");
-	// ft_printf("ft: %;+..4..4hd\n", 1234);
-	// printf("or: %;+..4..4hd\n", 1234);
+	//!не обрабатывается @
+	printf("------------test10-------------\n");
+	ft_printf("ft: %;+..4..4hd\n", 1234);
+	printf("or: %;+..4..4hd\n", 1234);
 
-	// printf("------------test11-------------\n");
-	// ft_printf("ft: %020.10d\n", 1234);
-	// printf("or: %020.10d\n", 1234);
+	printf("------------test11-------------\n");
+	ft_printf("ft: %020.10d\n", 1234);
+	printf("or: %020.10d\n", 1234);
 
-	// printf("------------test12-------------\n");
-	// ft_printf("ft: %0d\n", 0);
-	// printf("or: %0d\n", 0);
+	printf("------------test12-------------\n");
+	ft_printf("ft: %0d\n", 0);
+	printf("or: %0d\n", 0);
 
-	// printf("------------test13-------------\n");
-	// ft_printf("ft: %+..4..4hd\n", 0);
-	// printf("or: %+..4..4hd\n", 0);
+	printf("------------test13-------------\n");
+	ft_printf("ft: %+..4..4hd\n", 0);
+	printf("or: %+..4..4hd\n", 0);
 
-	// printf("------------test14-------------\n");
-	// ft_printf("ft: %020.0d\n", 0);
-	// printf("or: %020.0d\n", 0);
+	printf("------------test14-------------\n");
+	ft_printf("ft: %020.0d\n", 0);
+	printf("or: %020.0d\n", 0);
 
-	// printf("------------test15-------------\n");
-	// ft_printf("ft: %0.d\n", 0);
-	// printf("or: %0.d\n", 0);
+	printf("------------test15-------------\n");
+	ft_printf("ft: %0.d\n", 0);
+	printf("or: %0.d\n", 0);
 
-	// printf("------------test16-------------\n");
-	// ft_printf("ft: %0d\n", -1);
-	// printf("or: %0d\n", -1);
+	printf("------------test16-------------\n");
+	ft_printf("ft: %0d\n", -1);
+	printf("or: %0d\n", -1);
 
-	// printf("------------test17-------------\n");
-	// ft_printf("ft: %;+..4..4hd\n", -1);
-	// printf("or: %;+..4..4hd\n", -1);
+	printf("------------test17-------------\n");
+	ft_printf("ft: %;+..4..4hd\n", -1);
+	printf("or: %;+..4..4hd\n", -1);
 
-	// printf("------------test18-------------\n");
-	// ft_printf("ft: %020.0d\n", -1);
-	// printf("or: %020.0d\n", -1);
+	printf("------------test18-------------\n");
+	ft_printf("ft: %020.0d\n", -1);
+	printf("or: %020.0d\n", -1);
 
-	// printf("------------test19-------------\n");
-	// ft_printf("ft: %0.d\n", -1);
-	// printf("or: %0.d\n", -1);
+	printf("------------test19-------------\n");
+	ft_printf("ft: %0.d\n", -1);
+	printf("or: %0.d\n", -1);
 
 
-	// printf("--------test4.1----------\n");
-	// printf("or: %-+10.5d\n", 31);
-	// ft_printf("ft: %-+10.5d\n", 31);
+	printf("--------test4.1----------\n");
+	printf("or: %-+10.5d\n", 31);
+	ft_printf("ft: %-+10.5d\n", 31);
 
-	// printf("--------test4.2----------\n");
-	// printf("or: %-+5.10d\n", 31);
-	// ft_printf("ft: %-+5.10d\n", 31);
+	printf("--------test4.2----------\n");
+	printf("or: %-+5.10d\n", 31);
+	ft_printf("ft: %-+5.10d\n", 31);
 
-	// printf("--------test4.3----------\n");
-	// printf("or: %+10.5d\n", 31);
-	// ft_printf("ft: %+10.5d\n", 31);
+	printf("--------test4.3----------\n");
+	printf("or: %+10.5d\n", 31);
+	ft_printf("ft: %+10.5d\n", 31);
 
-	// printf("--------test4.4----------\n");
-	// printf("or: %+5.10d\n", 31);
-	// ft_printf("ft: %+5.10d\n", 31);
+	printf("--------test4.4----------\n");
+	printf("or: %+5.10d\n", 31);
+	ft_printf("ft: %+5.10d\n", 31);
 
-	// printf("--------test4.5----------\n");
-	// printf("or: %-+10.1dw\n", 31);
-	// ft_printf("ft: %-+10.1dw\n", 31);
+	printf("--------test4.5----------\n");
+	printf("or: %-+10.1dw\n", 31);
+	ft_printf("ft: %-+10.1dw\n", 31);
 
-	// printf("--------test4.6----------\n");
-	// printf("or: %+10.1dw\n", 31);
-	// ft_printf("ft: %+10.1dw\n", 31);
+	printf("--------test4.6----------\n");
+	printf("or: %+10.1dw\n", 31);
+	ft_printf("ft: %+10.1dw\n", 31);
 
-	// printf("--------test4.7----------\n");
-	// printf("or: % 5.10dw\n", 31);
-	// ft_printf("ft: % 5.10dw\n", 31);
+	printf("--------test4.7----------\n");
+	printf("or: % 5.10dw\n", 31);
+	ft_printf("ft: % 5.10dw\n", 31);
 
-	// printf("--------test4.8----------\n");
-	// printf("or: %02.dw\n", 31);
-	// ft_printf("ft: %02.dw\n", 31);
+	printf("--------test4.8----------\n");
+	printf("or: %02.dw\n", 31);
+	ft_printf("ft: %02.dw\n", 31);
 
-	// printf("--------test4.8----------\n");
-	// printf("or: % 10.dw\n", -31);
-	// ft_printf("ft: % 10.dw\n", -31);
+	printf("--------test4.8----------\n");
+	printf("or: % 10.dw\n", -31);
+	ft_printf("ft: % 10.dw\n", -31);
 
-	// printf("--------test4.8----------\n");
-	// printf("or: %+10.hdw\n", 31);
-	// ft_printf("ft: %+10.hdw\n", 31);
+	printf("--------test4.8----------\n");
+	printf("or: %+10.hdw\n", 31);
+	ft_printf("ft: %+10.hdw\n", 31);
 
 	//!  tests for spec "x/X"
 
-	// printf("------------test1-------------\n");
-	// ft_printf("ft: |%020x|\n", 1234);
-	// printf("or: |%020x|\n", 1234);
+	printf("------------test1-------------\n");
+	ft_printf("ft: |%020x|\n", 1234);
+	printf("or: |%020x|\n", 1234);
 
-	// printf("------------test2-------------\n");
-	// ft_printf("ft: |%#0.20x|\n", 1234);
-	// printf("or: |%#0.20x|\n", 1234);
+	printf("------------test2-------------\n");
+	ft_printf("ft: |%#0.20x|\n", 1234);
+	printf("or: |%#0.20x|\n", 1234);
 
-	// printf("------------test3-------------\n");
-	// ft_printf("ft: |%0.0x|\n", 1234);
-	// printf("or: |%0.0x|\n", 1234);
+	printf("------------test3-------------\n");
+	ft_printf("ft: |%0.0x|\n", 1234);
+	printf("or: |%0.0x|\n", 1234);
 
-	// printf("------------test4-------------\n");
-	// ft_printf("ft: |%20.4x|\n", 1234);
-	// printf("or: |%20.4x|\n", 1234);
+	printf("------------test4-------------\n");
+	ft_printf("ft: |%20.4x|\n", 1234);
+	printf("or: |%20.4x|\n", 1234);
 
-	// printf("------------test5-------------\n");
-	// ft_printf("ft: |%4.5x|\n", 1234);
-	// printf("or: |%4.5x|\n", 1234);
+	printf("------------test5-------------\n");
+	ft_printf("ft: |%4.5x|\n", 1234);
+	printf("or: |%4.5x|\n", 1234);
 
-	// printf("------------test6-------------\n");
-	// ft_printf("ft: |%-20x|\n", 1234);
-	// printf("or: |%-20x|\n", 1234);
+	printf("------------test6-------------\n");
+	ft_printf("ft: |%-20x|\n", 1234);
+	printf("or: |%-20x|\n", 1234);
 
-	// printf("------------test7-------------\n");
-	// ft_printf("ft: |%0x|\n", 0);
-	// printf("or: |%0x|\n", 0);
+	printf("------------test7-------------\n");
+	ft_printf("ft: |%0x|\n", 0);
+	printf("or: |%0x|\n", 0);
 
-	// printf("------------test8-------------\n");
-	// ft_printf("ft: |%#x|\n", 0);
-	// printf("or: |%#x|\n", 0);
+	printf("------------test8-------------\n");
+	ft_printf("ft: |%#x|\n", 0);
+	printf("or: |%#x|\n", 0);
 
-	// printf("------------test9-------------\n");
-	// ft_printf("ft: |%.1x|\n", 0);
-	// printf("or: |%.1x|\n", 0);
+	printf("------------test9-------------\n");
+	ft_printf("ft: |%.1x|\n", 0);
+	printf("or: |%.1x|\n", 0);
 
 	printf("------------test10-------------\n");
 	ft_printf("ft: |%03.0x|\n", 0);
 	printf("or: |%03.0x|\n", 0);
 
-	// printf("------------test11-------------\n");
-	// ft_printf("ft: |%#5x|\n", 0);
-	// printf("or: |%#5x|\n", 0);
+	printf("------------test11-------------\n");
+	ft_printf("ft: |%#5x|\n", 0);
+	printf("or: |%#5x|\n", 0);
 
-	// printf("------------test12-------------\n");
-	// ft_printf("ft: |%#-10x|\n", 0);
-	// printf("or: |%#-10x|\n", 0);
+	printf("------------test12-------------\n");
+	ft_printf("ft: |%#-10x|\n", 0);
+	printf("or: |%#-10x|\n", 0);
 
-	// printf("------------test13-------------\n");
-	// ft_printf("ft: %+..4..4hd\n", 0);
-	// printf("or: %+..4..4hd\n", 0);
+	printf("------------test13-------------\n");
+	ft_printf("ft: %+..4..4hd\n", 0);
+	printf("or: %+..4..4hd\n", 0);
 
-	// printf("------------test14-------------\n");
-	// ft_printf("ft: |%x|\n", 0);
-	// printf("or: |%x|\n", 0);
+	printf("------------test14-------------\n");
+	ft_printf("ft: |%x|\n", 0);
+	printf("or: |%x|\n", 0);
 
-	// printf("------------test15-------------\n");
-	// ft_printf("ft: |%#x|\n", 0);
-	// printf("or: |%#x|\n", 0);
+	printf("------------test15-------------\n");
+	ft_printf("ft: |%#x|\n", 0);
+	printf("or: |%#x|\n", 0);
 
-	// printf("------------test16-------------\n");
-	// ft_printf("ft: |%#-20.10x|\n", 0);
-	// printf("or: |%#-20.10x|\n", 0);
+	printf("------------test16-------------\n");
+	ft_printf("ft: |%#-20.10x|\n", 0);
+	printf("or: |%#-20.10x|\n", 0);
 
-	// printf("------------test17-------------\n");
-	// ft_printf("ft: %;+..4..4hd\n", -1);
-	// printf("or: %;+..4..4hd\n", -1);
+	printf("------------test17-------------\n");
+	ft_printf("ft: %;+..4..4hd\n", -1);
+	printf("or: %;+..4..4hd\n", -1);
 
-	// printf("------------test18-------------\n");
-	// ft_printf("ft: |%#.x|\n", 1234);
-	// printf("or: |%#.x|\n", 1234);
+	printf("------------test18-------------\n");
+	ft_printf("ft: |%#.x|\n", 1234);
+	printf("or: |%#.x|\n", 1234);
 }

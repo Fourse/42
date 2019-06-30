@@ -6,7 +6,7 @@
 /*   By: rloraine <rloraine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/20 13:04:00 by rloraine          #+#    #+#             */
-/*   Updated: 2019/06/30 13:50:31 by rloraine         ###   ########.fr       */
+/*   Updated: 2019/06/30 15:26:49 by rloraine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ int		do_format(va_list *ap, t_format *params)
 	sp = params->spec;
 	if (I_IN(sp) || I_GA(sp) || I_816(sp))
 	{
+		if ((params->flag & (ZERO | ACC)) == (ZERO | ACC))
+			params->flag ^= ZERO;
 		if (I_I(sp) || I_D(sp) || I_BD(sp))
 			return (do_d(ap, params));
 		else if (I_U(sp) || I_BU(sp))
