@@ -6,11 +6,20 @@
 /*   By: rloraine <rloraine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/22 13:51:18 by rloraine          #+#    #+#             */
-/*   Updated: 2019/06/30 17:55:20 by rloraine         ###   ########.fr       */
+/*   Updated: 2019/07/04 15:07:11 by rloraine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+
+int		do_n(int *tmp)
+{
+	print_buf();
+	if (!tmp)
+		return (g_print.error = -1);
+	*tmp = g_print.print;
+	return (0);
+}
 
 void	get_mod(const char **format, t_format *params)
 {

@@ -6,7 +6,7 @@
 /*   By: rloraine <rloraine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/02 20:36:56 by rloraine          #+#    #+#             */
-/*   Updated: 2019/06/30 15:23:34 by rloraine         ###   ########.fr       */
+/*   Updated: 2019/07/04 15:34:08 by rloraine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,8 @@
 # define I_BO(s) s == 'O'
 # define I_X(s) s == 'x'
 # define I_BX(s) s == 'X'
+# define I_B(s) s == 'b'
+# define I_BB(s) s == 'B'
 # define I_F(s) s == 'f'
 # define I_BF(s) s == 'F'
 # define I_E(s) s == 'e'
@@ -76,7 +78,7 @@
 */
 
 # define I_IN(s) (I_I(s) O I_D(s) O I_BD(s) O I_U(s) O I_BU(s))
-# define I_816(s) (I_O(s) O I_BO(s) O I_X(s) O I_BX(s))
+# define I_816(s) (I_O(s) O I_BO(s) O I_X(s) O I_BX(s) O I_B(s) O I_BB(s))
 # define I_FL(s) (I_F(s) O I_BF(s) O I_E(s) O I_BE(s))
 # define I_FL2(s) (I_G(s) O I_BG(s) O I_A(s) O I_BA(s))
 # define I_CH(s) (I_C(s) O I_BC(s) O I_S(s) O I_BS(s))
@@ -137,9 +139,10 @@ extern t_out	g_print;
 */
 
 int				ft_printf(const char *format, ...);
-void			check_frmt(const char **format, va_list *ap, t_format *params);
+void			check_frmt(const char **format, va_list *ap);
 int				parse_prms(const char **format, va_list *ap, t_format *params);
 int				do_format(va_list *ap, t_format *params);
+void			init_params(t_format *params);
 
 /*
 **	out.c
@@ -159,6 +162,7 @@ void			get_flag(const char **format, t_format *params);
 void			get_width(const char **format, va_list *ap, t_format *params);
 void			get_acc(const char **format, va_list *ap, t_format *params);
 void			get_mod(const char **format, t_format *params);
+int				do_n(int *tmp);
 
 /*
 **	do_int.c
@@ -168,7 +172,7 @@ int				do_d(va_list *ap, t_format *params);
 int				do_u(va_list *ap, t_format *params);
 int				do_o(va_list *ap, t_format *params);
 int				do_x(va_list *ap, t_format *params);
-int				do_n(int *tmp);
+int				do_b(va_list *ap, t_format *params);
 
 /*
 **	do_wm.c
@@ -180,6 +184,12 @@ int				chk_fl_for(char *tmp, int tof, t_format *params, int zero);
 void			do_itoa(char **tmp, uintmax_t n, t_format *prms, int base);
 void			chk_to_print(char *tmp, char *width, t_format *params);
 
-int		do_d_wm(intmax_t ret, t_format *params, int base);
+/*
+**	do_char.c
+*/
+
+int				do_c(va_list *ap, t_format *params);
+int				do_c_wm(const wchar_t c, t_format *params);
+int				do_s_wm(const char *str, t_format *params);
 
 #endif

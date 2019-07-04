@@ -6,19 +6,31 @@
 /*   By: rloraine <rloraine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/29 12:52:28 by rloraine          #+#    #+#             */
-/*   Updated: 2019/06/30 18:28:54 by rloraine         ###   ########.fr       */
+/*   Updated: 2019/07/04 16:24:07 by rloraine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int		do_n(int *tmp)
+int		do_b(va_list *ap, t_format *params)
 {
-	print_buf();
-	if (!tmp)
-		return (g_print.error = -1);
-	*tmp = g_print.print;
-	return (0);
+	if (params->flag & ZERO && params->width > params->acc)
+		params->acc = params->width - 2;
+	if (params->mod == NO)
+		return (do_wm(va_arg(*ap, unsigned int), params, 2));
+	else if (params->mod == HH)
+		return (do_wm((unsigned char)va_arg(*ap, int), params, 2));
+	else if (params->mod == H)
+		return (do_wm((unsigned short)va_arg(*ap, int), params, 2));
+	else if (params->mod == L)
+		return (do_wm(va_arg(*ap, unsigned long), params, 2));
+	else if (params->mod == LL)
+		return (do_wm(va_arg(*ap, unsigned long long), params, 2));
+	else if (params->mod == Z)
+		return (do_wm(va_arg(*ap, size_t), params, 2));
+	else if (params->mod == J)
+		return (do_wm(va_arg(*ap, uintmax_t), params, 2));
+	return (g_print.print = -1);
 }
 
 int		do_x(va_list *ap, t_format *params)
@@ -44,7 +56,7 @@ int		do_x(va_list *ap, t_format *params)
 		return (do_wm(va_arg(*ap, size_t), params, 16));
 	else if (params->mod == J)
 		return (do_wm(va_arg(*ap, uintmax_t), params, 16));
-	return (g_print.print = 0);
+	return (g_print.print = -1);
 }
 
 int		do_o(va_list *ap, t_format *params)
@@ -65,7 +77,7 @@ int		do_o(va_list *ap, t_format *params)
 		return (do_wm(va_arg(*ap, size_t), params, 8));
 	else if (params->mod == J)
 		return (do_wm(va_arg(*ap, uintmax_t), params, 8));
-	return (g_print.print = 0);
+	return (g_print.print = -1);
 }
 
 int		do_u(va_list *ap, t_format *params)
@@ -86,7 +98,7 @@ int		do_u(va_list *ap, t_format *params)
 		return (do_wm(va_arg(*ap, size_t), params, 10));
 	else if (params->mod == J)
 		return (do_wm(va_arg(*ap, uintmax_t), params, 10));
-	return (g_print.print = 0);
+	return (g_print.print = -1);
 }
 
 int		do_d(va_list *ap, t_format *params)
@@ -107,5 +119,5 @@ int		do_d(va_list *ap, t_format *params)
 		return (do_wm(va_arg(*ap, ssize_t), params, 10));
 	else if (params->mod == J)
 		return (do_wm(va_arg(*ap, intmax_t), params, 10));
-	return (g_print.print = 0);
+	return (g_print.print = -1);
 }

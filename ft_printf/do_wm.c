@@ -6,17 +6,22 @@
 /*   By: rloraine <rloraine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/28 17:49:39 by rloraine          #+#    #+#             */
-/*   Updated: 2019/06/30 14:27:49 by rloraine         ###   ########.fr       */
+/*   Updated: 2019/07/04 16:39:28 by rloraine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+
 #define SCROLL(tmp, prms) --(*tmp); --prms->acc
-#define CHK_FL_FOR(a) I_I(a) || I_D(a) || I_D(a) || I_X(a) || I_BX(a) || I_P(a)
+#define ONE(a) I_I(a) || I_D(a) || I_D(a) || I_X(a)
+#define TWO(a) I_BX(a) || I_P(a) || I_B(a) || I_BB(a)
+#define CFR(a) ONE(a) || TWO(a)
 #define ELSE_R1 else return(-1);
 #define EQU(a, b, size) a = b; b += size; *b-- = 0;
 #define SMTH(a, b) *a-- = b; *a = '0';
 #define NOTU(a) (I_D(a) || I_BD(a) || I_I(a))
+#define SIB(a) I_X(a) || I_BX(a) || I_P(a) || I_B(a) || I_BB(a)
+#define BIT(a) if (I_B(a) || I_BB(a)) return (1);
 
 void	chk_to_print(char *tmp, char *width, t_format *params)
 {
@@ -27,6 +32,8 @@ void	chk_to_print(char *tmp, char *width, t_format *params)
 	else if (I_O(params->spec) || I_BO(params->spec))
 		to_print(tmp + 1, width, params);
 	else if (I_X(params->spec) || I_BX(params->spec) || I_P(params->spec))
+		to_print(tmp, width, params);
+	else if (I_B(params->spec) || I_BB(params->spec))
 		to_print(tmp, width, params);
 }
 
@@ -72,7 +79,7 @@ int		chk_fl_for(char *tmp, int tof, t_format *params, int zero)
 		ELSE_R1;
 		return (0);
 	}
-	else if (I_X(params->spec) || I_BX(params->spec) || I_P(params->spec))
+	else
 	{
 		if (I_P(params->spec))
 		{
@@ -81,11 +88,11 @@ int		chk_fl_for(char *tmp, int tof, t_format *params, int zero)
 		else if (!zero && params->flag & HASH)
 		{
 			SMTH(tmp, params->spec);
+			BIT(params->spec);
 		}
 		ELSE_R1;
 		return (1);
 	}
-	return (g_print.print = -1);
 }
 
 int		init_size_len(t_format *params, char *tmp, int check)
@@ -100,14 +107,16 @@ int		init_size_len(t_format *params, char *tmp, int check)
 			return (params->acc > 23 ? params->acc + 1 : 24);
 		else if (I_X(params->spec) || I_BX(params->spec) || I_P(params->spec))
 			return (params->acc > 16 ? params->acc + 2 : 18);
+		else if (I_B(params->spec) || I_BB(params->spec))
+			return (params->acc > 64 ? params->acc + 2 : 66);
 	}
 	else if (check == 2)
 	{
-		if (I_D(params->spec) || I_BD(params->spec) || I_I(params->spec))
+		if (I_D(params->spec) || I_BD(params->spec) || I_I(params->spec)\
+		|| I_B(params->spec) || I_BB(params->spec))
 			return (ft_strlen(tmp));
-		else if (I_U(params->spec) || I_BU(params->spec))
-			return (ft_strlen(tmp + 1));
-		else if (I_O(params->spec) || I_BO(params->spec))
+		else if (I_U(params->spec) || I_BU(params->spec) || I_O(params->spec)\
+		|| I_BO(params->spec))
 			return (ft_strlen(tmp + 1));
 		else if (I_X(params->spec) || I_BX(params->spec) || I_P(params->spec))
 			return (ft_strlen(tmp));
@@ -132,7 +141,7 @@ int		do_wm(uintmax_t ret, t_format *params, int base)
 		do_itoa(&tmp, ret, params, base);
 	while (params->acc-- > 0)
 		*tmp-- = '0';
-	if (CHK_FL_FOR(params->spec))
+	if (CFR(params->spec))
 		tmp -= chk_fl_for(tmp, ((intmax_t)ret < 0), params, (!ret));
 	params->len = init_size_len(params, tmp, 2);
 	width = NULL;
