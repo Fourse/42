@@ -6,7 +6,7 @@
 /*   By: rloraine <rloraine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/02 20:36:56 by rloraine          #+#    #+#             */
-/*   Updated: 2019/07/04 15:34:08 by rloraine         ###   ########.fr       */
+/*   Updated: 2019/07/04 16:58:02 by rloraine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -191,5 +191,11 @@ void			chk_to_print(char *tmp, char *width, t_format *params);
 int				do_c(va_list *ap, t_format *params);
 int				do_c_wm(const wchar_t c, t_format *params);
 int				do_s_wm(const char *str, t_format *params);
+
+/*
+**	do_fl.c
+*/
+
+int				do_fl(va_list *ap, t_format *params);
 
 #endif
