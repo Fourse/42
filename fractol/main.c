@@ -6,7 +6,7 @@
 /*   By: rloraine <rloraine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/18 17:31:46 by rloraine          #+#    #+#             */
-/*   Updated: 2019/06/18 18:31:26 by rloraine         ###   ########.fr       */
+/*   Updated: 2019/07/04 19:31:22 by rloraine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ int		main(int argc, char **argv)
 {
 	t_fractol *frac;
 
-	read_file(open(argv[1], O_RDONLY));
 	init(&frac);
 	mlx_key_hook(frac->win, hook_keydown, frac);
 	mlx_loop(frac->mlx);
