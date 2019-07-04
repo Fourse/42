@@ -6,7 +6,7 @@
 /*   By: rloraine <rloraine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/23 11:29:21 by rloraine          #+#    #+#             */
-/*   Updated: 2019/07/04 16:38:31 by rloraine         ###   ########.fr       */
+/*   Updated: 2019/07/04 16:42:36 by rloraine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -542,36 +542,36 @@ int		main(void)
 	//ft_printf("size_write = %d\n", g_spec.size_write);
 
 //!TEST_CHAR_BEGIN
-	printf("***************************\n");
-	printf("********TEST_CHAR**********\n");
-	printf("***************************\n");
+// 	printf("***************************\n");
+// 	printf("********TEST_CHAR**********\n");
+// 	printf("***************************\n");
 
-	printf("===========TEST1===========\n");
-	printf("%-102cw\n", 'a');
-	ft_printf("%-102cw\n", 'a');
+// 	printf("===========TEST1===========\n");
+// 	printf("%-102cw\n", 'a');
+// 	ft_printf("%-102cw\n", 'a');
 
-	printf("===========TEST2===========\n");
-	printf("%c\n", 'c');
-	ft_printf("%c\n", 'c');
+// 	printf("===========TEST2===========\n");
+// 	printf("%c\n", 'c');
+// 	ft_printf("%c\n", 'c');
 
-	printf("===========TEST4===========\n");
-	printf("");
-// !TEST_CHAR_END
-	printf("======TEST8======\n");
-	ft_printf("a = %10.5d\nb = %13d\nchar = %-2chow\n string: %-13.4s\n", 14, 29, 'w', "hello world");
-	printf("a = %10.5d\nb = %13d\nchar = %-2chow\n string: %-13.4s\n", 14, 29, 'w', "hello world");
-	ft_printf("string:\n%s\nchar = %c\n", "hello world", 'w');
-	printf("string:\n%s\nchar = %c\n", "hello world", 'w');
+// 	printf("===========TEST4===========\n");
+// 	printf("");
+// // !TEST_CHAR_END
+// 	printf("======TEST8======\n");
+// 	ft_printf("a = %10.5d\nb = %13d\nchar = %-2chow\n string: %-13.4s\n", 14, 29, 'w', "hello world");
+// 	printf("a = %10.5d\nb = %13d\nchar = %-2chow\n string: %-13.4s\n", 14, 29, 'w', "hello world");
+// 	ft_printf("string:\n%s\nchar = %c\n", "hello world", 'w');
+// 	printf("string:\n%s\nchar = %c\n", "hello world", 'w');
 
-	ft_printf("string:\n%s\na = %10.5d\nchar = %c\n", "hello world", 45, 'w');
-	printf("string:\n%s\na = %10.5d\nchar = %c\n", "hello world", 45, 'w');
-	ft_printf("a = %10.5d\nb = %13d\nchar = %c\n", 14, 29, 'w');
-	// ft_printf("a = %10.5d\nchar = %c\n" string: %-13.4s\n", 14, 29, 'w'", "hello world");
-	ft_printf("a = %d\nb = %c\n", 34, 'w');
-	ft_printf("char = %13c\n", 'w');
+// 	ft_printf("string:\n%s\na = %10.5d\nchar = %c\n", "hello world", 45, 'w');
+// 	printf("string:\n%s\na = %10.5d\nchar = %c\n", "hello world", 45, 'w');
+// 	ft_printf("a = %10.5d\nb = %13d\nchar = %c\n", 14, 29, 'w');
+// 	// ft_printf("a = %10.5d\nchar = %c\n" string: %-13.4s\n", 14, 29, 'w'", "hello world");
+// 	ft_printf("a = %d\nb = %c\n", 34, 'w');
+// 	ft_printf("char = %13c\n", 'w');
 
-	ft_printf("a = %c\nb = %c\nc = %10-c\nstring = %-023c\n", 'a', 'w', 'j', 'e');
-	printf("a = %c\nb = %c\nc = %10-c\nstring = %-023c\n", 'a', 'w', 'j', 'e');
+// 	ft_printf("a = %c\nb = %c\nc = %10-c\nstring = %-023c\n", 'a', 'w', 'j', 'e');
+// 	printf("a = %c\nb = %c\nc = %10-c\nstring = %-023c\n", 'a', 'w', 'j', 'e');
 
 //!UNIT_TESTS_BEGIN
 	// printf("UNIT_TESTS_BEGIN\n");
@@ -737,5 +737,5 @@ int		main(void)
 // 	while (sq < 33)
 // 		ft_printf("%d) %r\n", sq, sq++);
 // 	return (0);
-	// ft_printf("%-102ca\n", 'z');
+	printf("%C\n", 'z');
 }
