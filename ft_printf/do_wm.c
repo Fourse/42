@@ -6,7 +6,7 @@
 /*   By: rloraine <rloraine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/28 17:49:39 by rloraine          #+#    #+#             */
-/*   Updated: 2019/07/04 16:39:28 by rloraine         ###   ########.fr       */
+/*   Updated: 2019/07/09 18:03:19 by rloraine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,6 +131,7 @@ int		do_wm(uintmax_t ret, t_format *params, int base)
 	char	*width;
 	int		size;
 
+	tmp = NULL;
 	if (I_D(params->spec) || I_BD(params->spec) || I_I(params->spec))
 		ret = (intmax_t)ret;
 	size = init_size_len(params, tmp, 1);
@@ -145,7 +146,7 @@ int		do_wm(uintmax_t ret, t_format *params, int base)
 		tmp -= chk_fl_for(tmp, ((intmax_t)ret < 0), params, (!ret));
 	params->len = init_size_len(params, tmp, 2);
 	width = NULL;
-	if (params->width > params->len)
+	if ((int)params->width > (int)params->len)
 		if (!(width = make_width(params)))
 			return (g_print.error = -1);
 	chk_to_print(tmp, width, params);

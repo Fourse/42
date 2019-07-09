@@ -6,7 +6,7 @@
 /*   By: rloraine <rloraine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/02 20:36:56 by rloraine          #+#    #+#             */
-/*   Updated: 2019/07/04 16:58:02 by rloraine         ###   ########.fr       */
+/*   Updated: 2019/07/09 17:51:18 by rloraine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,31 +101,44 @@
 # define LONGD 64
 
 /*
-**	structures
+**	structures/enum/union
 */
-
-typedef struct	s_out
-{
-	char		buf[BUFF_SIZE];
-	int			len;
-	int			print;
-	int			fd;
-	int			error;
-}				t_out;
 
 typedef enum	e_mod
 {
 	NO, HH, H, L, LL, Z, J
 }				t_mod;
 
+typedef struct	s_bits
+{
+	unsigned long long		mantis:	64;
+	int						exp:	15;
+	int						sign:	1;
+}				t_bits;
+
+typedef union	u_floats
+{
+	long double				ret;
+	t_bits					bits;
+}				t_floats;
+
+typedef struct	s_out
+{
+	char					buf[BUFF_SIZE];
+	int						len;
+	int						print;
+	int						fd;
+	int						error;
+}				t_out;
+
 typedef struct	s_format
 {
-	int			flag;
-	int			width;
-	int			acc;
-	t_mod		mod;
-	int			spec;
-	size_t		len;
+	int						flag;
+	int						width;
+	int						acc;
+	t_mod					mod;
+	int						spec;
+	size_t					len;
 }				t_format;
 
 extern t_out	g_print;
@@ -197,5 +210,6 @@ int				do_s_wm(const char *str, t_format *params);
 */
 
 int				do_fl(va_list *ap, t_format *params);
+int				infnan(t_floats *ret_union, t_format *params);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: rloraine <rloraine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/22 13:51:18 by rloraine          #+#    #+#             */
-/*   Updated: 2019/07/04 15:07:11 by rloraine         ###   ########.fr       */
+/*   Updated: 2019/07/09 18:05:09 by rloraine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,9 +51,17 @@ void	get_mod(const char **format, t_format *params)
 void	get_acc(const char **format, va_list *ap, t_format *params)
 {
 	++(*format);
-	params->acc = ft_atoi(*format);
-	while (ft_isdigit(**format))
+	if (**format == '*')
+	{
+		params->acc = va_arg(*ap, int);
 		++(*format);
+	}
+	else
+	{
+		params->acc = ft_atoi(*format);
+		while (**format >= '0' && **format <= '9')
+			++(*format);
+	}
 	if (params->acc < 0)
 		params->acc = 1;
 	else
@@ -62,9 +70,22 @@ void	get_acc(const char **format, va_list *ap, t_format *params)
 
 void	get_width(const char **format, va_list *ap, t_format *params)
 {
-	params->width = ft_atoi(*format);
-	while (ft_isdigit(**format))
+	if (**format == '*')
+	{
+		params->width = va_arg(*ap, int);
+		if (params->width < 0)
+		{
+			params->width = ~params->width + 1;
+			params->flag |= MINUS;
+		}
 		++(*format);
+	}
+	else
+	{
+		params->width = ft_atoi(*format);
+		while (**format >= '0' && **format <= '9')
+			++(*format);
+	}
 }
 
 void	get_flag(const char **format, t_format *params)

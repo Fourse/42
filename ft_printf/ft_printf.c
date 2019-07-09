@@ -6,7 +6,7 @@
 /*   By: rloraine <rloraine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/20 13:04:00 by rloraine          #+#    #+#             */
-/*   Updated: 2019/07/04 16:37:32 by rloraine         ###   ########.fr       */
+/*   Updated: 2019/07/09 14:56:26 by rloraine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,8 @@ int		do_format(va_list *ap, t_format *params)
 		else if (I_N(sp))
 			return (do_n(va_arg(*ap, int*)));
 	}
-	// else if (I_FL(sp) || I_FL2(sp))
-	// 	return (do_fl(ap, params));
+	else if (I_FL(sp) || I_FL2(sp))
+		return (do_fl(ap, params));
 	else if (I_CH(sp))
 		return (do_c(ap, params));
 	return (g_print.error = -1);
