@@ -1,23 +1,31 @@
 NAME = libftprintf.a
+NAME	=	libftprintf.a
 
-SRC = do_char.c do_fl.c do_int.c do_wm.c ft_printf.c get_params.c out.c
+LIBDIR	=	libft
 
-OBJ = ${SRC:.c=.o}
+SRC		=	do_char.c do_fl.c do_int.c do_wm.c ft_printf.c get_params.c out.c
 
-CC = gcc
+LIB		=	$(addprefix $(LIBDIR)/, ft_atoi.c ft_isdigit.c ft_bzero.c ft_memcpy.c ft_strcmp.c ft_strlen.c ft_memset.c)
 
-CFLAGS = -Wall -Werror -Wextra
+OBJ		=	${SRC:.c=.o} ${LIB:.c=.o} 
+
+CC		=	gcc
+
+CFLAGS	=	-Wall -Werror -Wextra
 
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	@ar rc $@ $(OBJ)
+	ar rc $@ $(OBJ)
 	ranlib $@
 
 $(SRCDIR)/%.o: $(SRCDIR)/%.c
-	@$(CC) -I./includes $(CFLAGS) -c -o $@ $<
+$(LIBDIR)/%.o: $(LIBDIR)/%.c
+	$(CC) $(CFLAGS) -I./includes -c -o $@ $<
 
 clean:
+	rm -rf ./libft/*.o
+	rm -rf ./libft/libft.a
 	@rm -f $(OBJ)
 
 fclean: clean

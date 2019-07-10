@@ -6,14 +6,14 @@
 /*   By: rloraine <rloraine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/28 17:49:39 by rloraine          #+#    #+#             */
-/*   Updated: 2019/07/09 18:03:19 by rloraine         ###   ########.fr       */
+/*   Updated: 2019/07/10 15:26:46 by rloraine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
 #define SCROLL(tmp, prms) --(*tmp); --prms->acc
-#define ONE(a) I_I(a) || I_D(a) || I_D(a) || I_X(a)
+#define ONE(a) I_I(a) || I_D(a) || I_D(a) || I_X(a) || I_O(a) || I_BO(a)
 #define TWO(a) I_BX(a) || I_P(a) || I_B(a) || I_BB(a)
 #define CFR(a) ONE(a) || TWO(a)
 #define ELSE_R1 else return(-1);
@@ -68,6 +68,9 @@ void	do_itoa(char **tmp, uintmax_t n, t_format *prms, int base)
 
 int		chk_fl_for(char *tmp, int tof, t_format *params, int zero)
 {
+	if (I_O(params->spec) || I_BO(params->spec))
+		if (params->flag & HASH && *(tmp + 1) != '0')
+			*tmp-- = '0';
 	if (I_D(params->spec) || I_BD(params->spec) || I_I(params->spec))
 	{
 		if (tof)

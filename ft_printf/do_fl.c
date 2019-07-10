@@ -6,18 +6,34 @@
 /*   By: rloraine <rloraine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/04 16:57:01 by rloraine          #+#    #+#             */
-/*   Updated: 2019/07/09 18:02:53 by rloraine         ###   ########.fr       */
+/*   Updated: 2019/07/10 16:52:23 by rloraine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-/*int		do_fl_wm(t_floats ret_union, t_format *params)
+int		do_fl_wm(t_floats ret_union, t_format *params)
 {
-	return (0);
-}*/
 
-int		infnan(t_floats *ret_union, t_format *params)
+	return (0);
+}
+
+char	*load_tmp(t_floats *ret_union, t_format *params)
+{
+	char	*tmp;
+	char	*tmp_end;
+	int		size;
+	int		exp;
+
+	exp = ret_union->bits.exp;
+	size = 65 > ft_abs(exp) ? 72 + params->acc : ft_abs(exp) + params->acc + 7;
+	tmp = (char*)malloc(sizeof(int) * (size + 1));
+	ft_bzero(tmp, sizeof(int) * (size + 1));
+	tmp_end = tmp + size;
+	return (tmp);
+}
+
+int		inf_nan(t_floats *ret_union, t_format *params)
 {
 	if (params->flag & ACC)
 		params->flag ^= ACC;
@@ -38,6 +54,7 @@ int		infnan(t_floats *ret_union, t_format *params)
 int		do_fl(va_list *ap, t_format *params)
 {
 	t_floats	ret_union;
+	char		*tmp;
 
 	if (!(params->acc & ACC))
 		params->acc = 6;
@@ -48,7 +65,7 @@ int		do_fl(va_list *ap, t_format *params)
 	ret_union.bits.exp -= 16383;
 	ret_union.bits.mantis = *(uint64_t*)&ret_union.ret;
 	if (ret_union.bits.exp == 16384)
-		return (infnan(&ret_union, params));	
-	//return (do_fl_wm(ret_union, params));
-	return (0);
+		return (inf_nan(&ret_union, params));
+	tmp = load_tmp(&ret_union, params);
+	return (do_fl_wm(ret_union, params));
 }
