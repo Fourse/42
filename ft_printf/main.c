@@ -6,7 +6,7 @@
 /*   By: rloraine <rloraine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/23 11:29:21 by rloraine          #+#    #+#             */
-/*   Updated: 2019/07/10 17:41:58 by rloraine         ###   ########.fr       */
+/*   Updated: 2019/07/13 16:07:07 by rloraine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -737,5 +737,6 @@ int		main(void)
 // 	while (sq < 33)
 // 		ft_printf("%d) %r\n", sq, sq++);
 // 	return (0);
-	ft_printf("%+d", 0);
+	printf("{%f}{%lf}{%Lf}\n", 1.42, 1.42, 1.42l);
+	ft_printf("{%f}{%lf}{%Lf}\n", 1.42, 1.42, 1.42l);
 }

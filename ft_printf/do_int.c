@@ -6,7 +6,7 @@
 /*   By: rloraine <rloraine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/29 12:52:28 by rloraine          #+#    #+#             */
-/*   Updated: 2019/07/04 16:24:07 by rloraine         ###   ########.fr       */
+/*   Updated: 2019/07/13 15:26:01 by rloraine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ int		do_o(va_list *ap, t_format *params)
 		return (do_wm(va_arg(*ap, size_t), params, 8));
 	else if (params->mod == J)
 		return (do_wm(va_arg(*ap, uintmax_t), params, 8));
-	return (g_print.print = -1);
+	return (g_print.error = -1);
 }
 
 int		do_u(va_list *ap, t_format *params)

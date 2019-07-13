@@ -6,7 +6,7 @@
 /*   By: rloraine <rloraine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/29 14:26:03 by rloraine          #+#    #+#             */
-/*   Updated: 2019/07/10 15:24:53 by rloraine         ###   ########.fr       */
+/*   Updated: 2019/07/13 15:36:32 by rloraine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,7 @@ int		do_c_wm(const wchar_t c, t_format *prms)
 	prms->len = 1;
 	if (!(prms->flag & MINUS) && (int)prms->width > (int)prms->len)
 		char_to_buf((prms->flag & ZERO ? '0' : ' '), prms->width - prms->len);
-	if (prms->spec == 'c' && prms->mod != L)
-		char_to_buf(c, 1);
+	char_to_buf(c, 1);
 	if ((prms->flag & MINUS) && (int)prms->width > (int)prms->len)
 		char_to_buf((prms->flag & ZERO ? '0' : ' '), prms->width - prms->len);
 	return (0);

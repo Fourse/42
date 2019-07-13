@@ -6,7 +6,7 @@
 /*   By: rloraine <rloraine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/02 20:36:56 by rloraine          #+#    #+#             */
-/*   Updated: 2019/07/09 17:51:18 by rloraine         ###   ########.fr       */
+/*   Updated: 2019/07/13 16:12:31 by rloraine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,15 +111,15 @@ typedef enum	e_mod
 
 typedef struct	s_bits
 {
-	unsigned long long		mantis:	64;
-	int						exp:	15;
-	int						sign:	1;
+	unsigned long long		mantis:64;
+	int						exp:15;
+	int						sign:1;
 }				t_bits;
 
 typedef union	u_floats
 {
 	long double				ret;
-	t_bits					bits;
+	short l[5];
 }				t_floats;
 
 typedef struct	s_out
