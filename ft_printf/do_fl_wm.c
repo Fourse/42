@@ -6,7 +6,7 @@
 /*   By: rloraine <rloraine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/20 16:15:42 by rloraine          #+#    #+#             */
-/*   Updated: 2019/07/20 17:30:51 by rloraine         ###   ########.fr       */
+/*   Updated: 2019/07/20 18:27:04 by rloraine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	suff_float(char *tmp, int e, t_format *params)
 {
 	int r;
 
-	*tmp++ = params->spec + (params->spec == 'a' || params->spec) * 15;
+	*tmp++ = params->spec + (I_A(params->spec) || I_BA(params->spec)) * 15;
 	*tmp++ = (e < 0 ? '-' : '+');
 	if (e < 0)
 		e = ~e + 1;

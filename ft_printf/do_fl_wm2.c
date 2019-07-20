@@ -6,13 +6,11 @@
 /*   By: rloraine <rloraine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/20 16:35:52 by rloraine          #+#    #+#             */
-/*   Updated: 2019/07/20 17:38:55 by rloraine         ###   ########.fr       */
+/*   Updated: 2019/07/20 17:57:30 by rloraine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-
-
 
 int		chk_fl_for_fl(char *tmp, int sign, t_format *params)
 {

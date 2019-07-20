@@ -6,7 +6,7 @@
 /*   By: rloraine <rloraine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/02 20:36:56 by rloraine          #+#    #+#             */
-/*   Updated: 2019/07/20 17:48:41 by rloraine         ###   ########.fr       */
+/*   Updated: 2019/07/20 17:58:27 by rloraine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -243,6 +243,6 @@ void			suff_float(char *tmp, int e, t_format *params);
 int				do_fl_wm2(char *tmp, t_format *params, int sign);
 int				chk_fl_for_fl(char *tmp, int sign, t_format *params);
 
+int				do_a_wm(long double n, int sign, t_format *params);
 
-int			do_a_wm(long double n, int sign, t_format *params);
 #endif

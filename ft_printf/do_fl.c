@@ -6,35 +6,33 @@
 /*   By: rloraine <rloraine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/04 16:57:01 by rloraine          #+#    #+#             */
-/*   Updated: 2019/07/20 17:48:52 by rloraine         ###   ########.fr       */
+/*   Updated: 2019/07/20 18:26:14 by rloraine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int			do_fl_wm(char *out, t_format *params, int e, int sign)
+int		do_fl_wm(char *tmp, t_format *params, int e, int sign)
 {
 	char	*dot;
-	int		spec;
 
-	spec = params->spec;
-	dot = out;
+	dot = tmp;
 	while (*dot != '.')
 		++dot;
-	if (spec == 'g' || spec == 'G')
-		spec -= chk_g(e, params);
-	if (spec == 'e' || spec == 'E')
+	if (I_G(params->spec) || I_BG(params->spec))
+		params->spec -= chk_g(e, params);
+	if (I_E(params->spec) || I_BE(params->spec))
 		dot = shift_dot(dot, &e, params);
 	else
 		round_efg(dot, dot + params->acc + 1);
-	if ((params->spec == 'g' || params->spec == 'G') && !(params->flag & HASH))
+	if ((I_G(params->spec) || I_BG(params->spec)) && !(params->flag & HASH))
 		params->acc -= trim_zeros(dot + params->acc);
 	dot += (params->acc ? params->acc + 1 : params->flag & HASH);
-	if (spec == 'e' || spec == 'E')
-		chk_fl_for_fl(dot, e, params);
+	if (I_E(params->spec) || I_BE(params->spec))
+		suff_float(dot, e, params);
 	else
 		*dot = 0;
-	return (do_fl_wm2(out, params, sign));
+	return (do_fl_wm2(tmp, params, sign));
 }
 
 int		get_exp(char *tmp)
