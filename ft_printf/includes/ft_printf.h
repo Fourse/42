@@ -6,7 +6,7 @@
 /*   By: rloraine <rloraine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/02 20:36:56 by rloraine          #+#    #+#             */
-/*   Updated: 2019/07/20 17:58:27 by rloraine         ###   ########.fr       */
+/*   Updated: 2019/07/20 18:57:36 by rloraine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # include <stdarg.h>
 # include <stdint.h>
 # include <wchar.h>
-# include "./libft/libft.h"
+# include "libft.h"
 
 /*
 **	flags
@@ -153,10 +153,14 @@ extern t_out	g_print;
 */
 
 int				ft_printf(const char *format, ...);
-void			check_frmt(const char **format, va_list *ap);
-int				parse_prms(const char **format, va_list *ap, t_format *params);
-int				do_format(va_list *ap, t_format *params);
-void			init_params(t_format *params);
+
+/*
+**		static functs
+**	void		check_frmt(const char **format, va_list *ap);
+**	int			parse_prms(const char **format, va_list *ap, t_format *params);
+**	int			do_format(va_list *ap, t_format *params);
+**	void		init_params(t_format *params);
+*/
 
 /*
 **	out.c
@@ -193,10 +197,14 @@ int				do_b(va_list *ap, t_format *params);
 */
 
 int				do_wm(uintmax_t ret, t_format *params, int base);
-int				init_size_len(t_format *params, char *tmp, int check);
-int				chk_fl_for(char *tmp, int tof, t_format *params, int zero);
-void			do_itoa(char **tmp, uintmax_t n, t_format *prms, int base);
-void			chk_to_print(char *tmp, char *width, t_format *params);
+
+/*
+**		static functs
+**	int			init_size_len(t_format *params, char *tmp, int check);
+**	int			chk_fl_for(char *tmp, int tof, t_format *params, int zero);
+**	void		do_itoa(char **tmp, uintmax_t n, t_format *prms, int base);
+**	void		chk_to_print(char *tmp, char *width, t_format *params);
+*/
 
 /*
 **	do_char.c
@@ -211,20 +219,28 @@ int				do_s_wm(const char *str, t_format *params);
 */
 
 int				do_fl(va_list *ap, t_format *params);
-int				inf_nan(t_floats *ret_union, t_format *params);
-char			*load_tmp(t_floats *ret_union, t_format *params);
-int				get_exp(char *tmp);
-int				do_fl_wm(char *tmp, t_format *params, int e, int sign);
+
+/*
+**		static functs
+**	int			inf_nan(t_floats *ret_union, t_format *params);
+**	char		*load_tmp(t_floats *ret_union, t_format *params);
+**	int			get_exp(char *tmp);
+**	int			do_fl_wm(char *tmp, t_format *params, int e, int sign);
+*/
 
 /*
 **	long_arithmetic.c
 */
 
 void			power_of(char *dot, int exp);
-int				*power_of_2(int exp, int *len_res);
-int				*power_of_5(int exp, int *len_res);
-int				new_size(int **res, int len);
-int				*multiply(int *a, int *b, int size_a, int size_b);
+
+/*
+**		static functs
+**	int			*power_of_2(int exp, int *len_res);
+**	int			*power_of_5(int exp, int *len_res);
+**	int			new_size(int **res, int len);
+**	int			*multiply(int *a, int *b, int size_a, int size_b);
+*/
 
 /*
 **	do_fl_wm.c
@@ -242,6 +258,10 @@ void			suff_float(char *tmp, int e, t_format *params);
 
 int				do_fl_wm2(char *tmp, t_format *params, int sign);
 int				chk_fl_for_fl(char *tmp, int sign, t_format *params);
+
+/*
+**	do_a_wm.c
+*/
 
 int				do_a_wm(long double n, int sign, t_format *params);
 

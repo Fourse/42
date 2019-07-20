@@ -6,13 +6,13 @@
 /*   By: rloraine <rloraine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/04 16:57:01 by rloraine          #+#    #+#             */
-/*   Updated: 2019/07/20 18:26:14 by rloraine         ###   ########.fr       */
+/*   Updated: 2019/07/20 18:58:12 by rloraine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int		do_fl_wm(char *tmp, t_format *params, int e, int sign)
+static int	do_fl_wm(char *tmp, t_format *params, int e, int sign)
 {
 	char	*dot;
 
@@ -35,7 +35,7 @@ int		do_fl_wm(char *tmp, t_format *params, int e, int sign)
 	return (do_fl_wm2(tmp, params, sign));
 }
 
-int		get_exp(char *tmp)
+static int	get_exp(char *tmp)
 {
 	int e;
 
@@ -56,7 +56,7 @@ int		get_exp(char *tmp)
 	return (e);
 }
 
-char	*load_tmp(t_floats *ret_union, t_format *params)
+static char	*load_tmp(t_floats *ret_union, t_format *params)
 {
 	char	*tmp;
 	char	*tmp_end;
@@ -83,7 +83,7 @@ char	*load_tmp(t_floats *ret_union, t_format *params)
 	return (tmp);
 }
 
-int		innan(t_floats *ret_union, t_format *params)
+static int	innan(t_floats *ret_union, t_format *params)
 {
 	if (params->flag & ACC)
 		params->flag ^= ACC;
@@ -101,7 +101,7 @@ int		innan(t_floats *ret_union, t_format *params)
 	return (do_s_wm((params->spec > 96 ? "nan" : "NAN"), params));
 }
 
-int		do_fl(va_list *ap, t_format *params)
+int			do_fl(va_list *ap, t_format *params)
 {
 	t_floats	ret_union;
 	char		*tmp;

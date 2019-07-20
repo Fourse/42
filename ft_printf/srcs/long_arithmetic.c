@@ -6,13 +6,13 @@
 /*   By: rloraine <rloraine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/18 15:56:47 by rloraine          #+#    #+#             */
-/*   Updated: 2019/07/20 17:21:59 by rloraine         ###   ########.fr       */
+/*   Updated: 2019/07/20 18:43:55 by rloraine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int		*multiply(int *a, int *b, int size_a, int size_b)
+static int	*multiply(int *a, int *b, int size_a, int size_b)
 {
 	int *res;
 	int size;
@@ -40,7 +40,7 @@ int		*multiply(int *a, int *b, int size_a, int size_b)
 	return (res);
 }
 
-int		new_size(int **res, int len)
+static int	new_size(int **res, int len)
 {
 	int *new_res;
 	int i;
@@ -62,7 +62,7 @@ int		new_size(int **res, int len)
 	return (j);
 }
 
-int		*power_of_5(int exp, int *len_res)
+static int	*power_of_5(int exp, int *len_res)
 {
 	int *res;
 	int *power;
@@ -89,7 +89,7 @@ int		*power_of_5(int exp, int *len_res)
 	return (res);
 }
 
-int		*power_of_2(int exp, int *len_res)
+static int	*power_of_2(int exp, int *len_res)
 {
 	int *res;
 	int *power;
@@ -116,7 +116,7 @@ int		*power_of_2(int exp, int *len_res)
 	return (res);
 }
 
-void	power_of(char *dot, int exp)
+void		power_of(char *dot, int exp)
 {
 	int *res;
 	int len;

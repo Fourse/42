@@ -6,7 +6,7 @@
 /*   By: rloraine <rloraine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/28 17:49:39 by rloraine          #+#    #+#             */
-/*   Updated: 2019/07/13 16:32:12 by rloraine         ###   ########.fr       */
+/*   Updated: 2019/07/20 18:58:25 by rloraine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@
 #define DO_ZERO(a, b) 	while (a-- > 0) *b-- = '0';
 #define GET_NULL(a, b) a = NULL; b = NULL;
 
-void	chk_to_print(char *tmp, char *width, t_format *params)
+static void	chk_to_print(char *tmp, char *width, t_format *params)
 {
 	if (I_D(params->spec) || I_BD(params->spec) || I_I(params->spec))
 		to_print(tmp, width, params);
@@ -39,7 +39,7 @@ void	chk_to_print(char *tmp, char *width, t_format *params)
 		to_print(tmp, width, params);
 }
 
-void	do_itoa(char **tmp, uintmax_t n, t_format *prms, int base)
+static void	do_itoa(char **tmp, uintmax_t n, t_format *prms, int base)
 {
 	int sp;
 
@@ -68,7 +68,7 @@ void	do_itoa(char **tmp, uintmax_t n, t_format *prms, int base)
 	}
 }
 
-int		chk_fl_for(char *tmp, int tof, t_format *params, int zero)
+static int	chk_fl_for(char *tmp, int tof, t_format *params, int zero)
 {
 	if (I_D(params->spec) || I_BD(params->spec) || I_I(params->spec))
 	{
@@ -97,7 +97,7 @@ int		chk_fl_for(char *tmp, int tof, t_format *params, int zero)
 	}
 }
 
-int		init_size_len(t_format *params, char *tmp, int check)
+static int	init_size_len(t_format *params, char *tmp, int check)
 {
 	if (check == 1)
 	{
@@ -126,7 +126,7 @@ int		init_size_len(t_format *params, char *tmp, int check)
 	return (g_print.print = -1);
 }
 
-int		do_wm(uintmax_t ret, t_format *params, int base)
+int			do_wm(uintmax_t ret, t_format *params, int base)
 {
 	char	*tmp;
 	char	*tmptmp;

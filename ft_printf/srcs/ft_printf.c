@@ -6,7 +6,7 @@
 /*   By: rloraine <rloraine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/20 13:04:00 by rloraine          #+#    #+#             */
-/*   Updated: 2019/07/13 15:41:13 by rloraine         ###   ########.fr       */
+/*   Updated: 2019/07/20 18:58:33 by rloraine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 t_out g_print;
 
-void	init_params(t_format *params)
+static void	init_params(t_format *params)
 {
 	params->flag = 0;
 	params->width = 0;
@@ -23,7 +23,7 @@ void	init_params(t_format *params)
 	params->spec = 0;
 }
 
-int		do_format(va_list *ap, t_format *params)
+static int	do_format(va_list *ap, t_format *params)
 {
 	int sp;
 
@@ -52,7 +52,7 @@ int		do_format(va_list *ap, t_format *params)
 	return (g_print.error = -1);
 }
 
-int		parse_prms(const char **format, va_list *ap, t_format *params)
+static int	parse_prms(const char **format, va_list *ap, t_format *params)
 {
 	while (!CHK_C(**format))
 	{
@@ -76,7 +76,7 @@ int		parse_prms(const char **format, va_list *ap, t_format *params)
 	return (do_format(ap, params));
 }
 
-void	check_frmt(const char **format, va_list *ap)
+static void	check_frmt(const char **format, va_list *ap)
 {
 	t_format params;
 
@@ -103,7 +103,7 @@ void	check_frmt(const char **format, va_list *ap)
 	}
 }
 
-int		ft_printf(const char *format, ...)
+int			ft_printf(const char *format, ...)
 {
 	va_list		ap;
 
