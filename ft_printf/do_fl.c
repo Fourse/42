@@ -6,125 +6,121 @@
 /*   By: rloraine <rloraine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/04 16:57:01 by rloraine          #+#    #+#             */
-/*   Updated: 2019/07/13 16:13:56 by rloraine         ###   ########.fr       */
+/*   Updated: 2019/07/20 17:48:52 by rloraine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-// int		do_fl_wm(char **tmp)
-// {
-// 	char *ttmp;
-
-// 	ttmp = *tmp;
-// 	string_to_buf(ttmp, ttmp + ft_strlen(ttmp));
-// 	return (0);
-// }
-double	ft_calc_modulo(long double nb, int *size)
+int			do_fl_wm(char *out, t_format *params, int e, int sign)
 {
-	double	modulo;
+	char	*dot;
+	int		spec;
 
-	modulo = 1;
-	while ((int)(nb /= 10) != 0 && (*size)++)
-		modulo *= 10;
-	return (modulo);
+	spec = params->spec;
+	dot = out;
+	while (*dot != '.')
+		++dot;
+	if (spec == 'g' || spec == 'G')
+		spec -= chk_g(e, params);
+	if (spec == 'e' || spec == 'E')
+		dot = shift_dot(dot, &e, params);
+	else
+		round_efg(dot, dot + params->acc + 1);
+	if ((params->spec == 'g' || params->spec == 'G') && !(params->flag & HASH))
+		params->acc -= trim_zeros(dot + params->acc);
+	dot += (params->acc ? params->acc + 1 : params->flag & HASH);
+	if (spec == 'e' || spec == 'E')
+		chk_fl_for_fl(dot, e, params);
+	else
+		*dot = 0;
+	return (do_fl_wm2(out, params, sign));
 }
 
-void	ft_handle_integer(long double *nb, char **str, int *i, double modulo)
+int		get_exp(char *tmp)
 {
-	char *s;
+	int e;
 
-	s = *str;
-	while ((int)*nb != 0)
+	e = 0;
+	while (*tmp == '0')
+		++tmp;
+	if (*tmp++ == '.')
 	{
-		s[(*i)++] = (char)((*nb / modulo) + 48);
-		*nb -= (int)(*nb / modulo) * modulo;
-		modulo /= 10;
+		--e;
+		while (*tmp++ == '0')
+			--e;
+		if (!tmp)
+			return (0);
 	}
+	else
+		while (*tmp++ != '.')
+			++e;
+	return (e);
 }
 
-void	ft_handle_decimals(char **str, int *i, long double nb, int precision)
+char	*load_tmp(t_floats *ret_union, t_format *params)
 {
-	int		j;
-	int		tmp;
-	char	*s;
-
-	nb *= 10;
-	j = 0;
-	s = *str;
-	s[(*i)++] = '.';
-	while (j++ < precision)
-	{
-		if ((int)nb == 0)
-		{
-			s[(*i)++] = '0';
-			continue ;
-		}
-		tmp = ((int)nb != 9) ? (int)(nb + 0.01) : (int)nb;
-		s[(*i)++] = (char)(tmp + 48);
-		nb = (nb - tmp) * 10;
-	}
-}
-char	*load_tmp(t_floats *ret_union, t_format *params, char **tmp)
-{
-	int		i;
+	char	*tmp;
+	char	*tmp_end;
+	char	*dot;
 	int		size;
-	char	*str;
-	int		neg;
-	double	modulo;
+	int		exp;
 
-	size = 1;
-	neg = 0;
-	if (ret_union->ret < 0 && size++ && (neg = 1) == 1)
-		ret_union->ret = -ret_union->ret;
-	modulo = ft_calc_modulo(ret_union->ret, &size);
-	size += params->acc;
-	if (!(str = malloc(sizeof(char) * (size + 1))))
-		return (0);
-	i = 0;
-	if (neg)
-		str[i++] = '-';
-	ft_handle_integer(&ret_union->ret, &str, &i, modulo);
-	ft_handle_decimals(&str, &i, ret_union->ret, params->acc);
-	str[--i] = '\0';
-	*tmp = str;
-	return (*tmp);
+	exp = ret_union->bits.exp;
+	size = 65 > ft_abs(exp) ? 72 + params->acc : ft_abs(exp) + 7 + params->acc;
+	tmp = (char*)malloc(sizeof(int) * (size + 1));
+	ft_bzero(tmp, sizeof(int) * (size + 1));
+	tmp_end = tmp + size;
+	dot = tmp + (exp > 0 ? exp : 2);
+	size = 64;
+	while (--size >= 0)
+	{
+		if ((ret_union->bits.mantis >> size) & 1)
+			power_of(dot, exp);
+		--exp;
+	}
+	while (tmp_end >= tmp)
+		*tmp_end-- += '0';
+	*dot = '.';
+	return (tmp);
 }
 
-// int		inf_nan(t_floats *ret_union, t_format *params)
-// {
-// 	if (params->flag & ACC)
-// 		params->flag ^= ACC;
-// 	if (params->flag & ZERO)
-// 		params->flag ^= ZERO;
-// 	if (!(ret_union->bits.mantis << 1))
-// 	{
-// 		if (ret_union->bits.sign)
-// 			return (do_s_wm((params->spec > 96 ? "-inf" : "-INF"), params));
-// 		else if (params->flag & PLUS)
-// 			return (do_s_wm((params->spec > 96 ? "+inf" : "+INF"), params));
-// 		else if (params->flag & SPACE)
-// 			return (do_s_wm((params->spec > 96 ? " inf" : " INF"), params));
-// 	}
-// 	return (do_s_wm((params->spec > 96 ? "nan" : "NAN"), params));
-// }
+int		innan(t_floats *ret_union, t_format *params)
+{
+	if (params->flag & ACC)
+		params->flag ^= ACC;
+	if (params->flag & ZERO)
+		params->flag ^= ZERO;
+	if (!(ret_union->bits.exp << 1))
+	{
+		if (ret_union->bits.sign)
+			return (do_s_wm((params->spec > 96 ? "-inf" : "-INF"), params));
+		else if (params->flag & PLUS)
+			return (do_s_wm((params->spec > 96 ? "+inf" : "+INF"), params));
+		else if (params->flag & SPACE)
+			return (do_s_wm((params->spec > 96 ? " inf" : " INF"), params));
+	}
+	return (do_s_wm((params->spec > 96 ? "nan" : "NAN"), params));
+}
 
 int		do_fl(va_list *ap, t_format *params)
 {
 	t_floats	ret_union;
-	t_bits bits;
-	char		*tmp = NULL;
+	char		*tmp;
+	int			e;
 
 	if (!(params->acc & ACC))
-		params->acc = 7;
+		params->acc = 6;
 	if (params->flag & LONGD)
 		ret_union.ret = va_arg(*ap, long double);
 	else
 		ret_union.ret = va_arg(*ap, double);
-	bits.exp = ret_union.l[4] - 16383;
-	// if (bits.exp == 16384)
-	// 	return (inf_nan(&ret_union, params));
-	tmp = load_tmp(&ret_union, params, &tmp);
-	string_to_buf(tmp, tmp + ft_strlen(tmp));
-	return (0);
+	ret_union.bits.exp -= 16383;
+	if (ret_union.bits.exp == 16384)
+		return (innan(&ret_union, params));
+	if (I_A(params->spec) || I_BA(params->spec))
+		return (do_a_wm(ret_union.ret, ret_union.bits.sign, params));
+	tmp = load_tmp(&ret_union, params);
+	e = get_exp(tmp);
+	return (do_fl_wm(tmp, params, e, ret_union.bits.sign));
 }

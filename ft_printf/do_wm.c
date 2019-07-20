@@ -6,7 +6,7 @@
 /*   By: rloraine <rloraine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/28 17:49:39 by rloraine          #+#    #+#             */
-/*   Updated: 2019/07/13 15:34:47 by rloraine         ###   ########.fr       */
+/*   Updated: 2019/07/13 16:32:12 by rloraine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@
 #define NOTU(a) (I_D(a) || I_BD(a) || I_I(a))
 #define SIB(a) I_X(a) || I_BX(a) || I_P(a) || I_B(a) || I_BB(a)
 #define BIT(a) if (I_B(a) || I_BB(a)) return (1);
+#define DO_ZERO(a, b) 	while (a-- > 0) *b-- = '0';
+#define GET_NULL(a, b) a = NULL; b = NULL;
 
 void	chk_to_print(char *tmp, char *width, t_format *params)
 {
@@ -131,24 +133,20 @@ int		do_wm(uintmax_t ret, t_format *params, int base)
 	char	*width;
 	int		size;
 
-	tmp = NULL;
-	if (I_D(params->spec) || I_BD(params->spec) || I_I(params->spec))
-		ret = (intmax_t)ret;
+	GET_NULL(tmp, width);
 	size = init_size_len(params, tmp, 1);
 	if (!(tmp = (char*)malloc(sizeof(char) * size + 1)))
 		return (g_print.error = -1);
 	EQU(tmptmp, tmp, size);
 	if (ret)
 		do_itoa(&tmp, ret, params, base);
-	while (params->acc-- > 0)
-		*tmp-- = '0';
+	DO_ZERO(params->acc, tmp);
 	if (I_O(params->spec) || I_BO(params->spec))
 		if (params->flag & HASH && *(tmp + 1) != '0')
 			*tmp-- = '0';
 	if (CFR(params->spec))
 		tmp -= chk_fl_for(tmp, ((intmax_t)ret < 0), params, (!ret));
 	params->len = init_size_len(params, tmp, 2);
-	width = NULL;
 	if ((int)params->width > (int)params->len)
 		if (!(width = make_width(params)))
 			return (g_print.error = -1);

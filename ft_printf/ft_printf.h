@@ -6,7 +6,7 @@
 /*   By: rloraine <rloraine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/02 20:36:56 by rloraine          #+#    #+#             */
-/*   Updated: 2019/07/13 16:12:31 by rloraine         ###   ########.fr       */
+/*   Updated: 2019/07/20 17:48:41 by rloraine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@
 # define IS_L(s) s == 'l'
 # define IS_Z(s) s == 'z'
 # define IS_J(s) s == 'j'
+# define IS_BL(s) s == 'L'
 
 /*
 **	type of conversion
@@ -87,7 +88,7 @@
 # define CHK_F(s) (IS_MI(s) O IS_PL(s) O IS_SP(s) O IS_HA(s) O IS_NU(s))
 # define CHK_W(s) (ft_isdigit(s))
 # define CHK_A(s) s == '.'
-# define CHK_M(s) (IS_H(s) O IS_L(s) O IS_Z(s) O IS_J(s))
+# define CHK_M(s) (IS_H(s) O IS_L(s) O IS_Z(s) O IS_J(s) O IS_BL(s))
 # define CHK_C(s) (I_IN(s) O I_816(s) O I_FL(s) O I_FL2(s) O I_CH(s) O I_GA(s))
 
 # define BUFF_SIZE 128
@@ -119,7 +120,7 @@ typedef struct	s_bits
 typedef union	u_floats
 {
 	long double				ret;
-	short l[5];
+	t_bits					bits;
 }				t_floats;
 
 typedef struct	s_out
@@ -210,6 +211,38 @@ int				do_s_wm(const char *str, t_format *params);
 */
 
 int				do_fl(va_list *ap, t_format *params);
-int				infnan(t_floats *ret_union, t_format *params);
+int				inf_nan(t_floats *ret_union, t_format *params);
+char			*load_tmp(t_floats *ret_union, t_format *params);
+int				get_exp(char *tmp);
+int				do_fl_wm(char *tmp, t_format *params, int e, int sign);
 
+/*
+**	long_arithmetic.c
+*/
+
+void			power_of(char *dot, int exp);
+int				*power_of_2(int exp, int *len_res);
+int				*power_of_5(int exp, int *len_res);
+int				new_size(int **res, int len);
+int				*multiply(int *a, int *b, int size_a, int size_b);
+
+/*
+**	do_fl_wm.c
+*/
+
+int				chk_g(int e, t_format *params);
+char			*shift_dot(char *dot, int *e, t_format *params);
+void			round_efg(char *dot, char *end);
+int				trim_zeros(char *tmp);
+void			suff_float(char *tmp, int e, t_format *params);
+
+/*
+**	do_fl_wm2.c
+*/
+
+int				do_fl_wm2(char *tmp, t_format *params, int sign);
+int				chk_fl_for_fl(char *tmp, int sign, t_format *params);
+
+
+int			do_a_wm(long double n, int sign, t_format *params);
 #endif

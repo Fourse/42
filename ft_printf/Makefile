@@ -3,9 +3,9 @@ NAME	=	libftprintf.a
 
 LIBDIR	=	libft
 
-SRC		=	do_char.c do_fl.c do_int.c do_wm.c ft_printf.c get_params.c out.c
+SRC		=	do_fl.c do_char.c do_int.c do_wm.c ft_printf.c get_params.c out.c long_arithmetic.c do_fl_wm.c do_fl_wm2.c do_a_wm.c
 
-LIB		=	$(addprefix $(LIBDIR)/, ft_atoi.c ft_isdigit.c ft_bzero.c ft_memcpy.c ft_strcmp.c ft_strlen.c ft_memset.c)
+LIB		=	$(addprefix $(LIBDIR)/, ft_atoi.c ft_isdigit.c ft_bzero.c ft_memcpy.c ft_strcmp.c ft_strlen.c ft_memset.c ft_abs.c)
 
 OBJ		=	${SRC:.c=.o} ${LIB:.c=.o} 
 
