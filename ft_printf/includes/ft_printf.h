@@ -6,7 +6,7 @@
 /*   By: rloraine <rloraine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/02 20:36:56 by rloraine          #+#    #+#             */
-/*   Updated: 2019/07/20 18:57:36 by rloraine         ###   ########.fr       */
+/*   Updated: 2019/07/21 17:26:10 by rloraine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,15 +91,15 @@
 # define CHK_M(s) (IS_H(s) O IS_L(s) O IS_Z(s) O IS_J(s) O IS_BL(s))
 # define CHK_C(s) (I_IN(s) O I_816(s) O I_FL(s) O I_FL2(s) O I_CH(s) O I_GA(s))
 
-# define BUFF_SIZE 128
+# define BUFF_SIZE	128
 
-# define HASH 1
-# define MINUS 2
-# define PLUS 4
-# define SPACE 8
-# define ZERO 16
-# define ACC 32
-# define LONGD 64
+# define HASH		1
+# define MINUS		2
+# define PLUS		4
+# define SPACE		8
+# define ZERO		16
+# define ACC		32
+# define LONGD		64
 
 /*
 **	structures/enum/union
