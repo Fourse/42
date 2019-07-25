@@ -6,7 +6,7 @@
 /*   By: rloraine <rloraine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/22 13:55:20 by rloraine          #+#    #+#             */
-/*   Updated: 2019/07/25 15:09:08 by rloraine         ###   ########.fr       */
+/*   Updated: 2019/07/25 17:35:21 by rloraine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ t_stack	*fill_stack(t_stack **stack, int **arr, int argc)
 		tmp = (*stack);
 		(*stack) = (*stack)->next;
 	}
-	(*stack)->next = NULL;
+	(*stack) = NULL;
 	return (a);
 }
 
@@ -52,15 +52,11 @@ void	fill_arr(int **arr, int argc, char **argv)
 
 int		main(int argc, char **argv)
 {
-	t_stack *a;
+	t_stack	*a;
 	int		*arr;
+	long	comm;
 
 	fill_arr(&arr, argc, argv);
 	a = fill_stack(&a, &arr, argc);
-	while (a->next)
-	{
-		ft_printf("%d\n", a->ret);
-		a = a->next;
-	}
 	return (0);
 }
