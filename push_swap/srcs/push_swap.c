@@ -6,7 +6,7 @@
 /*   By: rloraine <rloraine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/22 13:55:20 by rloraine          #+#    #+#             */
-/*   Updated: 2019/07/24 18:54:09 by rloraine         ###   ########.fr       */
+/*   Updated: 2019/07/25 15:09:08 by rloraine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,19 +19,20 @@ t_stack	*fill_stack(t_stack **stack, int **arr, int argc)
 	int		i;
 
 	i = -1;
+	if (!((*stack) = (t_stack*)malloc(sizeof(t_stack))))
+		exit(0);
 	a = *stack;
 	tmp = NULL;
-	while(++i < argc)
+	while (++i < argc - 1)
 	{
-		if (!((*stack) = (t_stack*)malloc(sizeof(t_stack))))
+		if (!((*stack)->next = (t_stack*)malloc(sizeof(t_stack))))
 			exit(0);
 		(*stack)->prev = tmp;
 		(*stack)->ret = (*arr)[i];
 		tmp = (*stack);
-		(*stack)->next = (*stack)->next;
 		(*stack) = (*stack)->next;
 	}
-	(*stack) = NULL;
+	(*stack)->next = NULL;
 	return (a);
 }
 
@@ -44,7 +45,7 @@ void	fill_arr(int **arr, int argc, char **argv)
 	n = 0;
 	if (!((*arr) = (int*)malloc(sizeof(int) * --argc)))
 		exit(0);
-	ft_bzero((*arr), sizeof(int) * argc + 1);
+	ft_bzero((*arr), sizeof(int) * argc);
 	while (argv[++n])
 		(*arr)[i++] = ft_atoi(argv[n]);
 }
@@ -56,7 +57,7 @@ int		main(int argc, char **argv)
 
 	fill_arr(&arr, argc, argv);
 	a = fill_stack(&a, &arr, argc);
-	while (a)
+	while (a->next)
 	{
 		ft_printf("%d\n", a->ret);
 		a = a->next;
