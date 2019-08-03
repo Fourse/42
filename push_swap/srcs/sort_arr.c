@@ -6,7 +6,7 @@
 /*   By: rloraine <rloraine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/27 14:15:25 by rloraine          #+#    #+#             */
-/*   Updated: 2019/08/03 17:13:25 by rloraine         ###   ########.fr       */
+/*   Updated: 2019/08/03 17:45:39 by rloraine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,8 @@ int		get_mid(int *start, int *end, int *mid)
 	*mid = *(start + (end - start) / 2);
 	if ((*mid > *end && *end > *start) || (*mid < *end && *end < *start))
 		*mid = *end;
-	else if ((*mid < *start && *start < *end) || (*mid < *start && *start < *end))
+	else if ((*mid < *start && *start < *end)\
+	|| (*mid < *start && *start < *end))
 		*mid = *end;
 	return (1);
 }
