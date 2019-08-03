@@ -6,7 +6,7 @@
 /*   By: rloraine <rloraine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/22 13:55:20 by rloraine          #+#    #+#             */
-/*   Updated: 2019/08/03 18:44:04 by rloraine         ###   ########.fr       */
+/*   Updated: 2019/08/03 19:26:26 by rloraine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,6 @@ int		main(int argc, char **argv)
 	t_stack	*a;
 	int		*arr;
 	int		size;
-	long	comm;
 
 	fill_arr(&arr, argc, argv, &size);
 	a = fill_stack(&a, &arr, size);
