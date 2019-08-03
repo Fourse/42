@@ -6,7 +6,7 @@
 /*   By: rloraine <rloraine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/22 13:55:20 by rloraine          #+#    #+#             */
-/*   Updated: 2019/07/25 17:35:21 by rloraine         ###   ########.fr       */
+/*   Updated: 2019/08/03 14:59:47 by rloraine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,12 +31,29 @@ t_stack	*fill_stack(t_stack **stack, int **arr, int argc)
 		(*stack)->ret = (*arr)[i];
 		tmp = (*stack);
 		(*stack) = (*stack)->next;
+		
 	}
-	(*stack) = NULL;
+	(*stack) = a;
+	(*stack)->prev = tmp;
+	(*stack)->prev->next = a;
 	return (a);
 }
 
-void	fill_arr(int **arr, int argc, char **argv)
+void	get_size(int **arr, char **argv, int *size)
+{
+	char	**tmp;
+	int		n;
+	int		i;
+
+	tmp = ft_strsplit(argv[1], ' ');
+	n = -1;
+	i = 0;
+	while (tmp[++n])
+		(*arr)[i++] = ft_atoi(tmp[n]);
+	*size = n - 1;
+}
+
+int		fill_arr(int **arr, int argc, char **argv, int *size)
 {
 	int i;
 	int n;
@@ -46,17 +63,28 @@ void	fill_arr(int **arr, int argc, char **argv)
 	if (!((*arr) = (int*)malloc(sizeof(int) * --argc)))
 		exit(0);
 	ft_bzero((*arr), sizeof(int) * argc);
-	while (argv[++n])
-		(*arr)[i++] = ft_atoi(argv[n]);
+	if (argc == 2)
+		get_size(arr, argv, size);
+	else
+	{
+		while (argv[++n])
+		{
+			(*arr)[i++] = ft_atoi(argv[n]);
+		}
+		*size = n - 1;
+	}
+	return (*size);
 }
 
 int		main(int argc, char **argv)
 {
 	t_stack	*a;
 	int		*arr;
+	int		size;
 	long	comm;
 
-	fill_arr(&arr, argc, argv);
+	fill_arr(&arr, argc, argv, &size);
+	sort_arr(arr, arr + (size - 1));
 	a = fill_stack(&a, &arr, argc);
 	return (0);
 }

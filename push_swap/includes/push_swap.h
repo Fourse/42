@@ -6,7 +6,7 @@
 /*   By: rloraine <rloraine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/22 13:55:30 by rloraine          #+#    #+#             */
-/*   Updated: 2019/07/25 17:35:19 by rloraine         ###   ########.fr       */
+/*   Updated: 2019/08/03 13:03:26 by rloraine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 # define PUSH_SWAP_H
 
 # include "../ft_printf/includes/ft_printf.h"
+# include "../srcs/libft/libft.h"
+# include <limits.h>
 
 /*
 **	macro
@@ -38,6 +40,7 @@
 typedef struct	s_stack
 {
 	int				ret;
+	int				num;
 	struct s_stack	*prev;
 	struct s_stack	*next;
 }				t_stack;
@@ -50,7 +53,8 @@ typedef struct	s_stack
 **	push_swap.c
 */
 
-void			fill_arr(int **arr, int argc, char **argv);
+int				fill_arr(int **arr, int argc, char **argv, int *size);
+void			get_size(int **arr, char **argv, int *size);
 t_stack			*fill_stack(t_stack **stack, int **arr, int argc);
 
 /*
@@ -61,5 +65,11 @@ void			push(t_stack **take, t_stack **put);
 void			swap(t_stack **stack);
 void			rotate(t_stack **stack);
 void			rev_rotate(t_stack **stack);
+
+/*
+**	sort.c
+*/
+
+void			sort(t_stack **a, int *size, int *comm);
 
 #endif
