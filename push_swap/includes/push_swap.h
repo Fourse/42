@@ -6,7 +6,7 @@
 /*   By: rloraine <rloraine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/22 13:55:30 by rloraine          #+#    #+#             */
-/*   Updated: 2019/08/03 17:45:09 by rloraine         ###   ########.fr       */
+/*   Updated: 2019/08/03 18:13:18 by rloraine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ typedef struct	s_stack
 **	push_swap.c
 */
 
-int				fill_arr(int **arr, int argc, char **argv, int *size);
+void			fill_arr(int **arr, int argc, char **argv, int *size);
 //void			get_size(int **arr, char **argv, int *size);
 t_stack			*fill_stack(t_stack **stack, int **arr, int argc);
 t_stack			*get_num_in_stack(t_stack **stack, int **arr, int size);
