@@ -6,7 +6,7 @@
 /*   By: rloraine <rloraine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/22 13:55:30 by rloraine          #+#    #+#             */
-/*   Updated: 2019/08/03 13:03:26 by rloraine         ###   ########.fr       */
+/*   Updated: 2019/08/03 17:00:57 by rloraine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,9 +67,10 @@ void			rotate(t_stack **stack);
 void			rev_rotate(t_stack **stack);
 
 /*
-**	sort.c
+**	sort_arr.c
 */
 
-void			sort(t_stack **a, int *size, int *comm);
+void			sort_arr(int *start, int *end);
+int				get_mid(int *start, int *end, int *mid);
 
 #endif

@@ -1,7 +1,7 @@
 NAME = a.out
 
 SRC_PATH = srcs/
-SRC = push_swap.c commands.c libft/ft_strsplit.c libft/ft_strnew.c libft/ft_isword.c libft/ft_wsize.c
+SRC = push_swap.c commands.c sort_arr.c libft/ft_strsplit.c libft/ft_strnew.c libft/ft_isword.c libft/ft_wsize.c
 SRC_PL_PATH = $(addprefix $(SRC_PATH), $(SRC))
 
 INCLUDE_PATH = includes/
