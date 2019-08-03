@@ -6,7 +6,7 @@
 /*   By: rloraine <rloraine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/22 13:55:30 by rloraine          #+#    #+#             */
-/*   Updated: 2019/08/03 18:13:18 by rloraine         ###   ########.fr       */
+/*   Updated: 2019/08/03 18:50:05 by rloraine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,28 +49,42 @@ typedef struct	s_stack
 */
 
 /*
+**	error.c
+*/
+
+void			error(void);
+
+/*
 **	push_swap.c
 */
 
-void			fill_arr(int **arr, int argc, char **argv, int *size);
-//void			get_size(int **arr, char **argv, int *size);
 t_stack			*fill_stack(t_stack **stack, int **arr, int argc);
 t_stack			*get_num_in_stack(t_stack **stack, int **arr, int size);
-
-/*
-**	commands.c
-*/
-
-void			push(t_stack **take, t_stack **put);
-void			swap(t_stack **stack);
-void			rotate(t_stack **stack);
-void			rev_rotate(t_stack **stack);
+int				stack_is_sorted(t_stack *stack, int size);
 
 /*
 **	sort_arr.c
 */
 
+void			fill_arr(int **arr, int argc, char **argv, int *size);
+//void			get_size(int **arr, char **argv, int *size);
 void			sort_arr(int *start, int *end);
 int				get_mid(int *start, int *end, int *mid);
+
+/*
+**	commands.c
+*/
+
+void			push(t_stack **take, t_stack **put, long *comm, int number);
+void			swap(t_stack **stack, long *comm, int number);
+void			rotate(t_stack **stack, long *comm, int number);
+void			rev_rotate(t_stack **stack, long *comm, int number);
+
+/*
+**	sorting.c
+*/
+
+void			sort(t_stack **a, int size, long *comm);
+void			sort_3(t_stack **a, int size, long *comm);
 
 #endif

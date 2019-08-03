@@ -6,16 +6,22 @@
 /*   By: rloraine <rloraine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/22 13:55:20 by rloraine          #+#    #+#             */
-/*   Updated: 2019/08/03 18:13:28 by rloraine         ###   ########.fr       */
+/*   Updated: 2019/08/03 18:44:04 by rloraine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	error(void)
+int		stack_is_sorted(t_stack *stack, int size)
 {
-	ft_printf("error\n");
-	exit(0);
+	while (stack->num < stack->next->num)
+	{
+		stack = stack->next;
+		--size;
+	}
+	if (size != 1)
+		return (0);
+	return (1);
 }
 
 t_stack	*get_num_in_stack(t_stack **stack, int **arr, int size)
@@ -72,42 +78,6 @@ t_stack	*fill_stack(t_stack **stack, int **arr, int size)
 	return (a);
 }
 
-// void	get_size(int **arr, char **argv, int *size)
-// {
-// 	char	**tmp;
-// 	int		n;
-// 	int		i;
-
-// 	tmp = ft_strsplit(argv[1], ' ');
-// 	n = -1;
-// 	i = 0;
-// 	while (tmp[++n])
-// 		(*arr)[i++] = ft_atoi(tmp[n]);
-// 	*size = n - 1;
-// }
-
-void	fill_arr(int **arr, int argc, char **argv, int *size)
-{
-	int i;
-	int n;
-
-	i = 0;
-	n = 0;
-	if (!((*arr) = (int*)malloc(sizeof(int) * --argc)))
-		error();
-	ft_bzero((*arr), sizeof(int) * argc);
-	// if (argc == 2)
-	// 	get_size(arr, argv, size);
-	// else
-	// {
-		while (argv[++n])
-		{
-			(*arr)[i++] = ft_atoi(argv[n]);
-		}
-		*size = n - 1;
-	// }
-}
-
 int		main(int argc, char **argv)
 {
 	t_stack	*a;
@@ -119,5 +89,9 @@ int		main(int argc, char **argv)
 	a = fill_stack(&a, &arr, size);
 	sort_arr(arr, arr + size - 1);
 	a = get_num_in_stack(&a, &arr, size);
+	if (!stack_is_sorted(a, size))
+	{
+		sort(&a, size, &comm);
+	}
 	return (0);
 }
