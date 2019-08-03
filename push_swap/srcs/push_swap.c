@@ -6,13 +6,41 @@
 /*   By: rloraine <rloraine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/22 13:55:20 by rloraine          #+#    #+#             */
-/*   Updated: 2019/08/03 17:11:21 by rloraine         ###   ########.fr       */
+/*   Updated: 2019/08/03 17:37:16 by rloraine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-t_stack	*fill_stack(t_stack **stack, int **arr, int argc)
+t_stack	*get_num_in_stack(t_stack **stack, int **arr, int size)
+{
+	t_stack *a;
+	int		i;
+	int		count;
+
+	a = *stack;
+	count = 0;
+	while (a)
+	{
+		i = 0;
+		if (count == size)
+			break ;
+		while (i < size)
+		{
+			if ((*stack)->ret == (*arr)[i])
+			{
+				(*stack)->num = i + 1;
+				(*stack) = (*stack)->next;
+				++count;
+				break ;
+			}
+			i++;
+		}
+	}
+	return (a);
+}
+
+t_stack	*fill_stack(t_stack **stack, int **arr, int size)
 {
 	t_stack	*tmp;
 	t_stack	*a;
@@ -23,7 +51,7 @@ t_stack	*fill_stack(t_stack **stack, int **arr, int argc)
 		exit(0);
 	a = *stack;
 	tmp = NULL;
-	while (++i < argc - 1)
+	while (++i < size)
 	{
 		if (!((*stack)->next = (t_stack*)malloc(sizeof(t_stack))))
 			exit(0);
@@ -83,10 +111,8 @@ int		main(int argc, char **argv)
 	long	comm;
 
 	fill_arr(&arr, argc, argv, &size);
-	a = fill_stack(&a, &arr, argc);
+	a = fill_stack(&a, &arr, size);
 	sort_arr(arr, arr + size - 1);
-	int i = 0;
-	while (i < size)
-		ft_printf("%d\n", arr[i++]);
+	a = get_num_in_stack(&a, &arr, size);
 	return (0);
 }
