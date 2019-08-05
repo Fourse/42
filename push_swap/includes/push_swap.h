@@ -6,7 +6,7 @@
 /*   By: rloraine <rloraine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/22 13:55:30 by rloraine          #+#    #+#             */
-/*   Updated: 2019/08/05 14:23:55 by rloraine         ###   ########.fr       */
+/*   Updated: 2019/08/05 17:06:54 by rloraine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include "../ft_printf/includes/ft_printf.h"
 # include "../srcs/libft/libft.h"
+# include "limits.h"
 
 /*
 **	macro

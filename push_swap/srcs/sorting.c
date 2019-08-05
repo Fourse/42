@@ -6,17 +6,37 @@
 /*   By: rloraine <rloraine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/03 18:25:53 by rloraine          #+#    #+#             */
-/*   Updated: 2019/08/05 16:43:38 by rloraine         ###   ########.fr       */
+/*   Updated: 2019/08/05 17:55:25 by rloraine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
+void	find_min_max(t_stack **a, int size, int *min, int *max)
+{
+	int i;
+
+	i = -1;
+	while (++i < size)
+	{
+		if (*max < (*a)->num)
+			*max = (*a)->num;
+		if (*min > (*a)->num)
+			*min = (*a)->num;
+		(*a) = (*a)->next;
+	}
+}
+
 void	sort_100(t_stack **a, t_stack **b, int size, long *comm)
 {
+	int min;
+	int max;
+
+	min = INT_MAX;
+	max = INT_MIN;
 	while (stack_size(*a) > 3)
 	{
-		push(a, b, comm, 2);
+		find_min_max(a, size, &min, &max);
 	}
 }
 
