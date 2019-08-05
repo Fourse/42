@@ -6,7 +6,7 @@
 /*   By: rloraine <rloraine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/03 18:25:53 by rloraine          #+#    #+#             */
-/*   Updated: 2019/08/05 17:55:25 by rloraine         ###   ########.fr       */
+/*   Updated: 2019/08/05 18:38:03 by rloraine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,14 @@ void	sort_100(t_stack **a, t_stack **b, int size, long *comm)
 	{
 		find_min_max(a, size, &min, &max);
 	}
+}
+
+void	sort_5(t_stack **a, t_stack **b, int size, long *comm)
+{
+	int cur;
+
+	cur = size;
+
 }
 
 void	sort_3(t_stack **a, int size, long *comm)
@@ -74,6 +82,8 @@ void	sort(t_stack **a, int size, long *comm)
 		swap(a, comm, 1);
 	else if (size == 3)
 		sort_3(a, size, comm);
+	else if (size <= 5)
+		sort_5(a, b, size, comm);
 	else if (size <= 100)
 		sort_100(a, &b, size, comm);
 }
