@@ -6,11 +6,31 @@
 /*   By: rloraine <rloraine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/22 13:55:20 by rloraine          #+#    #+#             */
-/*   Updated: 2019/08/03 19:26:26 by rloraine         ###   ########.fr       */
+/*   Updated: 2019/08/05 14:23:36 by rloraine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+int		stack_size(t_stack *stack)
+{
+	t_stack	*head;
+	int		size;
+
+	size = 0;
+	if (stack)
+	{
+		++size;
+		head = stack;
+		stack = stack->next;
+		while (stack != head)
+		{
+			++size;
+			stack = stack->next;
+		}
+	}
+	return (size);
+}
 
 int		stack_is_sorted(t_stack *stack, int size)
 {
@@ -83,6 +103,7 @@ int		main(int argc, char **argv)
 	t_stack	*a;
 	int		*arr;
 	int		size;
+	long	comm;
 
 	fill_arr(&arr, argc, argv, &size);
 	a = fill_stack(&a, &arr, size);

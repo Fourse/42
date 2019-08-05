@@ -6,7 +6,7 @@
 /*   By: rloraine <rloraine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/03 18:25:12 by rloraine          #+#    #+#             */
-/*   Updated: 2019/08/03 18:25:23 by rloraine         ###   ########.fr       */
+/*   Updated: 2019/08/05 14:14:13 by rloraine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,6 @@
 
 void	error(void)
 {
-	ft_printf("error\n");
+	ft_printf("Error\n");
 	exit(0);
 }

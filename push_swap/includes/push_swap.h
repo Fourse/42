@@ -6,7 +6,7 @@
 /*   By: rloraine <rloraine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/22 13:55:30 by rloraine          #+#    #+#             */
-/*   Updated: 2019/08/03 18:50:05 by rloraine         ###   ########.fr       */
+/*   Updated: 2019/08/05 14:23:55 by rloraine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ void			error(void);
 t_stack			*fill_stack(t_stack **stack, int **arr, int argc);
 t_stack			*get_num_in_stack(t_stack **stack, int **arr, int size);
 int				stack_is_sorted(t_stack *stack, int size);
+int				stack_size(t_stack *stack);
 
 /*
 **	sort_arr.c

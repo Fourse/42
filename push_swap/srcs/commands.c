@@ -6,7 +6,7 @@
 /*   By: rloraine <rloraine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/25 17:09:15 by rloraine          #+#    #+#             */
-/*   Updated: 2019/08/03 19:27:47 by rloraine         ###   ########.fr       */
+/*   Updated: 2019/08/05 13:44:28 by rloraine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,9 +50,9 @@ void	swap(t_stack **stack, long *comm, int number)
 
 void	push(t_stack **take, t_stack **put, long *comm, int number)
 {
-	number == 1 ? ft_printf("pa\n") : ft_printf("pb\n");
 	t_stack *tmp;
 
+	number == 1 ? ft_printf("pa\n") : ft_printf("pb\n");
 	if ((*take))
 	{
 		tmp = (*take) == (*take)->next ? NULL : (*take)->next;
