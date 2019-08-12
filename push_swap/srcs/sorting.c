@@ -6,11 +6,44 @@
 /*   By: rloraine <rloraine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/03 18:25:53 by rloraine          #+#    #+#             */
-/*   Updated: 2019/08/05 18:38:03 by rloraine         ###   ########.fr       */
+/*   Updated: 2019/08/12 20:07:23 by rloraine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+void	direction(t_stack *stack, int *count_next, int *count_prev, int max)
+{
+	t_stack *tmp;
+
+	tmp = stack;
+	while (tmp->num != max - 3)
+	{
+		tmp = tmp->next;
+		++count_next;
+	}
+	tmp = stack;
+	while (tmp->num != max - 3)
+	{
+		tmp = tmp->prev;
+		++count_prev;
+	}
+}
+
+void	find_rot_or_revrot(t_stack **a, t_stack **b, long *comm, int max)
+{
+	t_stack	*tmp;
+	int		count_next;
+	int		count_prev;
+
+	if ((*a)->num == max - 3)
+	{
+		push(a, b, comm, 2);
+		return ;
+	}
+	direction(*a, &count_next, &count_prev, max);
+	count_prev < count_next ? rev_rotate(a, comm, 1) : rotate(a, comm, 1);
+}
 
 void	find_min_max(t_stack **a, int size, int *min, int *max)
 {
@@ -32,20 +65,39 @@ void	sort_100(t_stack **a, t_stack **b, int size, long *comm)
 	int min;
 	int max;
 
-	min = INT_MAX;
-	max = INT_MIN;
-	while (stack_size(*a) > 3)
+	// if (size == 2 && (*a)->num > (*a)->next->num)
+	// 	swap(a, comm, 1);
+	if (size == 3)
+		sort_3(a, size, comm);
+	else
 	{
 		find_min_max(a, size, &min, &max);
+		find_rot_or_revrot(a, b, comm, max);
+		
 	}
 }
 
 void	sort_5(t_stack **a, t_stack **b, int size, long *comm)
 {
-	int cur;
-
-	cur = size;
-
+	while (stack_size(*a) > 3)
+	{
+		if (stack_is_sorted(*a, size))
+			return ;
+		else if ((*a)->num < size - 2)
+			push(a, b, comm, 2);
+		else if ((*a)->prev->num < size - 2)
+			rev_rotate(a, comm, 1);
+		else
+			rotate(a, comm, 1);
+	}
+	sort_3(a, size, comm);
+	if (size == 5)
+	{
+		if ((*b)->num < (*b)->next->num)
+			swap(b, comm, 2);
+		push(b, a, comm, 1);
+	}
+	push(b, a, comm, 1);
 }
 
 void	sort_3(t_stack **a, int size, long *comm)
@@ -83,7 +135,7 @@ void	sort(t_stack **a, int size, long *comm)
 	else if (size == 3)
 		sort_3(a, size, comm);
 	else if (size <= 5)
-		sort_5(a, b, size, comm);
+		sort_5(a, &b, size, comm);
 	else if (size <= 100)
 		sort_100(a, &b, size, comm);
 }
