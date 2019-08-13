@@ -6,7 +6,7 @@
 /*   By: rloraine <rloraine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/03 18:25:53 by rloraine          #+#    #+#             */
-/*   Updated: 2019/08/13 19:45:56 by rloraine         ###   ########.fr       */
+/*   Updated: 2019/08/13 19:50:32 by rloraine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,8 +111,6 @@ void	sort_100(t_stack **a, t_stack **b, int size, long *comm)
 		detect_b(*a, *b, &count_next, &count_prev);
 		while ((*b)->num != (*a)->num - 1)
 			count_prev < count_next ? rev_rotate(b, comm, 2) : rotate(b, comm, 2);
-		// while ((*b)->num != (*a)->num - 1)
-		// 	rotate(b, comm, 2);
 		push(b, a, comm, 1);
 	}
 }
