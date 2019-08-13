@@ -6,7 +6,7 @@
 /*   By: rloraine <rloraine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/25 17:09:15 by rloraine          #+#    #+#             */
-/*   Updated: 2019/08/05 13:44:28 by rloraine         ###   ########.fr       */
+/*   Updated: 2019/08/13 18:42:11 by rloraine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 void	rev_rotate(t_stack **stack, long *comm, int number)
 {
+	++g_i;
 	number == 1 ? ft_printf("rra\n") : ft_printf("rrb\n");
 	if ((*stack) && (*stack)->prev != (*stack))
 	{
@@ -23,6 +24,7 @@ void	rev_rotate(t_stack **stack, long *comm, int number)
 
 void	rotate(t_stack **stack, long *comm, int number)
 {
+	++g_i;
 	number == 1 ? ft_printf("ra\n") : ft_printf("rb\n");
 	if ((*stack) && (*stack)->next != (*stack))
 	{
@@ -32,7 +34,8 @@ void	rotate(t_stack **stack, long *comm, int number)
 
 void	swap(t_stack **stack, long *comm, int number)
 {
-	number == 1 ? ft_printf("sa\n") : ft_printf("sb\n");
+	++g_i;
+	//number == 1 ? ft_printf("sa\n") : ft_printf("sb\n");
 	if ((*stack) && (*stack) != (*stack)->next)
 	{
 		if ((*stack)->next->next != (*stack))
@@ -51,7 +54,7 @@ void	swap(t_stack **stack, long *comm, int number)
 void	push(t_stack **take, t_stack **put, long *comm, int number)
 {
 	t_stack *tmp;
-
+	++g_i;
 	number == 1 ? ft_printf("pa\n") : ft_printf("pb\n");
 	if ((*take))
 	{

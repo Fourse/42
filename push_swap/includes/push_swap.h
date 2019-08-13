@@ -6,7 +6,7 @@
 /*   By: rloraine <rloraine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/22 13:55:30 by rloraine          #+#    #+#             */
-/*   Updated: 2019/08/05 17:06:54 by rloraine         ###   ########.fr       */
+/*   Updated: 2019/08/13 18:14:49 by rloraine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,8 @@ typedef struct	s_stack
 	struct s_stack	*prev;
 	struct s_stack	*next;
 }				t_stack;
+
+extern int g_i;
 
 /*
 **	functions

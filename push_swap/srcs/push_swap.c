@@ -6,11 +6,13 @@
 /*   By: rloraine <rloraine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/22 13:55:20 by rloraine          #+#    #+#             */
-/*   Updated: 2019/08/05 14:23:36 by rloraine         ###   ########.fr       */
+/*   Updated: 2019/08/13 19:05:47 by rloraine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+int g_i = 0;
 
 int		stack_size(t_stack *stack)
 {
@@ -113,5 +115,6 @@ int		main(int argc, char **argv)
 	{
 		sort(&a, size, &comm);
 	}
+	printf("%d\n", g_i);
 	return (0);
 }
