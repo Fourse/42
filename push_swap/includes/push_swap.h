@@ -6,7 +6,7 @@
 /*   By: rloraine <rloraine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/22 13:55:30 by rloraine          #+#    #+#             */
-/*   Updated: 2019/08/13 18:14:49 by rloraine         ###   ########.fr       */
+/*   Updated: 2019/08/13 19:55:32 by rloraine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,10 +85,20 @@ void			rotate(t_stack **stack, long *comm, int number);
 void			rev_rotate(t_stack **stack, long *comm, int number);
 
 /*
-**	sorting.c
+**	sorting_3_5.c
 */
 
 void			sort(t_stack **a, int size, long *comm);
 void			sort_3(t_stack **a, int size, long *comm);
+void			sort_5(t_stack **a, t_stack **b, int size, long *comm);
 
+/*
+**	sorting_100.c
+*/
+
+void			sort_100(t_stack **a, t_stack **b, int size, long *comm);
+void			detect_b(t_stack *s, t_stack *stack, int *next, int *prev);
+void			find_min_max(t_stack **a, int size, int *min, int *max);
+void			find_rot_or_revrot(t_stack **a, t_stack **b, long *com, int m);
+void			direction(t_stack *stack, int *count_next, int *prev, int max);
 #endif
