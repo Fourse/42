@@ -1,76 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sorting_100.c                                      :+:      :+:    :+:   */
+/*   sorting_100temp.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rloraine <rloraine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/08/13 19:52:58 by rloraine          #+#    #+#             */
-/*   Updated: 2019/08/13 19:56:30 by rloraine         ###   ########.fr       */
+/*   Created: 2019/08/18 13:01:01 by rloraine          #+#    #+#             */
+/*   Updated: 2019/08/18 14:25:36 by rloraine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-void	direction(t_stack *stack, int *count_next, int *count_prev, int max)
-{
-	t_stack *tmp;
-
-	tmp = stack;
-	while (tmp->num > max - 3)
-	{
-		tmp = tmp->next;
-		++(*count_next);
-	}
-	tmp = stack;
-	while (tmp->num > max - 3)
-	{
-		tmp = tmp->prev;
-		++(*count_prev);
-	}
-}
-
-void	find_rot_or_revrot(t_stack **a, t_stack **b, long *comm, int max)
-{
-	t_stack	*tmp;
-	int		count_next;
-	int		count_prev;
-
-	count_next = 0;
-	count_prev = 0;
-	if (stack_size(*a) == 3)
-		return ;
-	if ((*a)->num < max - 2)
-	{
-		push(a, b, comm, 2);
-		return ;
-	}
-	direction(*a, &count_next, &count_prev, max);
-	while ((*a)->num > max - 3)
-	{
-		count_prev > count_next ? rev_rotate(a, comm, 1) : rotate(a, comm, 1);
-		if ((*a)->num < max - 2)
-		{
-			push(a, b, comm, 2);
-			return ;
-		}
-	}
-}
-
-void	find_min_max(t_stack **a, int size, int *min, int *max)
-{
-	int i;
-
-	i = -1;
-	while (++i < size)
-	{
-		if (*max < (*a)->num)
-			*max = (*a)->num;
-		if (*min > (*a)->num)
-			*min = (*a)->num;
-		(*a) = (*a)->next;
-	}
-}
 
 void	detect_b(t_stack *s, t_stack *stack, int *count_next, int *count_prev)
 {
@@ -89,28 +29,86 @@ void	detect_b(t_stack *s, t_stack *stack, int *count_next, int *count_prev)
 		++(*count_prev);
 	}
 }
+int		find_dir(t_stack *stack, int mid)
+{
+	t_stack	*tmp;
+	int		direction;
+
+	tmp = stack;
+	direction = 0;
+	while (tmp->num > mid)
+	{
+		tmp = tmp->next;
+		--direction;
+	}
+	tmp = stack;
+	while (tmp->num > mid)
+	{
+		tmp = tmp->prev;
+		++direction;
+	}
+	return (direction);
+}
+
+void	find_min_maxi(t_stack *stack, int size, int *min, int *max)
+{
+	while (--size)
+	{
+		if (*max < stack->num)
+			*max = stack->num;
+		if (*min > stack->num)
+			*min = stack->num;
+		stack = stack->next;
+	}
+}
+
+int		get_median(t_stack **a, t_stack **b, int size, long *comm)
+{
+	int max;
+	int min;
+	int mid;
+	int tmp;
+	int count;
+
+	max = INT_MIN;
+	min = INT_MAX;
+	find_min_maxi(*a, size, &min, &max);
+	mid = min + size / 2 + size % 2;
+	count = 0;
+	while (count * 2 < size + 4)
+	{
+		if ((*a)->num <= mid)
+		{
+			push(a, b, comm, 2);
+			--tmp;
+		}
+		else
+			rotate(a, comm, 1);
+	}
+	return (count);
+}
 
 void	sort_100(t_stack **a, t_stack **b, int size, long *comm)
 {
-	int min;
-	int max;
-	int count_next;
-	int count_prev;
+	int mid;
+	int next;
+	int prev;
 
-	min = INT_MAX;
-	max = INT_MIN;
-	count_next = 0;
-	count_prev = 0;
-	if (size == 3)
+	next = 0;
+	prev = 0;
+	if (size == 2 && (*a)->num > (*a)->next->num)
+		swap(a, comm, 1);
+	else if (size == 3)
 		sort_3(a, size, comm);
 	else
 	{
-		find_min_max(a, size, &min, &max);
-		find_rot_or_revrot(a, b, comm, max);
-		sort_100(a, b, size - 1, comm);
-		detect_b(*a, *b, &count_next, &count_prev);
+		mid = get_median(a, b, size, comm);
+		sort_100(a, b, size - mid, comm);
+		detect_b(*a, *b, &next, &prev);
 		while ((*b)->num != (*a)->num - 1)
-			count_prev < count_next ? rev_rotate(b, comm, 2) : rotate(b, comm, 2);
+		{
+			prev > next ? rev_rotate(b, comm, 2) : rotate(b, comm, 2);
+		}
 		push(b, a, comm, 1);
 	}
 }
