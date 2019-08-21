@@ -6,7 +6,7 @@
 /*   By: rloraine <rloraine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/18 14:41:22 by rloraine          #+#    #+#             */
-/*   Updated: 2019/08/21 18:16:24 by rloraine         ###   ########.fr       */
+/*   Updated: 2019/08/21 18:20:56 by rloraine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,50 +45,30 @@ void	find_dir(t_stack *stack, int mid, int *next, int *prev)
 	}
 }
 
-// int		get_count(t_stack **a, t_stack **b, int size, long *comm)
-// {
-// 	int mid;
-// 	int count;
-// 	int next;
-// 	int prev;
-
-// 	mid = find_min(*a, size) + size / 2 + size % 2;
-// 	count = 0;
-// 	while (count * 2 < size + 4)
-// 	{
-// 		if ((*a)->num <= mid + 1)
-// 		{
-// 			push(a, b, comm, 2);
-// 			++count;
-// 		}
-// 		else
-// 		{
-// 			next = 0;
-// 			prev = 0;
-// 			find_dir(*a, mid, &next, &prev);
-// 			next > prev ? rev_rotate(a, comm, 1) : rotate(a, comm, 1);
-// 		}
-// 	}
-// 	return (count);
-// }
-
-static int	get_count(t_stack **a, t_stack **b, int size, long *ops)
+int		get_count(t_stack **a, t_stack **b, int size, long *comm)
 {
-	int pivot;
+	int mid;
 	int count;
+	int next;
+	int prev;
 
-	pivot = find_min(*a, size) + size / 2 + size % 2;
+	mid = find_min(*a, size) + size / 2 + size % 2;
 	count = 0;
 	while (count * 2 < size + 4)
-		if ((*a)->num <= pivot + 1)
+	{
+		if ((*a)->num <= mid + 1)
 		{
-			push(a, b, ops, 1);
+			push(a, b, comm, 2);
 			++count;
-			if ((*b)->num >= pivot)
-				rotate(b, ops, 2);
 		}
 		else
-			rotate(a, ops, 1);
+		{
+			next = 0;
+			prev = 0;
+			find_dir(*a, mid, &next, &prev);
+			next > prev ? rev_rotate(a, comm, 1) : rotate(a, comm, 1);
+		}
+	}
 	return (count);
 }
 
