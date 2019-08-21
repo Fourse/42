@@ -6,7 +6,7 @@
 /*   By: rloraine <rloraine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/22 13:55:20 by rloraine          #+#    #+#             */
-/*   Updated: 2019/08/18 15:36:21 by rloraine         ###   ########.fr       */
+/*   Updated: 2019/08/21 17:52:32 by rloraine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,6 +115,6 @@ int		main(int argc, char **argv)
 	{
 		sort(&a, size, &comm);
 	}
-	printf("%d\n", g_i);
+	//printf("%d\n", g_i);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: rloraine <rloraine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/18 14:41:22 by rloraine          #+#    #+#             */
-/*   Updated: 2019/08/18 15:35:34 by rloraine         ###   ########.fr       */
+/*   Updated: 2019/08/21 18:16:24 by rloraine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ void	find_dir(t_stack *stack, int mid, int *next, int *prev)
 	tmp = stack;
 	while (tmp->num > mid)
 	{
+		//printf("here");
 		tmp = tmp->next;
 		++next;
 	}
@@ -44,30 +45,50 @@ void	find_dir(t_stack *stack, int mid, int *next, int *prev)
 	}
 }
 
-int		get_count(t_stack **a, t_stack **b, int size, long *comm)
-{
-	int mid;
-	int count;
-	int next;
-	int prev;
+// int		get_count(t_stack **a, t_stack **b, int size, long *comm)
+// {
+// 	int mid;
+// 	int count;
+// 	int next;
+// 	int prev;
 
-	mid = find_min(*a, size) + size / 2 + size % 2;
+// 	mid = find_min(*a, size) + size / 2 + size % 2;
+// 	count = 0;
+// 	while (count * 2 < size + 4)
+// 	{
+// 		if ((*a)->num <= mid + 1)
+// 		{
+// 			push(a, b, comm, 2);
+// 			++count;
+// 		}
+// 		else
+// 		{
+// 			next = 0;
+// 			prev = 0;
+// 			find_dir(*a, mid, &next, &prev);
+// 			next > prev ? rev_rotate(a, comm, 1) : rotate(a, comm, 1);
+// 		}
+// 	}
+// 	return (count);
+// }
+
+static int	get_count(t_stack **a, t_stack **b, int size, long *ops)
+{
+	int pivot;
+	int count;
+
+	pivot = find_min(*a, size) + size / 2 + size % 2;
 	count = 0;
-	next = 0;
-	prev = 0;
 	while (count * 2 < size + 4)
-	{
-		if ((*a)->num <= mid + 1)
+		if ((*a)->num <= pivot + 1)
 		{
-			push(a, b, comm, 2);
+			push(a, b, ops, 1);
 			++count;
+			if ((*b)->num >= pivot)
+				rotate(b, ops, 2);
 		}
 		else
-		{
-			find_dir(*a, mid, &next, &prev);
-			next > prev ? rev_rotate(a, comm, 1) : rotate(a, comm, 1);
-		}
-	}
+			rotate(a, ops, 1);
 	return (count);
 }
 
@@ -95,6 +116,8 @@ void	sort_100(t_stack **a, t_stack **b, int size, long *comm)
 	int next;
 	int prev;
 
+	if (stack_is_sorted(*a, size))
+		return ;
 	if (size == 2 && (*a)->num > (*a)->next->num)
 		swap(a, comm, 1);
 	else if (size <= 3)
@@ -105,12 +128,13 @@ void	sort_100(t_stack **a, t_stack **b, int size, long *comm)
 		sort_100(a, b, size - count, comm);
 		while (--count)
 		{
+			next = 0;
+			prev = 0;
 			detect_b(*a, *b, &next, &prev);
 			while ((*b)->num != (*a)->num - 1)
 				prev < next ? rev_rotate(b, comm, 2) : rotate(b, comm, 2);
 			push(b, a, comm, 1);
 		}
-		push(b, a, comm, 1);
 		push(b, a, comm, 1);
 	}
 }
