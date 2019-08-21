@@ -6,7 +6,7 @@
 /*   By: rloraine <rloraine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/18 14:41:22 by rloraine          #+#    #+#             */
-/*   Updated: 2019/08/21 18:20:56 by rloraine         ###   ########.fr       */
+/*   Updated: 2019/08/21 19:04:54 by rloraine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ void	find_dir(t_stack *stack, int mid, int *next, int *prev)
 	tmp = stack;
 	while (tmp->num > mid)
 	{
-		//printf("here");
 		tmp = tmp->next;
 		++next;
 	}
@@ -96,8 +95,6 @@ void	sort_100(t_stack **a, t_stack **b, int size, long *comm)
 	int next;
 	int prev;
 
-	if (stack_is_sorted(*a, size))
-		return ;
 	if (size == 2 && (*a)->num > (*a)->next->num)
 		swap(a, comm, 1);
 	else if (size <= 3)
