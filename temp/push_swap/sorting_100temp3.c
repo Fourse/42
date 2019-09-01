@@ -6,46 +6,46 @@
 /*   By: rloraine <rloraine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/24 14:27:27 by rloraine          #+#    #+#             */
-/*   Updated: 2019/09/01 17:14:10 by rloraine         ###   ########.fr       */
+/*   Updated: 2019/09/01 17:03:37 by rloraine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int		find_max(t_stack *s, int size)
+int		find_max(t_stack *stack, int size)
 {
-	int high;
+	int max;
 
-	high = 0;
-	if (s)
+	max = 0;
+	if (stack)
 	{
-		high = s->num;
+		max = stack->num;
 		while (--size)
 		{
-			s = s->next;
-			if (s->num > high)
-				high = s->num;
+			stack = stack->next;
+			if (stack->num > max)
+				max = stack->num;
 		}
 	}
-	return (high);
+	return (max);
 }
 
-int		find_min(t_stack *s, int size)
+int		find_min(t_stack *stack, int size)
 {
-	int low;
+	int min;
 
-	low = 0;
-	if (s)
+	min = 0;
+	if (stack)
 	{
-		low = s->num;
+		min = stack->num;
 		while (--size)
 		{
-			s = s->next;
-			if (s->num < low)
-				low = s->num;
+			stack = stack->next;
+			if (stack->num < min)
+				min = stack->num;
 		}
 	}
-	return (low);
+	return (min);
 }
 
 void	find_dir(t_stack *stack, int mid, int *next, int *prev)
@@ -82,7 +82,8 @@ int		find_mid(t_stack *stack, int size)
 	}
 	return ((sum / count));
 }
-int		share_stack(t_stack **a, t_stack **b, int size, long *comm)
+
+void	share_stack(t_stack **a, t_stack **b, int size, long *comm)
 {
 	int next;
 	int prev;
@@ -97,8 +98,8 @@ int		share_stack(t_stack **a, t_stack **b, int size, long *comm)
 	count = 0;
 	while (1)
 	{
-		if (size <= 3)
-			break ;
+		if (stack_is_sorted((*a), size))
+			return ;
 		if (prev_mid == check_mid)
 		{
 			mid = find_mid(*a, size);
@@ -120,10 +121,8 @@ int		share_stack(t_stack **a, t_stack **b, int size, long *comm)
 			next >= prev ? rev_rotate(a, comm, 1) : rotate(a, comm, 1);
 		}
 	}
-	return (count);
 }
-
-static int	where_to(t_stack *s, int place)
+int		where_to(t_stack *s, int place)
 {
 	t_stack	*r;
 	int		direction;
@@ -144,13 +143,13 @@ static int	where_to(t_stack *s, int place)
 	return (direction);
 }
 
-static void	sort_back(t_stack **a, t_stack **b, int size, long *ops)
+void	sort_back(t_stack **a, t_stack **b, int size, long *ops)
 {
 	int start;
 	int end;
 
-	start = find_max(*b, size);
-	end = find_min(*b, size);
+	start = find_min(*b, size);
+	end = find_max(*b, size);
 	while (end <= start)
 	{
 		while ((*b)->num != start && (*b)->num != start - 1)
@@ -172,31 +171,45 @@ static void	sort_back(t_stack **a, t_stack **b, int size, long *ops)
 	}
 }
 
-static void	bottom_up(t_stack **a, long *ops)
+void	detect_b(t_stack *a, t_stack *b, int *next, int *prev)
 {
-	while ((*a)->prev->num < (*a)->next->num)
+	t_stack *tmp;
+	
+	tmp = b;
+	while (tmp->num != a->num - 1)
 	{
-		rev_rotate(a, ops, 1);
-		if ((*a)->num > (*a)->next->num)
-			swap(a, ops, 1);
+		tmp = tmp->next;
+		++(*next);
+	}
+	while (tmp->num != a->num - 1)
+	{
+		tmp = tmp->prev;
+		++(*prev);
 	}
 }
 
 void	sort_100(t_stack **a, t_stack **b, int size, long *comm)
 {
-	int count;
+	int i = 97;
 	int next;
 	int prev;
-
-	if (size == 2 && (*a)->num > (*a)->next->num)
-		swap(a, comm, 1);
-	else if (size == 3 && !stack_is_sorted(*a, size))
-		sort_3(a, size, comm);
-	else
+	share_stack(a, b, size, comm);
+	sort(a, 3, comm);
+	sort_back(a, b, size, comm);
+	while (i > 1)
 	{
-		count = share_stack(a, b, size, comm);
-		sort_100(a, b, size - count, comm);
-		sort_back(a, b, count, comm);
-		bottom_up(a, comm);
+		if ((*b)->num == (*a)->num - 1)
+		{
+			push(b, a, comm, 1);
+			--i;
+			printf("%d\n", i);
+		}
+		else
+		{
+			next = 0;
+			prev = 0;
+			detect_b(*a, *b, &next, &prev);
+			prev >= next ? rev_rotate(b, comm, 2) : rotate(b, comm, 2);
+		}
 	}
 }
