@@ -6,7 +6,7 @@
 /*   By: rloraine <rloraine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/22 13:55:30 by rloraine          #+#    #+#             */
-/*   Updated: 2019/09/01 18:38:21 by rloraine         ###   ########.fr       */
+/*   Updated: 2019/09/01 18:39:58 by rloraine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,8 +122,8 @@ int				share_stack(t_stack **a, t_stack **b, int size, long *comm);
 
 int				find_mid(t_stack *stack, int size);
 void			find_dir(t_stack *stack, int mid, int *next, int *prev);
+int				find_dir2(t_stack *s, int place);
 int				find_min(t_stack *s, int size);
 int				find_max(t_stack *s, int size);
-int				find_dir2(t_stack *s, int place);
 
 #endif
