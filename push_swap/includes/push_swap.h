@@ -6,7 +6,7 @@
 /*   By: rloraine <rloraine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/22 13:55:30 by rloraine          #+#    #+#             */
-/*   Updated: 2019/09/01 17:39:37 by rloraine         ###   ########.fr       */
+/*   Updated: 2019/09/01 18:38:21 by rloraine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ int				stack_is_sorted(t_stack *stack, int size);
 int				stack_size(t_stack *stack);
 
 /*
-**	sort_arr.c
+**	arr_functs.c
 */
 
 void			fill_arr(int **arr, int argc, char **argv, int *size);
@@ -112,9 +112,8 @@ void			sort_5(t_stack **a, t_stack **b, int size, long *comm);
 */
 
 void			sort_100(t_stack **a, t_stack **b, int size, long *comm);
-void			bottom_up(t_stack **a, long *ops);
+void			get_up(t_stack **a, long *ops);
 void			sort_back(t_stack **a, t_stack **b, int size, long *ops);
-int				where_to(t_stack *s, int place);
 int				share_stack(t_stack **a, t_stack **b, int size, long *comm);
 
 /*
@@ -125,5 +124,6 @@ int				find_mid(t_stack *stack, int size);
 void			find_dir(t_stack *stack, int mid, int *next, int *prev);
 int				find_min(t_stack *s, int size);
 int				find_max(t_stack *s, int size);
+int				find_dir2(t_stack *s, int place);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: rloraine <rloraine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/24 14:27:27 by rloraine          #+#    #+#             */
-/*   Updated: 2019/09/01 17:35:54 by rloraine         ###   ########.fr       */
+/*   Updated: 2019/09/01 18:32:38 by rloraine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,27 +53,6 @@ int		share_stack(t_stack **a, t_stack **b, int size, long *comm)
 	return (count);
 }
 
-int		where_to(t_stack *s, int place)
-{
-	t_stack	*r;
-	int		direction;
-
-	direction = 0;
-	r = s;
-	while (r->num != place)
-	{
-		r = r->next;
-		--direction;
-	}
-	r = s;
-	while (r->num != place)
-	{
-		r = r->prev;
-		++direction;
-	}
-	return (direction);
-}
-
 void	sort_back(t_stack **a, t_stack **b, int size, long *ops)
 {
 	int start;
@@ -92,7 +71,7 @@ void	sort_back(t_stack **a, t_stack **b, int size, long *ops)
 				rotate(a, ops, 1);
 			}
 			else
-				where_to(*b, start) >= 0 ? rotate(b, ops, 2) : rev_rotate(b, ops, 2);
+				find_dir2(*b, start) >= 0 ? rotate(b, ops, 2) : rev_rotate(b, ops, 2);
 		push(b, a, ops, 1);
 		while ((*a)->num == start || (*a)->prev->num == start
 			|| (*a)->next->num == start)
@@ -102,7 +81,7 @@ void	sort_back(t_stack **a, t_stack **b, int size, long *ops)
 	}
 }
 
-void	bottom_up(t_stack **a, long *ops)
+void	get_up(t_stack **a, long *ops)
 {
 	while ((*a)->prev->num < (*a)->next->num)
 	{
@@ -127,6 +106,6 @@ void	sort_100(t_stack **a, t_stack **b, int size, long *comm)
 		count = share_stack(a, b, size, comm);
 		sort_100(a, b, size - count, comm);
 		sort_back(a, b, count, comm);
-		bottom_up(a, comm);
+		get_up(a, comm);
 	}
 }

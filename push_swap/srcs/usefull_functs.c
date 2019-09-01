@@ -6,7 +6,7 @@
 /*   By: rloraine <rloraine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/01 17:35:54 by rloraine          #+#    #+#             */
-/*   Updated: 2019/09/01 17:36:03 by rloraine         ###   ########.fr       */
+/*   Updated: 2019/09/01 18:32:47 by rloraine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,27 @@ int		find_min(t_stack *s, int size)
 		}
 	}
 	return (low);
+}
+
+int		find_dir2(t_stack *s, int place)
+{
+	t_stack	*r;
+	int		direction;
+
+	direction = 0;
+	r = s;
+	while (r->num != place)
+	{
+		r = r->next;
+		--direction;
+	}
+	r = s;
+	while (r->num != place)
+	{
+		r = r->prev;
+		++direction;
+	}
+	return (direction);
 }
 
 void	find_dir(t_stack *stack, int mid, int *next, int *prev)
