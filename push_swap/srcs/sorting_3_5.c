@@ -6,7 +6,7 @@
 /*   By: rloraine <rloraine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/03 18:25:53 by rloraine          #+#    #+#             */
-/*   Updated: 2019/09/01 17:20:31 by rloraine         ###   ########.fr       */
+/*   Updated: 2019/09/01 17:34:09 by rloraine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,19 +58,4 @@ void	sort_3(t_stack **a, int size, long *comm)
 		swap(a, comm, 1);
 		rotate(a, comm, 1);
 	}
-}
-
-void	sort(t_stack **a, int size, long *comm)
-{
-	t_stack *b;
-
-	b = NULL;
-	if (size == 2)
-		swap(a, comm, 1);
-	else if (size == 3)
-		sort_3(a, size, comm);
-	else if (size <= 5)
-		sort_5(a, &b, size, comm);
-	else if (size <= 100)
-		sort_100(a, &b, size, comm);
 }

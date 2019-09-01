@@ -6,7 +6,7 @@
 /*   By: rloraine <rloraine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/22 13:55:30 by rloraine          #+#    #+#             */
-/*   Updated: 2019/08/18 14:21:41 by rloraine         ###   ########.fr       */
+/*   Updated: 2019/09/01 17:39:37 by rloraine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,16 @@
 **	structures
 */
 
+typedef struct	s_share
+{
+	int				next;
+	int				prev;
+	int				mid;
+	int				prev_mid;
+	int				chech_mid;
+	int				count;
+}				t_share;
+
 typedef struct	s_stack
 {
 	int				ret;
@@ -59,6 +69,12 @@ void			error(void);
 
 /*
 **	push_swap.c
+*/
+
+void			sort(t_stack **a, int size, long *comm);
+
+/*
+**	stack_functs.c
 */
 
 t_stack			*fill_stack(t_stack **stack, int **arr, int argc);
@@ -88,7 +104,6 @@ void			rev_rotate(t_stack **stack, long *comm, int number);
 **	sorting_3_5.c
 */
 
-void			sort(t_stack **a, int size, long *comm);
 void			sort_3(t_stack **a, int size, long *comm);
 void			sort_5(t_stack **a, t_stack **b, int size, long *comm);
 
@@ -97,8 +112,18 @@ void			sort_5(t_stack **a, t_stack **b, int size, long *comm);
 */
 
 void			sort_100(t_stack **a, t_stack **b, int size, long *comm);
-// void			detect_b(t_stack *s, t_stack *stack, int *next, int *prev);
-// void			find_min_max(t_stack **a, int size, int *min, int *max);
-// void			find_rot_or_revrot(t_stack **a, t_stack **b, long *com, int m);
-// void			direction(t_stack *stack, int *count_next, int *prev, int max);
+void			bottom_up(t_stack **a, long *ops);
+void			sort_back(t_stack **a, t_stack **b, int size, long *ops);
+int				where_to(t_stack *s, int place);
+int				share_stack(t_stack **a, t_stack **b, int size, long *comm);
+
+/*
+**	usefull_functs.c
+*/
+
+int				find_mid(t_stack *stack, int size);
+void			find_dir(t_stack *stack, int mid, int *next, int *prev);
+int				find_min(t_stack *s, int size);
+int				find_max(t_stack *s, int size);
+
 #endif
