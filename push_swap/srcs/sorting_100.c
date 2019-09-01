@@ -6,7 +6,7 @@
 /*   By: rloraine <rloraine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/24 14:27:27 by rloraine          #+#    #+#             */
-/*   Updated: 2019/09/01 17:14:10 by rloraine         ###   ########.fr       */
+/*   Updated: 2019/09/01 17:21:40 by rloraine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,7 +123,7 @@ int		share_stack(t_stack **a, t_stack **b, int size, long *comm)
 	return (count);
 }
 
-static int	where_to(t_stack *s, int place)
+int		where_to(t_stack *s, int place)
 {
 	t_stack	*r;
 	int		direction;
@@ -144,7 +144,7 @@ static int	where_to(t_stack *s, int place)
 	return (direction);
 }
 
-static void	sort_back(t_stack **a, t_stack **b, int size, long *ops)
+void	sort_back(t_stack **a, t_stack **b, int size, long *ops)
 {
 	int start;
 	int end;
@@ -172,7 +172,7 @@ static void	sort_back(t_stack **a, t_stack **b, int size, long *ops)
 	}
 }
 
-static void	bottom_up(t_stack **a, long *ops)
+void	bottom_up(t_stack **a, long *ops)
 {
 	while ((*a)->prev->num < (*a)->next->num)
 	{
