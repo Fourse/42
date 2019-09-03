@@ -6,38 +6,50 @@
 /*   By: rloraine <rloraine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/25 17:09:15 by rloraine          #+#    #+#             */
-/*   Updated: 2019/08/13 19:58:55 by rloraine         ###   ########.fr       */
+/*   Updated: 2019/09/03 18:17:07 by rloraine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	rev_rotate(t_stack **stack, long *comm, int number)
+static void	write_command(int operation, int **comm)
 {
-	++g_i;
-	number == 1 ? ft_printf("rra\n") : ft_printf("rrb\n");
+	int check;
+
+	check = operation + *(*comm - 1);
+	if (check == PA + PB || check == SA + SA || check == SB + SB
+		|| check == RA + RRA || check == RB + RRB)
+		*(--*comm) = 0;
+	else
+		*((*comm)++) = operation;
+}
+
+void	rev_rotate(t_stack **stack, int **comm)
+{
 	if ((*stack) && (*stack)->prev != (*stack))
 	{
+		if (comm)
+			write_command((*stack)->stack == 'a' ? RRA : RRB, comm);
 		(*stack) = (*stack)->prev;
 	}
 }
 
-void	rotate(t_stack **stack, long *comm, int number)
+void	rotate(t_stack **stack, int **comm)
 {
-	++g_i;
-	number == 1 ? ft_printf("ra\n") : ft_printf("rb\n");
 	if ((*stack) && (*stack)->next != (*stack))
 	{
+		if (comm)
+			write_command((*stack)->stack == 'a' ? RA : RB, comm);
 		(*stack) = (*stack)->next;
 	}
 }
 
-void	swap(t_stack **stack, long *comm, int number)
+void	swap(t_stack **stack, int **comm)
 {
-	++g_i;
-	number == 1 ? ft_printf("sa\n") : ft_printf("sb\n");
 	if ((*stack) && (*stack) != (*stack)->next)
 	{
+		if (comm)
+			write_command((*stack)->stack == 'a' ? SA : SB, comm);
 		if ((*stack)->next->next != (*stack))
 		{
 			(*stack)->next->next->prev = (*stack);
@@ -51,14 +63,15 @@ void	swap(t_stack **stack, long *comm, int number)
 	(*stack) = (*stack)->prev;
 }
 
-void	push(t_stack **take, t_stack **put, long *comm, int number)
+void	push(t_stack **take, t_stack **put, int **comm)
 {
 	t_stack *tmp;
 
-	++g_i;
-	number == 1 ? ft_printf("pa\n") : ft_printf("pb\n");
 	if ((*take))
 	{
+		if (comm)
+			write_command((*take)->stack == 'a' ? PB : PA, comm);
+		(*take)->stack = ((*take)->stack == 'a' ? 'b' : 'a');
 		tmp = (*take) == (*take)->next ? NULL : (*take)->next;
 		(*take)->next->prev = (*take)->prev;
 		(*take)->prev->next = (*take)->next;

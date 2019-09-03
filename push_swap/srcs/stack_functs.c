@@ -6,7 +6,7 @@
 /*   By: rloraine <rloraine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/01 17:33:03 by rloraine          #+#    #+#             */
-/*   Updated: 2019/09/01 17:33:25 by rloraine         ###   ########.fr       */
+/*   Updated: 2019/09/03 17:58:43 by rloraine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,7 @@ t_stack	*fill_stack(t_stack **stack, int **arr, int size)
 			error();
 		(*stack)->prev = tmp;
 		(*stack)->ret = (*arr)[i];
+		(*stack)->stack = 'a';
 		tmp = (*stack);
 		(*stack) = (*stack)->next;
 	}

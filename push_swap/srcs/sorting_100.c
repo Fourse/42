@@ -6,13 +6,13 @@
 /*   By: rloraine <rloraine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/24 14:27:27 by rloraine          #+#    #+#             */
-/*   Updated: 2019/09/02 17:29:30 by rloraine         ###   ########.fr       */
+/*   Updated: 2019/09/03 18:27:54 by rloraine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int		share_stack(t_stack **a, t_stack **b, int size, long *comm)
+int		share_stack(t_stack **a, t_stack **b, int size, int **comm)
 {
 	int mid;
 	int prev_mid;
@@ -35,18 +35,18 @@ int		share_stack(t_stack **a, t_stack **b, int size, long *comm)
 		}
 		if ((*a)->num <= mid)
 		{
-			push(a, b, comm, 2);
+			push(a, b, comm);
 			++prev_mid;
 			++count;
 			--size;
 		}
 		else
-			rotate(a, comm , 1);
+			rotate(a, comm );
 	}
 	return (count);
 }
 
-void	sort_back(t_stack **a, t_stack **b, int size, long *ops)
+void	sort_back(t_stack **a, t_stack **b, int size, int **ops)
 {
 	int start;
 	int end;
@@ -60,36 +60,36 @@ void	sort_back(t_stack **a, t_stack **b, int size, long *ops)
 			{
 				if ((*b)->num == end)
 					end += 1 + ((*a)->prev->num == end + 1);
-				push(b, a, ops, 1);
-				rotate(a, ops, 1);
+				push(b, a, ops);
+				rotate(a, ops);
 			}
 			else
-				find_dir2(*b, start) >= 0 ? rotate(b, ops, 2) : rev_rotate(b, ops, 2);
-		push(b, a, ops, 1);
+				find_dir2(*b, start) >= 0 ? rotate(b, ops) : rev_rotate(b, ops);
+		push(b, a, ops);
 		while ((*a)->num == start || (*a)->prev->num == start
 			|| (*a)->next->num == start)
 			--start;
 		if ((*a)->num > (*a)->next->num)
-			swap(a, ops, 1);
+			swap(a, ops);
 	}
 }
 
-void	get_up(t_stack **a, long *ops)
+void	get_up(t_stack **a, int **ops)
 {
 	while ((*a)->prev->num < (*a)->next->num)
 	{
-		rev_rotate(a, ops, 1);
+		rev_rotate(a, ops);
 		if ((*a)->num > (*a)->next->num)
-			swap(a, ops, 1);
+			swap(a, ops);
 	}
 }
 
-void	sort_100(t_stack **a, t_stack **b, int size, long *comm)
+void	sort_100(t_stack **a, t_stack **b, int size, int **comm)
 {
 	int count;
 
 	if (size == 2 && (*a)->num > (*a)->next->num)
-		swap(a, comm, 1);
+		swap(a, comm);
 	else if (size == 3 && !stack_is_sorted(*a, size))
 		sort_3(a, size, comm);
 	else

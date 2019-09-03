@@ -6,7 +6,7 @@
 /*   By: rloraine <rloraine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/22 13:55:30 by rloraine          #+#    #+#             */
-/*   Updated: 2019/09/01 18:39:58 by rloraine         ###   ########.fr       */
+/*   Updated: 2019/09/03 19:40:04 by rloraine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,41 +21,41 @@
 **	macro
 */
 
-# define SA 2
-# define SB 4
-# define SS 8
-# define PA 16
-# define PB 32
-# define RA 64
-# define RB 128
-# define RR 256
-# define RRA 512
-# define RRB 1024
-# define RRR 2048
+// # define SA 2
+// # define SB 4
+// # define SS 8
+// # define PA 16
+// # define PB 32
+// # define RA 64
+// # define RB 128
+// # define RR 256
+// # define RRA 512
+// # define RRB 1024
+// # define RRR 2048
 
+# define SA 1
+# define RA 10
+# define RRA 100
+# define PA 1000
+# define SB 3
+# define RB 30
+# define RRB 300
+# define PB 3000
+# define SS 5
+# define RR 50
+# define RRR 500
 /*
 **	structures
 */
-
-typedef struct	s_share
-{
-	int				next;
-	int				prev;
-	int				mid;
-	int				prev_mid;
-	int				chech_mid;
-	int				count;
-}				t_share;
 
 typedef struct	s_stack
 {
 	int				ret;
 	int				num;
+	int				stack;
 	struct s_stack	*prev;
 	struct s_stack	*next;
 }				t_stack;
-
-extern int g_i;
 
 /*
 **	functions
@@ -71,7 +71,7 @@ void			error(void);
 **	push_swap.c
 */
 
-void			sort(t_stack **a, int size, long *comm);
+void			sort(t_stack **a, int size, int *comm);
 
 /*
 **	stack_functs.c
@@ -95,26 +95,26 @@ int				get_mid(int *start, int *end, int *mid);
 **	commands.c
 */
 
-void			push(t_stack **take, t_stack **put, long *comm, int number);
-void			swap(t_stack **stack, long *comm, int number);
-void			rotate(t_stack **stack, long *comm, int number);
-void			rev_rotate(t_stack **stack, long *comm, int number);
+void			push(t_stack **take, t_stack **put, int **comm);
+void			swap(t_stack **stack, int **comm);
+void			rotate(t_stack **stack, int **comm);
+void			rev_rotate(t_stack **stack, int **comm);
 
 /*
 **	sorting_3_5.c
 */
 
-void			sort_3(t_stack **a, int size, long *comm);
-void			sort_5(t_stack **a, t_stack **b, int size, long *comm);
+void			sort_3(t_stack **a, int size, int **comm);
+void			sort_5(t_stack **a, t_stack **b, int size, int **comm);
 
 /*
 **	sorting_100.c
 */
 
-void			sort_100(t_stack **a, t_stack **b, int size, long *comm);
-void			get_up(t_stack **a, long *ops);
-void			sort_back(t_stack **a, t_stack **b, int size, long *ops);
-int				share_stack(t_stack **a, t_stack **b, int size, long *comm);
+void			sort_100(t_stack **a, t_stack **b, int size, int **comm);
+void			get_up(t_stack **a, int **comm);
+void			sort_back(t_stack **a, t_stack **b, int size, int **comm);
+int				share_stack(t_stack **a, t_stack **b, int size, int **comm);
 
 /*
 **	usefull_functs.c
@@ -125,5 +125,11 @@ void			find_dir(t_stack *stack, int mid, int *next, int *prev);
 int				find_dir2(t_stack *s, int place);
 int				find_min(t_stack *s, int size);
 int				find_max(t_stack *s, int size);
+
+/*
+**	sorting_500.c
+*/
+
+void			sort_500(t_stack **a, t_stack **b, int size, int **comm);
 
 #endif
