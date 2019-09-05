@@ -6,7 +6,7 @@
 /*   By: rloraine <rloraine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/22 13:55:30 by rloraine          #+#    #+#             */
-/*   Updated: 2019/09/03 19:40:04 by rloraine         ###   ########.fr       */
+/*   Updated: 2019/09/05 20:25:41 by rloraine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define PUSH_SWAP_H
 
 # include "../ft_printf/includes/ft_printf.h"
-# include "../srcs/libft/libft.h"
+# include "libft.h"
 # include "limits.h"
 
 /*
@@ -131,5 +131,15 @@ int				find_max(t_stack *s, int size);
 */
 
 void			sort_500(t_stack **a, t_stack **b, int size, int **comm);
+
+/*
+**	CHECKER_FUNCTS
+*/
+
+/*
+**	vizualization.c
+*/
+
+void			print_stacks(t_stack *a, t_stack *b, char *com, int flag);
 
 #endif
