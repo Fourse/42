@@ -6,7 +6,7 @@
 /*   By: rloraine <rloraine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/04 18:38:56 by rloraine          #+#    #+#             */
-/*   Updated: 2019/09/07 13:34:03 by rloraine         ###   ########.fr       */
+/*   Updated: 2019/09/07 14:52:09 by rloraine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 # include <stdlib.h>
 # include <string.h>
 
-# define BUFF_SIZE 4096
+# define BUFF_SIZE 128
 
 typedef	struct		s_list
 {

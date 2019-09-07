@@ -6,11 +6,11 @@
 /*   By: rloraine <rloraine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/16 19:11:50 by pbondoer          #+#    #+#             */
-/*   Updated: 2019/06/16 10:21:33 by rloraine         ###   ########.fr       */
+/*   Updated: 2019/09/07 14:53:18 by rloraine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "libft.h"
 
 char	*get_append(t_gnl *gnl)
 {

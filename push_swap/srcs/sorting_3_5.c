@@ -6,7 +6,7 @@
 /*   By: rloraine <rloraine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/03 18:25:53 by rloraine          #+#    #+#             */
-/*   Updated: 2019/09/03 19:41:31 by rloraine         ###   ########.fr       */
+/*   Updated: 2019/09/07 14:52:37 by rloraine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,7 @@ void		sort_3(t_stack **s, int size, int **ops)
 	int middle;
 	int bottom;
 
+	size = 0;
 	var = 0;
 	top = (*s)->num;
 	middle = (*s)->next->num;

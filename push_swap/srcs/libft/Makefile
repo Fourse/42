@@ -8,11 +8,10 @@ ft_strncpy.c ft_strnequ.c ft_strnew.c ft_strnstr.c ft_strrchr.c ft_strrev.c ft_s
 ft_tolower.c ft_toupper.c ft_wsize.c get_next_line.c ft_lstcount.c ft_lstrev.c ft_abs.c ft_strmerge.c ft_lstcount.c
 OBJ = $(SRC:.c=.o)
 HEADER = libft.h
-GNL = get_next_line.h
 FLAGS = -Wall -Wextra -Werror
 all:$(NAME)
 $(NAME):
-	gcc $(FLAGS) -c $(SRC) -I $(HEADER) -I $(GNL)
+	gcc $(FLAGS) -c $(SRC) -I $(HEADER)
 	ar rc $(NAME) $(OBJ)
 	ranlib $(NAME)
 clean:

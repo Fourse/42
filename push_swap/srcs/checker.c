@@ -6,7 +6,7 @@
 /*   By: rloraine <rloraine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/05 20:19:14 by rloraine          #+#    #+#             */
-/*   Updated: 2019/09/05 20:27:13 by rloraine         ###   ########.fr       */
+/*   Updated: 2019/09/07 14:54:34 by rloraine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ static int	checker(t_stack **a, int fd, int flag, int size)
 	return (0);
 }
 
-static int	get_flag(char *arg)
+static int	get_flags(char *arg)
 {
 	int flag;
 
@@ -104,7 +104,7 @@ static int	check_flag(char ***argv, int *flag, int *fd)
 	*flag = 0;
 	if (***argv != '-' || (*(**argv + 1) > '0' && *(**argv + 1) <= '9'))
 		return (0);
-	*flag = get_flag(++*(*argv)++);
+	*flag = get_flags(++*(*argv)++);
 	if (*flag >= 100)
 	{
 		if ((*fd = open(*(*argv)++, O_RDONLY)) < 0)

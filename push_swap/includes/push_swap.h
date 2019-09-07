@@ -6,15 +6,15 @@
 /*   By: rloraine <rloraine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/22 13:55:30 by rloraine          #+#    #+#             */
-/*   Updated: 2019/09/07 14:23:33 by rloraine         ###   ########.fr       */
+/*   Updated: 2019/09/07 14:51:34 by rloraine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
-# include "../srcs/ft_printf/includes/ft_printf.h"
 # include "../srcs/libft/libft.h"
+# include "../srcs/ft_printf/includes/ft_printf.h"
 # include "limits.h"
 
 /*
