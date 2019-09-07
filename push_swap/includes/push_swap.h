@@ -6,32 +6,20 @@
 /*   By: rloraine <rloraine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/22 13:55:30 by rloraine          #+#    #+#             */
-/*   Updated: 2019/09/05 20:25:41 by rloraine         ###   ########.fr       */
+/*   Updated: 2019/09/07 14:23:33 by rloraine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
-# include "../ft_printf/includes/ft_printf.h"
-# include "libft.h"
+# include "../srcs/ft_printf/includes/ft_printf.h"
+# include "../srcs/libft/libft.h"
 # include "limits.h"
 
 /*
 **	macro
 */
-
-// # define SA 2
-// # define SB 4
-// # define SS 8
-// # define PA 16
-// # define PB 32
-// # define RA 64
-// # define RB 128
-// # define RR 256
-// # define RRA 512
-// # define RRB 1024
-// # define RRR 2048
 
 # define SA 1
 # define RA 10

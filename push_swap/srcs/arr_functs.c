@@ -6,7 +6,7 @@
 /*   By: rloraine <rloraine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/27 14:15:25 by rloraine          #+#    #+#             */
-/*   Updated: 2019/09/03 18:27:46 by rloraine         ###   ########.fr       */
+/*   Updated: 2019/09/07 14:18:50 by rloraine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,19 +63,19 @@ void	sort_arr(int *start, int *end)
 	sort_arr(left - 1, end);
 }
 
-// void	get_size(int **arr, char **argv, int *size)
-// {
-// 	char	**tmp;
-// 	int		n;
-// 	int		i;
+void	get_size(int **arr, char **argv, int *size)
+{
+	char	**tmp;
+	int		n;
+	int		i;
 
-// 	tmp = ft_strsplit(argv[1], ' ');
-// 	n = -1;
-// 	i = 0;
-// 	while (tmp[++n])
-// 		(*arr)[i++] = ft_atoi(tmp[n]);
-// 	*size = n - 1;
-// }
+	tmp = ft_strsplit(argv[1], ' ');
+	n = -1;
+	i = 0;
+	while (tmp[++n])
+		(*arr)[i++] = ft_atoi(tmp[n]);
+	*size = n - 1;
+}
 
 void	fill_arr(int **arr, int argc, char **argv, int *size)
 {
@@ -87,14 +87,14 @@ void	fill_arr(int **arr, int argc, char **argv, int *size)
 	if (!((*arr) = (int*)malloc(sizeof(int) * --argc)))
 		error();
 	ft_bzero((*arr), sizeof(int) * argc);
-	// if (argc == 2)
-	// 	get_size(arr, argv, size);
-	// else
-	// {
+	if (argc == 2)
+		get_size(arr, argv, size);
+	else
+	{
 		while (argv[++n])
 		{
 			(*arr)[i++] = ft_atoi(argv[n]);
 		}
 		*size = n - 1;
-	// }
+	}
 }

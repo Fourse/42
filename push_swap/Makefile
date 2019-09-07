@@ -1,45 +1,52 @@
-NAME = a.out
+NAME1 = push_swap
+NAME2 = checker
 
-SRC_PATH = srcs/
-SRC = push_swap.c commands.c arr_functs.c error.c sorting_3_5.c sorting_100.c sorting_500.c stack_functs.c usefull_functs.c libft/ft_strsplit.c libft/ft_strnew.c libft/ft_isword.c libft/ft_wsize.c
-SRC_PL_PATH = $(addprefix $(SRC_PATH), $(SRC))
+SRC_DIR = srcs/
 
-INCLUDE_PATH = includes/
-INCLUDE = push_swap.h
-INCLUDE_PL_PATH = $(addprefix $(INCLUDE_PATH), $(INCLUDE))
+OBJ_DIR = $(SRC_DIR)obj/
 
-LIB_PATH = ft_printf/
-LIB = libftprintf.a
-LIB_PL_PATH = $(addprefix $(LIB_PATH), $(LIB))
+LIBFT_DIR = $(SRC_DIR)libft/
+LIBFT = $(LIBFT_DIR)libft.a
 
-OBJ = $(SRC_PL_PATH:.c=.o)
+LIBFT_PRINTF_DIR = $(SRC_DIR)ft_printf/
+LIBFT_PRINTF = $(LIBFT_PRINTF_DIR)libftprintf.a
 
-FLAGS = -g
+SRCS1 = $(addprefix $(SRC_DIR), push_swap.c arr_functs.c commands.c stack_functs.c usefull_functs.c sorting_3_5.c sorting_100.c sorting_500.c error.c)
+SRCS2 = $(addprefix $(SRC_DIR), checker.c arr_functs.c commands.c stack_functs.c usefull_functs.c visualization.c)
 
-#	colors
-GREEN			=	\033[0;32m
-RED				=	\033[0;31m
-RESET			=	\033[0m
+OBJ1 = $(SRCS1:%.c=$(OBJ_DIR)%.o)
+OBJ2 = $(SRCS2:%.c=$(OBJ_DIR)%.o)
 
-all:$(NAME)
+CC = gcc -Wall -Wextra -Werror
 
-# $(NAME): $(OBJ)
-# 	@gcc -I$(INCLUDE_PATH) $(LIB_PL_PATH) $(OBJ) -o $(NAME)
-# 	@echo "$(GREEN)nu davay testiruy$(RESET)"
+all: $(NAME1) $(NAME2)
 
-# $(SRC_PATH)%.o: $(SRC_PATH)%.c
-# 	@gcc -c -I$(INCLUDE_PATH) $< -o $@
+$(NAME1): $(OBJ1) $(LIBFT) $(LIBFT_PRINTF)
+	@$(CC) -L$(LIBFT_DIR) -lft -L$(LIBFT_PRINTF_DIR) -lftprintf $^ -o $@
+	@echo "$(NAME1) done!"
 
-$(NAME):
-	@gcc $(SRC_PL_PATH) $(LIB_PL_PATH) -I$(INCLUDE_PATH) -g
-	@echo "$(GREEN)nu davay testiruy$(RESET)"
+$(NAME2): $(OBJ2) $(LIBFT) $(LIBFT_PRINTF)
+	@$(CC) -L$(LIBFT_DIR) -lft -L$(LIBFT_PRINTF_DIR) -lftprintf $^ -o $@
+	@echo "$(NAME2) done!"
+	
+$(LIBFT):
+	@$(MAKE) -C $(LIBFT_DIR)
+	@$(MAKE) -C $(LIBFT_DIR) clean
+
+$(LIBFT_PRINTF):
+	@$(MAKE) -C $(LIBFT_PRINTF_DIR)
+	@$(MAKE) -C $(LIBFT_PRINTF_DIR) clean
+
+$(OBJ_DIR)%.o: %.c
+	@mkdir -p '$(@D)'
+	@$(CC) -I./includes/ -c $< -o $@
 
 clean:
-	@rm -rf $(OBJ)
-	@rm -rf a.out.dSYM
+	@rm -rf $(OBJ_DIR)
+	@$(MAKE) -C $(LIBFT_DIR) fclean
+	@$(MAKE) -C $(LIBFT_PRINTF_DIR) fclean
 
-fclean:	clean
-	@rm -rf $(NAME)
-	@echo "$(RED)MUSORA NET. VOBWE NET.$(RESET)"
+fclean: clean
+	@rm -rf $(NAME1) $(NAME2)
 
 re: fclean all
