@@ -6,7 +6,7 @@
 /*   By: rloraine <rloraine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/25 17:09:15 by rloraine          #+#    #+#             */
-/*   Updated: 2019/09/03 18:17:07 by rloraine         ###   ########.fr       */
+/*   Updated: 2019/09/07 15:24:24 by rloraine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static void	write_command(int operation, int **comm)
 		*((*comm)++) = operation;
 }
 
-void	rev_rotate(t_stack **stack, int **comm)
+void		rev_rotate(t_stack **stack, int **comm)
 {
 	if ((*stack) && (*stack)->prev != (*stack))
 	{
@@ -34,7 +34,7 @@ void	rev_rotate(t_stack **stack, int **comm)
 	}
 }
 
-void	rotate(t_stack **stack, int **comm)
+void		rotate(t_stack **stack, int **comm)
 {
 	if ((*stack) && (*stack)->next != (*stack))
 	{
@@ -44,7 +44,7 @@ void	rotate(t_stack **stack, int **comm)
 	}
 }
 
-void	swap(t_stack **stack, int **comm)
+void		swap(t_stack **stack, int **comm)
 {
 	if ((*stack) && (*stack) != (*stack)->next)
 	{
@@ -63,7 +63,7 @@ void	swap(t_stack **stack, int **comm)
 	(*stack) = (*stack)->prev;
 }
 
-void	push(t_stack **take, t_stack **put, int **comm)
+void		push(t_stack **take, t_stack **put, int **comm)
 {
 	t_stack *tmp;
 

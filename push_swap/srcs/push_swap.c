@@ -6,16 +6,16 @@
 /*   By: rloraine <rloraine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/22 13:55:20 by rloraine          #+#    #+#             */
-/*   Updated: 2019/09/03 19:40:03 by rloraine         ###   ########.fr       */
+/*   Updated: 2019/09/07 15:24:00 by rloraine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	sort(t_stack **a, int size, int *comm)
+void		sort(t_stack **a, int size, int *comm)
 {
-	t_stack *b;
-	int *p;
+	t_stack	*b;
+	int		*p;
 
 	p = comm;
 	*p++ = 0;
@@ -62,7 +62,7 @@ static void	print_comm(int *comm)
 	}
 }
 
-int		main(int argc, char **argv)
+int			main(int argc, char **argv)
 {
 	t_stack	*a;
 	int		*arr;

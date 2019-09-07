@@ -6,7 +6,7 @@
 /*   By: rloraine <rloraine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/22 13:55:30 by rloraine          #+#    #+#             */
-/*   Updated: 2019/09/07 14:51:34 by rloraine         ###   ########.fr       */
+/*   Updated: 2019/09/07 15:38:55 by rloraine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@
 # define SS 5
 # define RR 50
 # define RRR 500
+
 /*
 **	structures
 */
@@ -75,7 +76,6 @@ int				stack_size(t_stack *stack);
 */
 
 void			fill_arr(int **arr, int argc, char **argv, int *size);
-//void			get_size(int **arr, char **argv, int *size);
 void			sort_arr(int *start, int *end);
 int				get_mid(int *start, int *end, int *mid);
 

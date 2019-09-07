@@ -6,7 +6,7 @@
 /*   By: rloraine <rloraine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/05 20:19:14 by rloraine          #+#    #+#             */
-/*   Updated: 2019/09/07 14:54:34 by rloraine         ###   ########.fr       */
+/*   Updated: 2019/09/07 15:25:29 by rloraine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,21 +115,21 @@ static int	check_flag(char ***argv, int *flag, int *fd)
 	return (1);
 }
 
-int main(int argc, char **argv)
+int			main(int argc, char **argv)
 {
 	t_stack *a;
-    int     *arr;
-    int     size;
-    int     flag;
-    int     fd;
+	int		*arr;
+	int		size;
+	int		flag;
+	int		fd;
 
-    if (argc-- < 2 || (argc -= check_flag(&argv, &flag, &fd)) < 1)
-        return (0);
-    fill_arr(&arr, argc, argv, &size);
-    a = fill_stack(&a, &arr, size);
-    sort_arr(arr, arr + size - 1);
-    a = get_num_in_stack(&a, &arr, size);
-    ft_printf(checker(&a, fd, flag, size) ? "OK\n" : "KO\n");
+	if (argc-- < 2 || (argc -= check_flag(&argv, &flag, &fd)) < 1)
+		return (0);
+	fill_arr(&arr, argc, argv, &size);
+	a = fill_stack(&a, &arr, size);
+	sort_arr(arr, arr + size - 1);
+	a = get_num_in_stack(&a, &arr, size);
+	ft_printf(checker(&a, fd, flag, size) ? "OK\n" : "KO\n");
 	if (fd)
 		close(fd);
 }

@@ -6,7 +6,7 @@
 /*   By: rloraine <rloraine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/02 17:35:35 by rloraine          #+#    #+#             */
-/*   Updated: 2019/09/03 19:40:50 by rloraine         ###   ########.fr       */
+/*   Updated: 2019/09/07 15:24:38 by rloraine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,4 +60,3 @@ void		sort_500(t_stack **a, t_stack **b, int size, int **ops)
 			push(b, a, ops);
 	}
 }
-

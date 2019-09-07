@@ -6,11 +6,15 @@
 /*   By: rloraine <rloraine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/24 14:27:27 by rloraine          #+#    #+#             */
-/*   Updated: 2019/09/03 18:27:54 by rloraine         ###   ########.fr       */
+/*   Updated: 2019/09/07 15:39:05 by rloraine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+#define COUNT push(a, b, comm); ++prev_mid; ++count; --size;
+#define IFBREAK if (size <= 3) break;
+#define ELSEROT else rotate(a, comm);
 
 int		share_stack(t_stack **a, t_stack **b, int size, int **comm)
 {
@@ -25,8 +29,7 @@ int		share_stack(t_stack **a, t_stack **b, int size, int **comm)
 	count = 0;
 	while (1)
 	{
-		if (size <= 3)
-			break ;
+		IFBREAK;
 		if (prev_mid == check_mid)
 		{
 			mid = find_mid(*a, size);
@@ -35,13 +38,9 @@ int		share_stack(t_stack **a, t_stack **b, int size, int **comm)
 		}
 		if ((*a)->num <= mid)
 		{
-			push(a, b, comm);
-			++prev_mid;
-			++count;
-			--size;
+			COUNT;
 		}
-		else
-			rotate(a, comm );
+		ELSEROT;
 	}
 	return (count);
 }

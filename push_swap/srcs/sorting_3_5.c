@@ -6,26 +6,29 @@
 /*   By: rloraine <rloraine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/03 18:25:53 by rloraine          #+#    #+#             */
-/*   Updated: 2019/09/07 14:52:37 by rloraine         ###   ########.fr       */
+/*   Updated: 2019/09/07 15:30:39 by rloraine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
+#define SSTACK (*s)->stack
+#define GET_NULL(a,b) a = 0; b = 0
+
 static void	sort_3_v0(t_stack **s, int **ops, int var)
 {
-	if ((var == 1 && (*s)->stack == 'a') || (var == 2 && (*s)->stack == 'b'))
+	if ((var == 1 && SSTACK == 'a') || (var == 2 && SSTACK == 'b'))
 		rotate(s, ops);
-	else if ((var == 2 && (*s)->stack == 'a') || (var == 1 && (*s)->stack == 'b'))
+	else if ((var == 2 && SSTACK == 'a') || (var == 1 && SSTACK == 'b'))
 	{
 		swap(s, ops);
 		rotate(s, ops);
 	}
-	else if ((var == 3 && (*s)->stack == 'a') || (var == 4 && (*s)->stack == 'b'))
+	else if ((var == 3 && SSTACK == 'a') || (var == 4 && SSTACK == 'b'))
 		swap(s, ops);
-	else if ((var == 4 && (*s)->stack == 'a') || (var == 3 && (*s)->stack == 'b'))
+	else if ((var == 4 && SSTACK == 'a') || (var == 3 && SSTACK == 'b'))
 		rev_rotate(s, ops);
-	if ((var == 6 && (*s)->stack == 'a') || (var == 5 && (*s)->stack == 'b'))
+	if ((var == 6 && SSTACK == 'a') || (var == 5 && SSTACK == 'b'))
 	{
 		rotate(s, ops);
 		swap(s, ops);
@@ -34,14 +37,14 @@ static void	sort_3_v0(t_stack **s, int **ops, int var)
 
 static void	sort_3_v1(t_stack **s, int **ops, int var)
 {
-	if ((var == 1 && (*s)->stack == 'a') || (var == 2 && (*s)->stack == 'b'))
+	if ((var == 1 && SSTACK == 'a') || (var == 2 && SSTACK == 'b'))
 	{
 		swap(s, ops);
 		rotate(s, ops);
 		swap(s, ops);
 		rev_rotate(s, ops);
 	}
-	else if ((var == 2 && (*s)->stack == 'a') || (var == 1 && (*s)->stack == 'b'))
+	else if ((var == 2 && SSTACK == 'a') || (var == 1 && SSTACK == 'b'))
 	{
 		rotate(s, ops);
 		swap(s, ops);
@@ -51,7 +54,7 @@ static void	sort_3_v1(t_stack **s, int **ops, int var)
 
 static void	sort_3_v2(t_stack **s, int **ops, int var)
 {
-	if ((var == 6 && (*s)->stack == 'a') || (var == 5 && (*s)->stack == 'b'))
+	if ((var == 6 && SSTACK == 'a') || (var == 5 && SSTACK == 'b'))
 	{
 		swap(s, ops);
 		rotate(s, ops);
@@ -59,14 +62,14 @@ static void	sort_3_v2(t_stack **s, int **ops, int var)
 		rev_rotate(s, ops);
 		swap(s, ops);
 	}
-	else if ((var == 4 && (*s)->stack == 'a') || (var == 3 && (*s)->stack == 'b'))
+	else if ((var == 4 && SSTACK == 'a') || (var == 3 && SSTACK == 'b'))
 	{
 		rotate(s, ops);
 		swap(s, ops);
 		rev_rotate(s, ops);
 		swap(s, ops);
 	}
-	else if ((var == 3 && (*s)->stack == 'a') || (var == 4 && (*s)->stack == 'b'))
+	else if ((var == 3 && SSTACK == 'a') || (var == 4 && SSTACK == 'b'))
 		swap(s, ops);
 }
 
@@ -77,8 +80,7 @@ void		sort_3(t_stack **s, int size, int **ops)
 	int middle;
 	int bottom;
 
-	size = 0;
-	var = 0;
+	GET_NULL(var, size);
 	top = (*s)->num;
 	middle = (*s)->next->num;
 	bottom = (*s)->next->next->num;
@@ -122,4 +124,3 @@ void		sort_5(t_stack **a, t_stack **b, int size, int **ops)
 	}
 	push(b, a, ops);
 }
-
