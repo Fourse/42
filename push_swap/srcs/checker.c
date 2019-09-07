@@ -6,7 +6,7 @@
 /*   By: rloraine <rloraine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/05 20:19:14 by rloraine          #+#    #+#             */
-/*   Updated: 2019/09/07 15:25:29 by rloraine         ###   ########.fr       */
+/*   Updated: 2019/09/07 17:01:32 by rloraine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,11 +125,13 @@ int			main(int argc, char **argv)
 
 	if (argc-- < 2 || (argc -= check_flag(&argv, &flag, &fd)) < 1)
 		return (0);
-	fill_arr(&arr, argc, argv, &size);
-	a = fill_stack(&a, &arr, size);
-	sort_arr(arr, arr + size - 1);
-	a = get_num_in_stack(&a, &arr, size);
+	if (!(arr = get_arr_ch(argc, argv, &size)))
+		error();
+	a = fill_stack_ch(arr, size);
+	sort_arr_ch(arr, arr + size - 1);
+	mark_stack(a, arr, size);
 	ft_printf(checker(&a, fd, flag, size) ? "OK\n" : "KO\n");
 	if (fd)
 		close(fd);
+	return (0);
 }

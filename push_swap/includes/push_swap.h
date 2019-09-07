@@ -6,7 +6,7 @@
 /*   By: rloraine <rloraine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/22 13:55:30 by rloraine          #+#    #+#             */
-/*   Updated: 2019/09/07 15:38:55 by rloraine         ###   ########.fr       */
+/*   Updated: 2019/09/07 17:01:42 by rloraine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,10 @@ typedef struct	s_stack
 */
 
 void			error(void);
+
+/*
+**	----PUSH_SWAP_FUNCTS----
+*/
 
 /*
 **	push_swap.c
@@ -121,8 +125,23 @@ int				find_max(t_stack *s, int size);
 void			sort_500(t_stack **a, t_stack **b, int size, int **comm);
 
 /*
-**	CHECKER_FUNCTS
+**	----CHECKER_FUNCTS----
 */
+
+/*
+**	arr_functs_ch.c
+*/
+
+int				*get_arr_ch(int argc, char **argv, int *size);
+int				*get_array_single_arg(char **arg, int *size);
+void			sort_arr_ch(int *begin, int *end);
+
+/*
+**	stack_functs_ch.c
+*/
+
+t_stack			*fill_stack_ch(int *arr, int size);
+void			mark_stack(t_stack *a, int *arr, int size);
 
 /*
 **	vizualization.c

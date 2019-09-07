@@ -3,40 +3,30 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rloraine <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: smorty <smorty@student.21school.ru>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/04/06 18:57:00 by rloraine          #+#    #+#             */
-/*   Updated: 2019/04/21 17:10:23 by rloraine         ###   ########.fr       */
+/*   Created: 2019/04/06 15:05:46 by smorty            #+#    #+#             */
+/*   Updated: 2019/05/18 18:00:45 by smorty           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-
-int	ft_atoi(const char *str)
+int		ft_atoi(char const *s)
 {
-	unsigned int	i;
-	long			nb;
-	int				minus;
+	long	n;
+	int		sign;
 
-	i = 0;
-	nb = 0;
-	minus = 1;
-	while (str[i] == ' ' || str[i] == '\t' || str[i] == '\r' ||
-	str[i] == '\n' || str[i] == '\v' || str[i] == '\f')
-		i++;
-	if (str[i] == '+' || str[i] == '-')
-		if (str[i++] == '-')
-			minus = -1;
-	while ((str[i] >= '0') && (str[i] <= '9'))
+	while ((*s >= 9 && *s <= 13) || *s == 32)
+		++s;
+	sign = (*s == '-' ? -1 : 1);
+	if (*s == '-' || *s == '+')
+		++s;
+	n = 0;
+	while (*s >= '0' && *s <= '9')
 	{
-		if ((nb >= 922337203685477581 && str[i] >= '0' && str[i] <= '9') ||
-			(nb == 922337203685477580 && str[i] > '8' && str[i] <= '9'))
-		{
-			nb = (minus == 1) ? 9223372036854775807 : -9223372036854775807 - 1;
-			return (nb);
-		}
-		nb = nb * 10 + (str[i] - '0');
-		i++;
+		n = n * 10 + (*s - '0');
+		if (n < 0)
+			return (sign > 0 ? -1 : 0);
+		++s;
 	}
-	return (nb * minus);
+	return ((int)(n * sign));
 }
