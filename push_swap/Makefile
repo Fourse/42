@@ -14,7 +14,7 @@ LFTPRINTFDIR = $(SRCDIR)ft_printf/
 
 LFTPRINTF = $(LFTPRINTFDIR)libftprintf.a
 
-SRCS1 = $(addprefix $(SRCDIR),push_swap.c arr_functs.c commands.c stack_functs.c usefull_functs.c sorting_3_5.c sorting_100.c sorting_500.c error.c)
+SRCS1 = $(addprefix $(SRCDIR),push_swap.c arr_functs.c arr_functs_ch.c commands.c stack_functs.c stack_functs_ch.c usefull_functs.c sorting_3_5.c sorting_100.c sorting_500.c error.c)
 
 SRCS2 = $(addprefix $(SRCDIR),checker.c arr_functs.c arr_functs_ch.c commands.c stack_functs.c stack_functs_ch.c usefull_functs.c visualization.c error.c)
 

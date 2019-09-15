@@ -6,7 +6,7 @@
 /*   By: rloraine <rloraine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/22 13:55:20 by rloraine          #+#    #+#             */
-/*   Updated: 2019/09/07 15:24:00 by rloraine         ###   ########.fr       */
+/*   Updated: 2019/09/15 11:47:55 by rloraine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,16 +69,22 @@ int			main(int argc, char **argv)
 	int		size;
 	int		*comm;
 
-	fill_arr(&arr, argc, argv, &size);
-	a = fill_stack(&a, &arr, size);
-	sort_arr(arr, arr + size - 1);
-	a = get_num_in_stack(&a, &arr, size);
+	if (argc-- < 2)
+		return (0);
+	++argv;
+	if (!(arr = get_arr_ch(argc, argv, &size)))
+		error();
+	a = fill_stack_ch(arr, size);
+	sort_arr_ch(arr, arr + size - 1);
+	mark_stack(a, arr, size);
 	if (!stack_is_sorted(a, size))
 	{
-		if (!(comm = (int*)malloc(sizeof(int) * (size * size + 1))))
-			error();
+		comm = (int *)malloc(sizeof(int) * (size * size + 1));
 		sort(&a, size, comm);
 		print_comm(comm);
+		free(comm);
 	}
+	free_stack(a, size);
+	free(arr);
 	return (0);
 }

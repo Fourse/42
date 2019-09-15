@@ -3,35 +3,88 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smorty <smorty@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rloraine <rloraine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/05/02 14:55:41 by smorty            #+#    #+#             */
-/*   Updated: 2019/06/05 23:05:04 by smorty           ###   ########.fr       */
+/*   Created: 2019/06/20 13:04:00 by rloraine          #+#    #+#             */
+/*   Updated: 2019/07/20 18:58:33 by rloraine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-t_output	g_ftprintf;
+t_out g_print;
 
-static t_frmt	initialize_params(void)
+static void	init_params(t_format *params)
 {
-	t_frmt prm;
-
-	prm.flags = 0;
-	prm.mod = 0;
-	prm.width = 0;
-	prm.precision = 1;
-	prm.spec = 0;
-	return (prm);
+	params->flag = 0;
+	params->width = 0;
+	params->acc = 1;
+	params->mod = 0;
+	params->spec = 0;
 }
 
-static void		parse_string(const char **format, va_list *argp)
+static int	do_format(va_list *ap, t_format *params)
 {
+	int sp;
+
+	sp = params->spec;
+	if (I_IN(sp) || I_GA(sp) || I_816(sp))
+	{
+		if ((params->flag & (ZERO | ACC)) == (ZERO | ACC))
+			params->flag ^= ZERO;
+		if (I_I(sp) || I_D(sp) || I_BD(sp))
+			return (do_d(ap, params));
+		else if (I_U(sp) || I_BU(sp))
+			return (do_u(ap, params));
+		else if (I_O(sp) || I_BO(sp))
+			return (do_o(ap, params));
+		else if (I_X(sp) || I_BX(sp) || I_P(sp))
+			return (do_x(ap, params));
+		else if (I_B(sp) || I_BB(sp))
+			return (do_b(ap, params));
+		else if (I_N(sp))
+			return (do_n(va_arg(*ap, int*)));
+	}
+	else if (I_FL(sp) || I_FL2(sp))
+		return (do_fl(ap, params));
+	else if (I_CH(sp))
+		return (do_c(ap, params));
+	return (g_print.error = -1);
+}
+
+static int	parse_prms(const char **format, va_list *ap, t_format *params)
+{
+	while (!CHK_C(**format))
+	{
+		if (CHK_F(**format))
+			get_flag(format, params);
+		else if (CHK_W(**format) || **format == '*')
+			get_width(format, ap, params);
+		else if (CHK_A(**format) || **format == '*')
+			get_acc(format, ap, params);
+		else if (CHK_M(**format))
+			get_mod(format, params);
+		else if (**format)
+			return (do_c_wm(*(*format)++, params));
+		else
+			return (0);
+	}
+	params->spec = **format;
+	if (I_BD(**format) || I_BU(**format) || I_BO(**format))
+		params->mod = J;
+	++(*format);
+	return (do_format(ap, params));
+}
+
+static void	check_frmt(const char **format, va_list *ap)
+{
+	t_format params;
+
 	while (**format)
 	{
 		if (**format == '%')
 		{
+			init_params(&params);
 			++(*format);
 			if (**format == '%')
 			{
@@ -39,11 +92,9 @@ static void		parse_string(const char **format, va_list *argp)
 				++(*format);
 			}
 			else if (**format)
-				if (parse_params(format, argp, initialize_params()) == -1)
+				if (parse_prms(format, ap, &params) == -1)
 					return ;
 		}
-		else if (**format == '{')
-			check_color_and_fd(format, argp);
 		else
 		{
 			char_to_buf(**format, 1);
@@ -52,21 +103,17 @@ static void		parse_string(const char **format, va_list *argp)
 	}
 }
 
-int				ft_printf(const char *format, ...)
+int			ft_printf(const char *format, ...)
 {
-	va_list	argp;
+	va_list		ap;
 
-	g_ftprintf.printed = 0;
-	if (g_ftprintf.error != -1)
-		g_ftprintf.error = 0;
-	if (format)
-	{
-		g_ftprintf.len = 0;
-		g_ftprintf.fd = 1;
-		va_start(argp, format);
-		parse_string(&format, &argp);
-		print_buf();
-		va_end(argp);
-	}
-	return (g_ftprintf.error ? -1 : g_ftprintf.printed);
+	g_print.print = 0;
+	g_print.error = 0;
+	g_print.len = 0;
+	g_print.fd = 1;
+	va_start(ap, format);
+	check_frmt(&format, &ap);
+	print_buf();
+	va_end(ap);
+	return (g_print.error ? -1 : g_print.print);
 }

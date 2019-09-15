@@ -6,7 +6,7 @@
 /*   By: rloraine <rloraine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/05 20:19:14 by rloraine          #+#    #+#             */
-/*   Updated: 2019/09/07 17:01:32 by rloraine         ###   ########.fr       */
+/*   Updated: 2019/09/15 11:49:54 by rloraine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,5 +133,7 @@ int			main(int argc, char **argv)
 	ft_printf(checker(&a, fd, flag, size) ? "OK\n" : "KO\n");
 	if (fd)
 		close(fd);
+	free_stack(a, size);
+	free(arr);
 	return (0);
 }

@@ -6,11 +6,21 @@
 /*   By: rloraine <rloraine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/07 16:55:03 by rloraine          #+#    #+#             */
-/*   Updated: 2019/09/07 17:01:26 by rloraine         ###   ########.fr       */
+/*   Updated: 2019/09/15 11:48:02 by rloraine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+void			free_stack(t_stack *s, int size)
+{
+	while (--size)
+	{
+		s = s->next;
+		free(s->prev);
+	}
+	free(s);
+}
 
 void			mark_stack(t_stack *a, int *arr, int size)
 {

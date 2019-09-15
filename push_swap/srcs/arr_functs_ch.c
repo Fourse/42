@@ -6,7 +6,7 @@
 /*   By: rloraine <rloraine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/07 16:54:16 by rloraine          #+#    #+#             */
-/*   Updated: 2019/09/07 17:00:32 by rloraine         ###   ########.fr       */
+/*   Updated: 2019/09/15 11:50:43 by rloraine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ void		sort_arr_ch(int *begin, int *end)
 	sort_arr_ch(begin, right);
 	sort_arr_ch(left - 1, end);
 }
+
 static int	get_number(char *s)
 {
 	long long	num;
@@ -89,8 +90,9 @@ static int	get_number(char *s)
 	if (*s || num != (int)num)
 		error();
 	return ((int)num);
-}	
-int	*get_array_single_arg(char **arg, int *size)
+}
+
+int			*get_array_single_arg(char **arg, int *size)
 {
 	int *arr;
 	int i;

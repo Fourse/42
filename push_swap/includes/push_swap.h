@@ -6,7 +6,7 @@
 /*   By: rloraine <rloraine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/22 13:55:30 by rloraine          #+#    #+#             */
-/*   Updated: 2019/09/07 17:01:42 by rloraine         ###   ########.fr       */
+/*   Updated: 2019/09/15 11:48:18 by rloraine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,6 +142,7 @@ void			sort_arr_ch(int *begin, int *end);
 
 t_stack			*fill_stack_ch(int *arr, int size);
 void			mark_stack(t_stack *a, int *arr, int size);
+void			free_stack(t_stack *s, int size);
 
 /*
 **	vizualization.c
