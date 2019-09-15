@@ -1,40 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lem_in.h                                           :+:      :+:    :+:   */
+/*   ft_strnequ.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rloraine <rloraine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/07 17:13:55 by rloraine          #+#    #+#             */
-/*   Updated: 2019/09/15 13:07:13 by rloraine         ###   ########.fr       */
+/*   Created: 2019/04/07 21:40:34 by rloraine          #+#    #+#             */
+/*   Updated: 2019/07/21 18:27:42 by rloraine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LEM_IN_H
-# define LEM_IN_H
+#include "libft.h"
 
-# include "libft/libft.h"
-# include "ft_printf/includes/ft_printf.h"
-
-typedef struct	s_coord
+int		ft_strnequ(char const *s1, char const *s2, size_t n)
 {
-	int				x;
-	int				y;
-	int				number_of_room;
-	int				start_end_dot;
-}				t_coord;
-
-typedef struct	s_links
-{
-	struct s_links	**links;
-}				t_links;
-
-typedef struct	s_lemin
-{
-	int				number_of_ants;
-	char			**rooms;
-	t_coord			*coords;
-	t_links			**links;
-}				t_lemin;
-
-#endif
+	if (s1 != s2)
+	{
+		if (!s1 || !s2)
+			return (0);
+		while ((*s1 || *s2) && n)
+		{
+			if (*s1 != *s2)
+				return (0);
+			++s1;
+			++s2;
+			--n;
+		}
+	}
+	return (1);
+}

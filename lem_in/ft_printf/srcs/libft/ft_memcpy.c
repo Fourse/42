@@ -1,40 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lem_in.h                                           :+:      :+:    :+:   */
+/*   ft_memcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rloraine <rloraine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/07 17:13:55 by rloraine          #+#    #+#             */
-/*   Updated: 2019/09/15 13:07:13 by rloraine         ###   ########.fr       */
+/*   Created: 2019/04/06 21:09:08 by rloraine          #+#    #+#             */
+/*   Updated: 2019/05/17 13:45:59 by rloraine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LEM_IN_H
-# define LEM_IN_H
+#include "libft.h"
 
-# include "libft/libft.h"
-# include "ft_printf/includes/ft_printf.h"
-
-typedef struct	s_coord
+void	*ft_memcpy(void *restrict dst, const void *restrict src, size_t n)
 {
-	int				x;
-	int				y;
-	int				number_of_room;
-	int				start_end_dot;
-}				t_coord;
+	size_t i;
 
-typedef struct	s_links
-{
-	struct s_links	**links;
-}				t_links;
-
-typedef struct	s_lemin
-{
-	int				number_of_ants;
-	char			**rooms;
-	t_coord			*coords;
-	t_links			**links;
-}				t_lemin;
-
-#endif
+	i = 0;
+	while (i < n)
+	{
+		((unsigned char*)dst)[i] = ((unsigned char*)src)[i];
+		i++;
+	}
+	return ((void*)dst);
+}
