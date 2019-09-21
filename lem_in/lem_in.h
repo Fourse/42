@@ -6,7 +6,7 @@
 /*   By: rloraine <rloraine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/07 17:13:55 by rloraine          #+#    #+#             */
-/*   Updated: 2019/09/21 16:54:27 by rloraine         ###   ########.fr       */
+/*   Updated: 2019/09/21 17:03:13 by rloraine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,25 +31,29 @@ typedef struct	s_inp
 	struct s_inp	*prev;
 }				t_inp;
 
-typedef struct	s_coord
+typedef struct	s_room
 {
+	char			*name;
+	int				index;
 	int				x;
 	int				y;
-	int				number_of_room;
-	int				start_end_dot;
-}				t_coord;
+	int				status;
+}				t_room;
 
-typedef struct	s_links
+typedef struct	s_ants
 {
-	struct s_links	**links;
-}				t_links;
+	int				num;
+	t_room			*room;
+	struct s_ants	*next;
+}				t_ants;
 
 typedef struct	s_lemin
 {
 	int				number_of_ants;
-	char			**rooms;
-	t_coord			*coords;
-	t_links			**links;
+	t_room			**rooms;
+	t_room			*start;
+	t_room			*end;
+	t_ants			*ants;
 }				t_lemin;
 
 /*
