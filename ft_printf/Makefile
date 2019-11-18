@@ -18,7 +18,7 @@ OBJ				=	${SRCS:.c=.o} ${LIB_SRCS:.c=.o}
 
 #	compilation
 CC				=	gcc
-CFLAGS			=	-Wall -Werror -Wextra
+CFLAGS			=	-Wall -Werror -Wextra -O3
 
 #	colors
 GREEN			=	\033[0;32m
